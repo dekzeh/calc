@@ -1374,7 +1374,7 @@ export function calculateDfModsSMSSSV(
     dfMods.push(3072);
   }
 
-  if (move.named('Explosion', 'Self-Destruct')){
+  if (move.named('Explosion', 'Self-Destruct', 'Misty Explosion')){
     dfMods.push(2048);
   }
 
