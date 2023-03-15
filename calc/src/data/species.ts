@@ -964,7 +964,7 @@ const GSC_PATCH: {[name: string]: DeepPartial<SpeciesData>} = {
   },
   Azumarill: {
     types: ['Water'],
-    bs: {hp: 100, at: 50, df: 80, sa: 50, sd: 80, sp: 50},
+    bs: {hp: 100, at: 65, df: 80, sa: 50, sd: 80, sp: 50},
     weightkg: 28.5,
   },
   Bayleef: {
@@ -5026,7 +5026,7 @@ const XY_PATCH: {[name: string]: DeepPartial<SpeciesData>} = {
   Altaria: {otherFormes: ['Altaria-Mega']},
   Ampharos: {bs: {df: 85}, otherFormes: ['Ampharos-Mega']},
   Audino: {otherFormes: ['Audino-Mega']},
-  Azumarill: {types: ['Water', 'Fairy'], bs: {sa: 60}},
+  Azumarill: {types: ['Water', 'Fairy'], bs: {sa: 90}},
   Azurill: {types: ['Normal', 'Fairy']},
   Banette: {otherFormes: ['Banette-Mega']},
   Beautifly: {bs: {sa: 100}},
@@ -5274,7 +5274,7 @@ const XY_PATCH: {[name: string]: DeepPartial<SpeciesData>} = {
   },
   Diggersby: {
     types: ['Normal', 'Ground'],
-    bs: {hp: 85, at: 56, df: 77, sa: 50, sd: 77, sp: 78},
+    bs: {hp: 85, at: 71, df: 77, sa: 50, sd: 77, sp: 78},
     weightkg: 42.4,
     abilities: {0: 'Pickup'},
   },
@@ -8744,11 +8744,6 @@ const SS_PATCH: {[name: string]: DeepPartial<SpeciesData>} = {
   },
 };
 
-const SS: {[name: string]: SpeciesData} = extend(true, {}, SM, SS_PATCH);
-
-delete SS['Pikachu-Starter'];
-delete SS['Eevee-Starter'];
-
 const PLA_PATCH: {[name: string]: DeepPartial<SpeciesData>} = {
   Arcanine: {otherFormes: ['Arcanine-Hisui']},
   Avalugg: {otherFormes: ['Avalugg-Hisui']},
@@ -8974,6 +8969,13 @@ const PLA_PATCH: {[name: string]: DeepPartial<SpeciesData>} = {
     nfe: true,
   },
 };
+
+
+const SS: {[name: string]: SpeciesData} = extend(true, {}, SM, SS_PATCH, PLA_PATCH);
+
+delete SS['Pikachu-Starter'];
+delete SS['Eevee-Starter'];
+
 
 const SV_PATCH: {[name: string]: DeepPartial<SpeciesData>} = {
   Bisharp: {nfe: true},

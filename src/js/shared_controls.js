@@ -292,9 +292,6 @@ function autosetWeather(ability, i) {
 		$("#strong-winds").prop("checked", true);
 		break;
 	default:
-		lastAutoWeather[i] = "";
-		var newWeather = lastAutoWeather[1 - i] !== "" ? lastAutoWeather[1 - i] : "";
-		$("input:radio[name='weather'][value='" + newWeather + "']").prop("checked", true);
 		break;
 	}
 }
@@ -718,7 +715,7 @@ $(".forme").change(function () {
 
 function correctHiddenPower(pokemon) {
 	// After Gen 7 bottlecaps means you can have a HP without perfect IVs
-	if (gen >= 7 && pokemon.level >= 100) return pokemon;
+	if (gen >= 7) return pokemon;
 
 	// Convert the legacy stats table to a useful one, and also figure out if all are maxed
 	var ivs = {};
@@ -1040,10 +1037,10 @@ var gen, genWasChanged, notation, pokedex, setdex, randdex, typeChart, moves, ab
 
 $(".gen").change(function () {
 	/*eslint-disable */
-	gen = ~~$(this).val() || 9;
+	gen = ~~$(this).val() || 8;
 	GENERATION = calc.Generations.get(gen);
 	var params = new URLSearchParams(window.location.search);
-	if (gen === 9) {
+	if (gen === 8) {
 		params.delete('gen');
 		params = '' + params;
 		if (window.history && window.history.replaceState) {
@@ -1385,7 +1382,7 @@ function loadCustomList(id) {
 
 $(document).ready(function () {
 	var params = new URLSearchParams(window.location.search);
-	var g = GENERATION[params.get('gen')] || 9;
+	var g = GENERATION[params.get('gen')] || 8;
 	$("#gen" + g).prop("checked", true);
 	$("#gen" + g).change();
 	$("#percentage").prop("checked", true);

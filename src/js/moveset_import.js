@@ -295,6 +295,7 @@ function addSets(pokes, name) {
 				currentPoke = getMoves(currentPoke, rows, i);
 				addToDex(currentPoke);
 				addedpokes++;
+				break;
 			}
 		}
 	}

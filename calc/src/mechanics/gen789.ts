@@ -919,7 +919,7 @@ export function calculateBPModsSMSSSV(
 
   // Field effects
 
-  const terrainMultiplier = gen.num > 7 ? 5325 : 6144;
+  const terrainMultiplier = 6144;
   if (isGrounded(attacker, field)) {
     if ((field.hasTerrain('Electric') && move.hasType('Electric')) ||
         (field.hasTerrain('Grassy') && move.hasType('Grass')) ||
@@ -1048,7 +1048,7 @@ export function calculateBPModsSMSSSV(
   // Items
 
   if (attacker.hasItem(`${move.type} Gem`)) {
-    bpMods.push(5325);
+    bpMods.push(6144);
     desc.attackerItem = attacker.item;
   } else if (
     ((attacker.hasItem('Adamant Crystal') && attacker.named('Dialga-Origin')) ||
@@ -1064,9 +1064,6 @@ export function calculateBPModsSMSSSV(
     (attacker.hasItem('Vile Vial') &&
      attacker.named('Venomicon-Epilogue') &&
      move.hasType('Poison', 'Flying')) ||
-    (attacker.hasItem('Soul Dew') &&
-     attacker.named('Latios', 'Latias', 'Latios-Mega', 'Latias-Mega') &&
-     move.hasType('Psychic', 'Dragon')) ||
      attacker.item && move.hasType(getItemBoostType(attacker.item))
   ) {
     bpMods.push(4915);
@@ -1262,7 +1259,8 @@ export function calculateAtModsSMSSSV(
     // Choice Band/Scarf/Specs move lock and stat boosts are ignored during Dynamax (Anubis)
   } else if (!move.isZ && !move.isMax &&
     ((attacker.hasItem('Choice Band') && move.category === 'Physical') ||
-      (attacker.hasItem('Choice Specs') && move.category === 'Special'))
+      (attacker.hasItem('Choice Specs') && move.category === 'Special') ||
+      attacker.hasItem("Soul Dew") && move.category === 'Special' && attacker.named('Latios', 'Latias', 'Latios-Mega', 'Latias-Mega'))
   ) {
     atMods.push(6144);
     desc.attackerItem = attacker.item;
@@ -1376,6 +1374,10 @@ export function calculateDfModsSMSSSV(
     dfMods.push(3072);
   }
 
+  if (move.named('Explosion', 'Self-Destruct')){
+    dfMods.push(2048);
+  }
+
   if (
     (defender.hasAbility('Protosynthesis') &&
     (field.hasWeather('Sun') || attacker.hasItem('Booster Energy'))) ||
@@ -1392,7 +1394,8 @@ export function calculateDfModsSMSSSV(
   }
 
   if ((defender.hasItem('Eviolite') && gen.species.get(toID(defender.name))?.nfe) ||
-      (!hitsPhysical && defender.hasItem('Assault Vest'))) {
+      (!hitsPhysical && defender.hasItem('Assault Vest') )||
+      (defender.hasItem("Soul Dew") && move.category === 'Special' && defender.named('Latios', 'Latias', 'Latios-Mega', 'Latias-Mega'))) {
     dfMods.push(6144);
     desc.defenderItem = defender.item;
   } else if (
