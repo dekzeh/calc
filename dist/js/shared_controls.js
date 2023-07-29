@@ -461,7 +461,7 @@ $(".set-selector").change(function () {
 			if (next_poks[i][0].includes($('input.opposing').val())){
 				continue
 			}
-			var pok_name = next_poks[i].split(" ")[0]
+			var pok_name = next_poks[i].split(" (")[0]
 			var pok = `<img class="trainer-pok right-side" src="https://raw.githubusercontent.com/May8th1995/sprites/master/${pok_name}.png" data-id="${CURRENT_TRAINER_POKS[i].split("[")[0]}" title="${next_poks[i]}, ${next_poks[i]} BP">`
 			trpok_html += pok
 		}
