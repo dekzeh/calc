@@ -476,7 +476,7 @@ export function getEVDescriptionText(
   natureName: NatureName
 ): string {
   const nature = gen.natures.get(toID(natureName))!;
-  return (pokemon.evs[stat] +
+  return (pokemon.ivs[stat] +
     (nature.plus === nature.minus ? ''
     : nature.plus === stat ? '+'
     : nature.minus === stat ? '-'
