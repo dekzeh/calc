@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <title>Pok&eacute;mon Damage Calculator</title>
     <link type="text/css" rel="stylesheet" href="./js/vendor/select2/select2.css" />
-    <link type="text/css" rel="stylesheet" href="./css/main.css?2588e86d" />
+    <link type="text/css" rel="stylesheet" href="./css/main.css?2bc5e7b9" />
     <link type="text/css" rel="stylesheet" href="./css/vendor/bootstrap.css" />
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-26211653-3"></script>
@@ -122,7 +122,7 @@
     <div aria-label="Pok&eacute;mon 1" class="panel" role="region">
         <fieldset class="poke-info" id="p1">
             <legend align="center">Pok&eacute;mon 1</legend>
-            <input type="text" class="set-selector calc-trigger" />
+            <input type="text" class="set-selector calc-trigger player" />
             <span id="importedSetsOptions" style="width:auto; display:none">
                 <input type="checkbox" id="importedSets" /> Only show imported sets <br />
                 <button id="clearSets">Clear Imported Sets</button>
@@ -640,6 +640,11 @@
                     <option value="5">5 times</option>
                 </select>
             </div>
+            <div class="trainer-poks ">
+                <div class="trainer-pok-list player-poks">
+                        <img class="trainer-pok-onside" src="https://play.pokemonshowdown.com/sprites/gen5/charizard.png">
+                </div>
+            </div>
         </fieldset>
     </div>
 
@@ -1001,7 +1006,7 @@
     <div aria-label="Pok&eacute;mon 2" role="region" class="panel">
         <fieldset class="poke-info" id="p2">
             <legend align="center">Pok&eacute;mon 2</legend>
-            <input type="text" class="set-selector calc-trigger" />
+            <input type="text" class="set-selector calc-trigger opposing" />
             <span id="importedSetsOptions" style="width:auto; display:none">
                 <input type="checkbox" id="importedSets" /> Only show imported sets <br />
                 <button id="clearSets">Clear Imported Sets</button>
@@ -1517,6 +1522,18 @@
                     <option value="5">5 times</option>
                 </select>
             </div>
+            <div class="trainer-poks">
+
+                <div class="trainer-pok-list-opposing">
+                    <div class="trainer-pok-container">
+                        <img class="trainer-pok-opposing" src="https://play.pokemonshowdown.com/sprites/gen5/charizard.png" title="Focus Blast 120">
+
+                    </div>
+                    
+                    
+                </div>
+
+            </div>
         </fieldset>
     </div>
     <script type="text/javascript">
@@ -1532,9 +1549,9 @@
         var calc = exports = {};
         function require() { return exports };
     </script>
-    <script type="text/javascript" src="./calc/util.js?8fa0c7ff"></script>
-    <script type="text/javascript" src="./calc/stats.js?9220179f"></script>
-    <script type="text/javascript" src="./calc/data/species.js?fcdf800f"></script>
+    <script type="text/javascript" src="./calc/util.js?51463f0d"></script>
+    <script type="text/javascript" src="./calc/stats.js?a9e37d1a"></script>
+    <script type="text/javascript" src="./calc/data/species.js?7800cd5a"></script>
 	 <script type="text/javascript" src="./js/data/sets/gen9.js?f8c3f5c9"></script>
     <script type="text/javascript" src="./js/data/sets/gen8.js?8e2a99cf"></script>
     <script type="text/javascript" src="./js/data/sets/gen7.js?5f5ba850"></script>
@@ -1544,30 +1561,30 @@
     <script type="text/javascript" src="./js/data/sets/gen3.js?1750a100"></script>
     <script type="text/javascript" src="./js/data/sets/gen2.js?8534fa4a"></script>
     <script type="text/javascript" src="./js/data/sets/gen1.js?6b6723b2"></script>
-    <script type="text/javascript" src="./calc/data/types.js?feda570f"></script>
-    <script type="text/javascript" src="./calc/data/natures.js?04f00dc5"></script>
-    <script type="text/javascript" src="./calc/data/abilities.js?3fed5409"></script>
-    <script type="text/javascript" src="./calc/data/moves.js?a2b44c28"></script>
-    <script type="text/javascript" src="./calc/data/items.js?65549879"></script>
-    <script type="text/javascript" src="./calc/data/index.js?083d2bc9"></script>
-    <script type="text/javascript" src="./calc/move.js?48331ad1"></script>
-    <script type="text/javascript" src="./calc/pokemon.js?ea90f3ad"></script>
-    <script type="text/javascript" src="./calc/field.js?2c7f95da"></script>
-    <script type="text/javascript" src="./calc/items.js?6c1bfef0"></script>
-    <script type="text/javascript" src="./calc/mechanics/util.js?79f0f100"></script>
-    <script type="text/javascript" src="./calc/mechanics/gen789.js?c1a67131"></script>
-    <script type="text/javascript" src="./calc/mechanics/gen56.js?326e578d"></script>
-    <script type="text/javascript" src="./calc/mechanics/gen4.js?7d2b7674"></script>
-    <script type="text/javascript" src="./calc/mechanics/gen3.js?2fa3d6a1"></script>
-    <script type="text/javascript" src="./calc/mechanics/gen12.js?637dd485"></script>
-    <script type="text/javascript" src="./calc/calc.js?cd072314"></script>
-    <script type="text/javascript" src="./calc/desc.js?f9b3565c"></script>
-    <script type="text/javascript" src="./calc/result.js?d5c7552b"></script>
-    <script type="text/javascript" src="./calc/adaptable.js?afeb3759"></script>
-    <script type="text/javascript" src="./calc/index.js?2377cbc8"></script>
-    <script type="text/javascript" src="./js/shared_controls.js?5ecd1281"></script>
+    <script type="text/javascript" src="./calc/data/types.js?3267f790"></script>
+    <script type="text/javascript" src="./calc/data/natures.js?28612810"></script>
+    <script type="text/javascript" src="./calc/data/abilities.js?38448e91"></script>
+    <script type="text/javascript" src="./calc/data/moves.js?2902d42e"></script>
+    <script type="text/javascript" src="./calc/data/items.js?0409f13e"></script>
+    <script type="text/javascript" src="./calc/data/index.js?abecbd82"></script>
+    <script type="text/javascript" src="./calc/move.js?57ab9f0a"></script>
+    <script type="text/javascript" src="./calc/pokemon.js?1cd9f7fb"></script>
+    <script type="text/javascript" src="./calc/field.js?bbf04408"></script>
+    <script type="text/javascript" src="./calc/items.js?10064fda"></script>
+    <script type="text/javascript" src="./calc/mechanics/util.js?c14c84ab"></script>
+    <script type="text/javascript" src="./calc/mechanics/gen789.js?89930144"></script>
+    <script type="text/javascript" src="./calc/mechanics/gen56.js?a1115b60"></script>
+    <script type="text/javascript" src="./calc/mechanics/gen4.js?f3f448f1"></script>
+    <script type="text/javascript" src="./calc/mechanics/gen3.js?8c0fb6f4"></script>
+    <script type="text/javascript" src="./calc/mechanics/gen12.js?199f8ca6"></script>
+    <script type="text/javascript" src="./calc/calc.js?40a2d9b1"></script>
+    <script type="text/javascript" src="./calc/desc.js?edafb82b"></script>
+    <script type="text/javascript" src="./calc/result.js?9f8881b5"></script>
+    <script type="text/javascript" src="./calc/adaptable.js?92e49194"></script>
+    <script type="text/javascript" src="./calc/index.js?0b1745b9"></script>
+    <script type="text/javascript" src="./js/shared_controls.js?fb90dca9"></script>
     <script type="text/javascript" src="./js/index_randoms_controls.js?87d3bda8"></script>
-    <script type="text/javascript" src="./js/moveset_import.js?1918fdfe"></script>
+    <script type="text/javascript" src="./js/moveset_import.js?0033a1a5"></script>
 </div>
 
 <div class="credits">Created by Honko, maintained by Austin and Kris
