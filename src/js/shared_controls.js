@@ -446,14 +446,17 @@ function smogonAnalysis(pokemonName) {
 	return "https://smogon.com/dex/" + generation + "/pokemon/" + pokemonName.toLowerCase() + "/";
 }
 
+function sortmons(a,b){
+	return parseInt(a.split("[")[1].split("]")[0]) - parseInt(b.split("[")[1].split("]")[0])
+}
+
 // auto-update set details on select
 $(".set-selector").change(function () {
 	var fullSetName = $(this).val();
 
 	if ($(this).hasClass('opposing')) {
 		CURRENT_TRAINER_POKS = get_trainer_poks(fullSetName)
-
-		var next_poks = CURRENT_TRAINER_POKS.sort()
+		var next_poks = CURRENT_TRAINER_POKS.sort(sortmons)
 
 		var trpok_html = ""
 		for (i in next_poks ) {
@@ -461,6 +464,9 @@ $(".set-selector").change(function () {
 				continue
 			}
 			var pok_name = next_poks[i].split("]")[1].split(" (")[0]
+			if (pok_name == "Zygarde-10%"){
+				pok_name = "Zygarde-10%25"
+			}//this ruined my day
 			var pok = `<img class="trainer-pok right-side" src="https://raw.githubusercontent.com/May8th1995/sprites/master/${pok_name}.png" data-id="${CURRENT_TRAINER_POKS[i].split("]")[1]}" title="${next_poks[i]}, ${next_poks[i]} BP">`
 			trpok_html += pok
 		}
@@ -1432,13 +1438,15 @@ function get_box() {
 
 function get_trainer_poks(trainer_name)
 {
-	var true_name = trainer_name.split("(")[1].split("\n")[0]
+	var true_name = trainer_name.split("(")[1].split("\n")[0].trim()
+	console.log(true_name)
     var matches = []
     for (i in TR_NAMES) {
         if (TR_NAMES[i].includes(true_name)) {
             matches.push(TR_NAMES[i])
         }
     }
+	console.log(matches)
     return matches
 }
 
@@ -1458,6 +1466,33 @@ $(document).on('click', '.left-side', function() {
 	$('.player .select2-chosen').text(set)
 	get_box()
 })
+
+function nextTrainer() {
+	string = ($(".trainer-pok-list-opposing")).html()
+	initialSplit = string.split("[")
+	value = parseInt(initialSplit[initialSplit.length -2].split("]")[0]) + 1
+
+	all_poks = SETDEX_SS
+	for (const [pok_name, poks] of Object.entries(all_poks)) {
+        var pok_tr_names = Object.keys(poks)
+        for (i in pok_tr_names) {
+		   var index = (poks[pok_tr_names[i]]["index"])
+			if (index == value){
+				var set = `${pok_name} (${pok_tr_names[i]})`
+				$('.opposing').val(set)
+
+				$('.opposing').change()
+				$('.opposing .select2-chosen').text(set)
+			}
+
+        }      
+    }
+}
+
+var nextTrainerButton = document.getElementById('next-trainer');
+nextTrainerButton.innerText = 'Next Trainer';
+nextTrainerButton.addEventListener('click', nextTrainer);
+
 
 $(document).ready(function () {
 	var params = new URLSearchParams(window.location.search);
