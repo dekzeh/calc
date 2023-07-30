@@ -451,18 +451,17 @@ $(".set-selector").change(function () {
 	var fullSetName = $(this).val();
 
 	if ($(this).hasClass('opposing')) {
-			CURRENT_TRAINER_POKS = get_trainer_poks(fullSetName)
-		
+		CURRENT_TRAINER_POKS = get_trainer_poks(fullSetName)
 
-		var next_poks = CURRENT_TRAINER_POKS
+		var next_poks = CURRENT_TRAINER_POKS.sort()
 
 		var trpok_html = ""
 		for (i in next_poks ) {
 			if (next_poks[i][0].includes($('input.opposing').val())){
 				continue
 			}
-			var pok_name = next_poks[i].split(" (")[0]
-			var pok = `<img class="trainer-pok right-side" src="https://raw.githubusercontent.com/May8th1995/sprites/master/${pok_name}.png" data-id="${CURRENT_TRAINER_POKS[i].split("[")[0]}" title="${next_poks[i]}, ${next_poks[i]} BP">`
+			var pok_name = next_poks[i].split("]")[1].split(" (")[0]
+			var pok = `<img class="trainer-pok right-side" src="https://raw.githubusercontent.com/May8th1995/sprites/master/${pok_name}.png" data-id="${CURRENT_TRAINER_POKS[i].split("]")[1]}" title="${next_poks[i]}, ${next_poks[i]} BP">`
 			trpok_html += pok
 		}
 	}
@@ -1399,8 +1398,9 @@ function get_trainer_names() {
     for (const [pok_name, poks] of Object.entries(all_poks)) {
         var pok_tr_names = Object.keys(poks)
         for (i in pok_tr_names) {
+		   var index = (poks[pok_tr_names[i]]["index"])
            var trainer_name = pok_tr_names[i]
-           trainer_names.push(`${pok_name} (${trainer_name})`) 
+           trainer_names.push(`[${index}]${pok_name} (${trainer_name})`) 
         }      
     }
     return trainer_names
@@ -1415,10 +1415,10 @@ function get_box() {
 
     for (i in names) {
         if (names[i].includes("Custom")) {
-            box.push(names[i].split("[")[0])
+            box.push(names[i].split("]")[1])
 
-            var pok_name = names[i].split(" (")[0]
-            var pok = `<img class="trainer-pok left-side" src="https://raw.githubusercontent.com/May8th1995/sprites/master/${pok_name}.png" data-id="${names[i].split("[")[0]}">`
+            var pok_name = names[i].split("]")[1].split(" (")[0]
+            var pok = `<img class="trainer-pok left-side" src="https://raw.githubusercontent.com/May8th1995/sprites/master/${pok_name}.png" data-id="${names[i].split("]")[1]}">`
 
             box_html += pok
         }   
@@ -1432,8 +1432,7 @@ function get_box() {
 
 function get_trainer_poks(trainer_name)
 {
-
-	var true_name = trainer_name.split("(")[1]
+	var true_name = trainer_name.split("(")[1].split("\n")[0]
     var matches = []
     for (i in TR_NAMES) {
         if (TR_NAMES[i].includes(true_name)) {
@@ -1446,7 +1445,6 @@ function get_trainer_poks(trainer_name)
 $(document).on('click', '.right-side', function() {
 	var set = $(this).attr('data-id')
 	$('.opposing').val(set)
-	console.log("hit")
 
 	$('.opposing').change()
 	$('.opposing .select2-chosen').text(set)
