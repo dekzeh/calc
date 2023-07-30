@@ -160,8 +160,8 @@ html, body {
 }
 
 .trainer-pok:hover {
-    border:  1px solid #1abc9c;
-    border-radius: 5px;
+    outline: 2px solid;
+    outline-color: #1abc9c;
 }
 
 .wrapper {
