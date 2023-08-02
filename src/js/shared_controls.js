@@ -1439,14 +1439,12 @@ function get_box() {
 function get_trainer_poks(trainer_name)
 {
 	var true_name = trainer_name.split("(")[1].split("\n")[0].trim()
-	console.log(true_name)
     var matches = []
     for (i in TR_NAMES) {
         if (TR_NAMES[i].includes(true_name)) {
             matches.push(TR_NAMES[i])
         }
     }
-	console.log(matches)
     return matches
 }
 
@@ -1488,6 +1486,32 @@ function nextTrainer() {
         }      
     }
 }
+
+function previousTrainer() {
+	string = ($(".trainer-pok-list-opposing")).html()
+	value = parseInt(string.split("]")[0].split("[")[1])-1
+
+	all_poks = SETDEX_SS
+	for (const [pok_name, poks] of Object.entries(all_poks)) {
+        var pok_tr_names = Object.keys(poks)
+        for (i in pok_tr_names) {
+		   var index = (poks[pok_tr_names[i]]["index"])
+			if (index == value){
+				var set = `${pok_name} (${pok_tr_names[i]})`
+				$('.opposing').val(set)
+
+				$('.opposing').change()
+				$('.opposing .select2-chosen').text(set)
+			}
+
+        }      
+    }
+}
+
+
+var previousTrainerButton = document.getElementById('previous-trainer');
+previousTrainerButton.innerText = 'Previous Trainer';
+previousTrainerButton.addEventListener('click', previousTrainer);
 
 var nextTrainerButton = document.getElementById('next-trainer');
 nextTrainerButton.innerText = 'Next Trainer';
