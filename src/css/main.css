@@ -523,3 +523,36 @@ table.field {
 .extraSetMoves {
     width: 100%;
 }
+
+.bcolor-12{
+    background-color: #c4140e;
+}
+.bcolor-13{
+    background-color: #c5170b;
+}
+.bcolor-23{
+    background-color: #bc11df;
+}
+.bcolor-32{
+    background-color: #d8534e;
+}
+.bcolor-22{
+    background-color: #cc7817;
+}
+.bcolor-21{
+    background-color: #4e660b;
+}
+.bcolor-11{
+    background-color: #0dc249;
+}
+.bcolor-31{
+    background-color: #13bac0;
+}
+
+.team-poke-list, .box-poke-list{
+    min-height: 30px;
+}
+
+.over{
+    background: #373232;
+}

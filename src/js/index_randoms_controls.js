@@ -96,6 +96,52 @@ function performCalculations() {
 	$("#resultHeaderL").text(p1.name + "'s Moves (select one to show detailed results)");
 	$("#resultHeaderR").text(p2.name + "'s Moves (select one to show detailed results)");
 }
+/*	return a status code
+	11: GetOutsped but OHKO;
+	12: GetOutsped & get OHKO
+	22: Speedtie & get 0HKO
+	23: Speedtie both 0HKO and get 0HK0
+	21: Speedtie and 0HKO
+	31: Outspeed and 0HKO
+	31: Outspeed but get OHKO
+
+	there is others number possible but they so far don't matter
+*/
+function calculationsColors() {
+	var p1info = $("#p1");
+	var p2info = $("#p2");
+	var p1 = createPokemon(p1info);
+	var p2 = createPokemon(p2info);
+	var p1field = createField();
+	var p2field = p1field.clone().swap();
+
+	damageResults = calculateAllMoves(gen, p1, p1field, p2, p2field);
+	p1 = damageResults[0][0].attacker;
+	p2 = damageResults[1][0].attacker;
+	p1.maxDamages = [];
+	p2.maxDamages = [];
+	var p1s = p1.stats.spe;
+	var p2s = p2.stats.spe;
+	p1info.find(".sp .totalMod").text(p1s);
+	p2info.find(".sp .totalMod").text(p2s);
+	var fastest = p1s > p2s ? 30 : p1s < p2s ? 10 : p1s === p2s ? 20 : undefined;
+	var result;
+	var p1KO = 0, p2KO = 0;
+	for (var i = 0; i < 4; i++) {
+		// P1
+		result = damageResults[0][i];
+		if (result.damage[0] * p1.moves[i].hits > p2.stats.hp) {
+			p1KO = 1;
+		}
+
+		// P2
+		result = damageResults[1][i];
+		if (result.damage[0] * p2.moves[i].hits > p1.stats.hp) {
+			p2KO = 2;
+		}
+	}
+	return fastest + p1KO + p2KO;
+}
 
 $(".result-move").change(function () {
 	if (damageResults) {
@@ -176,6 +222,7 @@ $(".notation").change(function () {
 });
 
 $(document).ready(function () {
+	window.PERFC = true;
 	var params = new URLSearchParams(window.location.search);
 	var m = params.get('mode');
 	if (m) {
@@ -194,6 +241,9 @@ $(document).ready(function () {
 		}
 	}
 	$(".calc-trigger").bind("change keyup", function () {
+		if (!window.PERFC) {
+			return;
+		}
 		setTimeout(performCalculations, 0);
 	});
 	performCalculations();

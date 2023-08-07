@@ -7,6 +7,27 @@ function placeBsBtn() {
 		var name = document.getElementsByClassName("import-name-text")[0].value.trim() === "" ? "Custom Set" : document.getElementsByClassName("import-name-text")[0].value;
 		addSets(pokes, name);
 	});
+
+	if (typeof navigator.clipboard.readText == "undefined") {
+		//probably firefox, it won't work
+		//check https://stackoverflow.com/questions/67440036/navigator-clipboard-readtext-is-not-working-in-firefox
+		return;
+	}
+
+	// import from clipboard
+	var importCb = "<button id='importCb' class='bs-btn bs-btn-default'>Import from clipboard</button>";
+	$("#import-1_wrapper").append(importCb);
+
+	$("#importCb.bs-btn").click(function () {
+		navigator.clipboard
+			.readText()
+			.then(
+			(clipText) => {
+				var name = document.getElementsByClassName("import-name-text")[0].value.trim() === "" ? "Custom Set" : document.getElementsByClassName("import-name-text")[0].value;
+				window.addSets(clipText, name);
+			}
+		);
+	});
 }
 
 function ExportPokemon(pokeInfo) {
@@ -265,6 +286,8 @@ function updateDex(customsets) {
 			SETDEX_GSC[pokemon][moveset] = customsets[pokemon][moveset];
 			if (!SETDEX_RBY[pokemon]) SETDEX_RBY[pokemon] = {};
 			SETDEX_RBY[pokemon][moveset] = customsets[pokemon][moveset];
+			var poke = {name: pokemon, nameProp: moveset};	
+			addBoxed(poke);
 		}
 	}
 	localStorage.customsets = JSON.stringify(customsets);
@@ -294,14 +317,13 @@ function addSets(pokes, name) {
 				currentPoke = getStats(currentPoke, rows, i + 1);
 				currentPoke = getMoves(currentPoke, rows, i);
 				addToDex(currentPoke);
+				addBoxed(currentPoke);
 				addedpokes++;
 				break;
 			}
 		}
 	}
 	if (addedpokes > 0) {
-		get_box()
-		alert("Successfully imported " + addedpokes + " set(s)");
 		$(allPokemon("#importedSetsOptions")).css("display", "inline");
 	} else {
 		alert("No sets imported, please check your syntax and try again");
@@ -351,13 +373,10 @@ function checkExeptions(poke) {
 }
 
 $(allPokemon("#clearSets")).click(function () {
-	if (confirm("Are you sure you want to delete your custom sets? This action cannot be undone.")) {
-		localStorage.removeItem("customsets");
-		alert("Custom Sets successfully cleared. Please refresh the page.");
-		$(allPokemon("#importedSetsOptions")).hide();
-		loadDefaultLists();
-		$('.player-poks').html("")
-	}
+	localStorage.removeItem("customsets");
+	$(allPokemon("#importedSetsOptions")).hide();
+	loadDefaultLists();
+	$('.player-poks').html("");
 });
 
 $(allPokemon("#importedSets")).click(function () {
@@ -376,7 +395,7 @@ $(document).ready(function () {
 	if (localStorage.customsets) {
 		customSets = JSON.parse(localStorage.customsets);
 		updateDex(customSets);
-		get_box()
+		selectFirstMon();
 		$(allPokemon("#importedSetsOptions")).css("display", "inline");
 	} else {
 		loadDefaultLists();
