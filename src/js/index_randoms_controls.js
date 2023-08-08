@@ -124,23 +124,42 @@ function calculationsColors() {
 	var p2s = p2.stats.spe;
 	p1info.find(".sp .totalMod").text(p1s);
 	p2info.find(".sp .totalMod").text(p2s);
-	var fastest = p1s > p2s ? 30 : p1s < p2s ? 10 : p1s === p2s ? 20 : undefined;
+	//Faster Tied Slower
+	var fastest = p1s > p2s ? "F" : p1s < p2s ? "S" : p1s === p2s ? "T" : undefined;
 	var result;
+	//goes from the most optimist to the least optimist
 	var p1KO = 0, p2KO = 0;
 	for (var i = 0; i < 4; i++) {
 		// P1
 		result = damageResults[0][i];
-		if (result.damage[0] * p1.moves[i].hits > p2.stats.hp) {
-			p1KO = 1;
+		//highest rolls
+		if (result.damage[15] * p1.moves[i].hits >= p2.stats.hp) {
+			if (p1KO == 0) {
+				p1KO = 2;
+			}
 		}
-
+		//lowest rolls
+		if (result.damage[0] * p1.moves[i].hits >= p2.stats.hp) {
+			if (p1KO > 1) {
+				p1KO = 1;
+			}
+		}
 		// P2
 		result = damageResults[1][i];
-		if (result.damage[0] * p2.moves[i].hits > p1.stats.hp) {
-			p2KO = 2;
+		if (result.damage[15] * p2.moves[i].hits >= p1.stats.hp) {
+			if (p2KO < 3) {
+				p2KO = 3;
+			}
+		}
+		if (result.damage[0] * p2.moves[i].hits >= p1.stats.hp) {
+			if (p2KO < 4) {
+				p2KO = 4;
+			}
 		}
 	}
-	return fastest + p1KO + p2KO;
+	p1KO = p1KO > 0 ? p1KO.toString() : "";
+	p2KO = p2KO > 0 ? p2KO.toString() : "";
+	return {speed: fastest, code: p1KO + p2KO};
 }
 
 $(".result-move").change(function () {

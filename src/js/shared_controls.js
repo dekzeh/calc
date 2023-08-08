@@ -1533,7 +1533,7 @@ function showColorCodes(){
 		$('.player').change();
 		$('.player .select2-chosen').text(set);
 		let idColor = calculationsColors();
-		pMons[i].className = "trainer-pok left-side bcolor-" + idColor;
+		pMons[i].className = `trainer-pok left-side mon-speed-${idColor.speed} mon-dmg-${idColor.code}`;
 	}
 	$('.player').val(saveCurrent);
 	$('.player').change();
@@ -1554,7 +1554,7 @@ function refreshColorCode(){
 		$('.player').change();
 		$('.player .select2-chosen').text(set);
 		let idColor = calculationsColors();
-		pMons[i].className = "trainer-pok left-side bcolor-" + idColor;
+		pMons[i].className = `trainer-pok left-side mon-speed-${idColor.speed} mon-dmg-${idColor.code}`;
 	}
 	$('.player').val(saveCurrent);
 	$('.player').change();

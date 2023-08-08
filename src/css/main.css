@@ -524,29 +524,70 @@ table.field {
     width: 100%;
 }
 
-.bcolor-12{
-    background-color: #c4140e;
+/*
+
+    F = Faster 
+    T = Speed tie
+    S = slower
+*/
+.mon-speed-F{
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border: solid;
+    border-color: #378aa3;
+    border-radius: 20%;
 }
-.bcolor-13{
-    background-color: #c5170b;
+.mon-speed-T{
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border: solid;
+    border-color: #b74dcc;
+    border-radius: 20%;
 }
-.bcolor-23{
-    background-color: #bc11df;
+.mon-speed-S{
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border: solid;
+    border-color: #57310d;
+    border-radius: 20%;
 }
-.bcolor-32{
-    background-color: #d8534e;
+
+.mon-dmg-4{
+    /*Gets OHKO*/
+    background-color: #dd0b0b;
 }
-.bcolor-22{
-    background-color: #cc7817;
+.mon-dmg-3{
+    /*maybe gets OHKO*/
+    background: rgb(255,199,0);
+    background: linear-gradient(90deg, rgba(255,199,0,1) 0%, rgba(255,0,0,1) 100%);
 }
-.bcolor-21{
-    background-color: #4e660b;
+.mon-dmg-2{
+    /*may inflicts OHKO*/
+    background: rgb(7,255,0);
+    background: linear-gradient(90deg, rgba(7,255,0,1) 0%, rgba(255,199,0,1) 100%);
 }
-.bcolor-11{
-    background-color: #0dc249;
+.mon-dmg-1{
+    /*inflicts OHKO*/
+    background-color: #189207;
 }
-.bcolor-31{
-    background-color: #13bac0;
+.mon-dmg-14{
+    /*both sides Gets OHKO*/
+    background-color: #8342a8;
+}
+.mon-dmg-13{
+    /*inflict OHKO but may Gets OHKO*/
+    background-color: #db710d;
+}
+.mon-dmg-24{
+    /*may inflict OHKO but Gets OHKO*/
+    background-color: #a53306;
+}
+.mon-dmg-23{
+    /*both sides might inflict OHKO*/
+    background-color: #4d0a5a;
 }
 
 .team-poke-list, .box-poke-list{
