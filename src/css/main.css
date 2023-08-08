@@ -554,7 +554,15 @@ table.field {
     border-color: #57310d;
     border-radius: 20%;
 }
-
+.mon-dmg-W{
+    /* Is considerable a wall*/
+    background-color: #110f70;
+}
+.mon-dmg-WO{
+    /* Is considerable a wall that can OHKO*/
+    background-color: #110f70;
+    background: linear-gradient(90deg, #110f70 0%, rgb(7,255,0) 100%);
+}
 .mon-dmg-4{
     /*Gets OHKO*/
     background-color: #dd0b0b;

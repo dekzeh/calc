@@ -96,19 +96,8 @@ function performCalculations() {
 	$("#resultHeaderL").text(p1.name + "'s Moves (select one to show detailed results)");
 	$("#resultHeaderR").text(p2.name + "'s Moves (select one to show detailed results)");
 }
-/*	return a status code
-	11: GetOutsped but OHKO;
-	12: GetOutsped & get OHKO
-	22: Speedtie & get 0HKO
-	23: Speedtie both 0HKO and get 0HK0
-	21: Speedtie and 0HKO
-	31: Outspeed and 0HKO
-	31: Outspeed but get OHKO
 
-	there is others number possible but they so far don't matter
-*/
-function calculationsColors() {
-	var p1info = $("#p1");
+function calculationsColors(p1info) {
 	var p2info = $("#p2");
 	var p1 = createPokemon(p1info);
 	var p2 = createPokemon(p2info);
@@ -122,39 +111,77 @@ function calculationsColors() {
 	p2.maxDamages = [];
 	var p1s = p1.stats.spe;
 	var p2s = p2.stats.spe;
-	p1info.find(".sp .totalMod").text(p1s);
-	p2info.find(".sp .totalMod").text(p2s);
 	//Faster Tied Slower
 	var fastest = p1s > p2s ? "F" : p1s < p2s ? "S" : p1s === p2s ? "T" : undefined;
-	var result;
+	var result, highestRoll, lowestRoll, damage = 0;
 	//goes from the most optimist to the least optimist
 	var p1KO = 0, p2KO = 0;
+	//Highest damage
+	var p1HD = 0, p2HD = 0;
 	for (var i = 0; i < 4; i++) {
 		// P1
 		result = damageResults[0][i];
-		//highest rolls
-		if (result.damage[15] * p1.moves[i].hits >= p2.stats.hp) {
-			if (p1KO == 0) {
-				p1KO = 2;
-			}
-		}
-		//lowest rolls
-		if (result.damage[0] * p1.moves[i].hits >= p2.stats.hp) {
+		//lowest rolls in %
+		damage = result.damage[0] ? result.damage[0] : result.damage;
+		lowestRoll = damage * p1.moves[i].hits / p2.stats.hp * 100;
+		if (lowestRoll >= 100) {
 			if (p1KO > 1) {
 				p1KO = 1;
 			}
-		}
-		// P2
-		result = damageResults[1][i];
-		if (result.damage[15] * p2.moves[i].hits >= p1.stats.hp) {
-			if (p2KO < 3) {
-				p2KO = 3;
+		} else { //if lowest kill obviously highest will
+			damage = result.damage[15] ? result.damage[15] : result.damage;
+			highestRoll = damage * p1.moves[i].hits / p2.stats.hp * 100;
+			//highest rolls in %
+			if (highestRoll >= 100) {
+				if (p1KO == 0) {
+					p1KO = 2;
+				}
+			}
+			if (highestRoll > p1HD) {
+				p1HD = highestRoll;
 			}
 		}
-		if (result.damage[0] * p2.moves[i].hits >= p1.stats.hp) {
+
+		// P2
+		result = damageResults[1][i];
+		//some damage like sonic boom acts a bit weird.
+		damage = result.damage[0] ? result.damage[0] : result.damage;
+		lowestRoll = damage * p2.moves[i].hits / p1.stats.hp * 100;
+		if (lowestRoll >= 100) {
 			if (p2KO < 4) {
 				p2KO = 4;
 			}
+		} else {
+			damage = result.damage[15] ? result.damage[15] : result.damage;
+			highestRoll = damage * p2.moves[i].hits / p1.stats.hp * 100;
+			if (highestRoll >= 100) {
+				if (p2KO < 3) {
+					p2KO = 3;
+				}
+			}
+			if (highestRoll > p2HD) {
+				p2HD = highestRoll;
+			}
+		}
+	}
+	if (p1KO > 0 || p2KO > 0) {
+		p1KO = p1KO > 0 ? p1KO.toString() : "";
+		p2KO = p2KO > 0 ? p2KO.toString() : "";
+		return {speed: fastest, code: p1KO + p2KO};
+	}
+	// Checks if the pokemon walls it
+	// i wouldn't mind change this algo for a smarter one.
+
+	// if the adversary don't three shots our pokemon
+	if (p2HD * 3 < 100) {
+		// And if our pokemon does more damage
+		if (p1HD > p2HD) {
+			if (p1HD > 100) {
+				// Then i consider it a wall that can OHKO
+				return {speed: fastest, code: "WO"};
+			}
+			// Then i consider it a good wall
+			return {speed: fastest, code: "W"};
 		}
 	}
 	p1KO = p1KO > 0 ? p1KO.toString() : "";

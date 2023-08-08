@@ -1526,18 +1526,11 @@ function resetTrainer() {
 function showColorCodes(){
 	window.PERFC = false;
 	var pMons = document.getElementsByClassName("trainer-pok left-side");
-	var saveCurrent = $('.player').val()
 	for (let i = 0; i < pMons.length; i++) {
 		let set = pMons[i].getAttribute("data-id");
-		$('.player').val(set);
-		$('.player').change();
-		$('.player .select2-chosen').text(set);
-		let idColor = calculationsColors();
+		let idColor = calculationsColors(set);
 		pMons[i].className = `trainer-pok left-side mon-speed-${idColor.speed} mon-dmg-${idColor.code}`;
 	}
-	$('.player').val(saveCurrent);
-	$('.player').change();
-	$('.player .select2-chosen').text(saveCurrent);
 	window.PERFC = true;
 	$('#show-cc')[0].toggleAttribute("hidden");
 	$('#hide-cc')[0].toggleAttribute("hidden");
@@ -1547,18 +1540,11 @@ function showColorCodes(){
 function refreshColorCode(){
 	window.PERFC = false;
 	var pMons = document.getElementsByClassName("trainer-pok left-side");
-	var saveCurrent = $('.player').val()
 	for (let i = 0; i < pMons.length; i++) {
 		let set = pMons[i].getAttribute("data-id");
-		$('.player').val(set);
-		$('.player').change();
-		$('.player .select2-chosen').text(set);
-		let idColor = calculationsColors();
+		let idColor = calculationsColors(set);
 		pMons[i].className = `trainer-pok left-side mon-speed-${idColor.speed} mon-dmg-${idColor.code}`;
 	}
-	$('.player').val(saveCurrent);
-	$('.player').change();
-	$('.player .select2-chosen').text(saveCurrent);
 	window.PERFC = true;
 }
 
