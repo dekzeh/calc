@@ -1605,7 +1605,17 @@ function drop(ev) {
 	ev.preventDefault();
 	if (ev.target.classList.contains("dropzone")) {
 		pokeDragged.parentNode.removeChild(pokeDragged);
-		ev.target.appendChild(pokeDragged);
+		ev.target.appendChild(pokeDragged);	
+	}
+	// if it's a pokemon AND a sibling switch them
+	else if(ev.target.classList.contains("left-side")) {
+		if(ev.target.parentNode == pokeDragged.parentNode){
+			let prev1 = ev.target.previousSibling;
+			let prev2 = pokeDragged.previousSibling;
+
+			prev1.after(pokeDragged);
+			prev2.after(ev.target);
+		}
 	}
 	ev.target.classList.remove('over');
 }
