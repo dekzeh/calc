@@ -1641,6 +1641,12 @@ $(document).ready(function () {
 	$('#hide-cc').click(hideColorCodes);
 	$('#refr-cc').click(refreshColorCode);
 	$('#rm-current').click(RemoveCurrentPokemon);
+	for (let dropzone of document.getElementsByClassName("dropzone")){
+		dropzone.ondragenter=handleDragEnter;
+		dropzone.ondragleave=handleDragLeave;
+		dropzone.ondrop=drop;
+		dropzone.ondragover=allowDrop;
+	}
 	//select last trainer
 	let last = localStorage.getItem("lasttimetrainer");
 	if (last != "") {
