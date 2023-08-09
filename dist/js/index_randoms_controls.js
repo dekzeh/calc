@@ -125,9 +125,7 @@ function calculationsColors(p1info) {
 		damage = result.damage[0] ? result.damage[0] : result.damage;
 		lowestRoll = damage * p1.moves[i].hits / p2.stats.hp * 100;
 		if (lowestRoll >= 100) {
-			if (p1KO > 1) {
-				p1KO = 1;
-			}
+			p1KO = 1;
 		} else { //if lowest kill obviously highest will
 			damage = result.damage[15] ? result.damage[15] : result.damage;
 			highestRoll = damage * p1.moves[i].hits / p2.stats.hp * 100;

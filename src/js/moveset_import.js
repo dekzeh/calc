@@ -6,6 +6,8 @@ function placeBsBtn() {
 		var pokes = document.getElementsByClassName("import-team-text")[0].value;
 		var name = document.getElementsByClassName("import-name-text")[0].value.trim() === "" ? "Custom Set" : document.getElementsByClassName("import-name-text")[0].value;
 		addSets(pokes, name);
+		//erase the import text area
+		document.getElementsByClassName("import-team-text")[0].value="";
 	});
 
 	if (typeof navigator.clipboard.readText == "undefined") {
@@ -376,7 +378,10 @@ $(allPokemon("#clearSets")).click(function () {
 	localStorage.removeItem("customsets");
 	$(allPokemon("#importedSetsOptions")).hide();
 	loadDefaultLists();
-	$('.player-poks').html("");
+	for (let zone of document.getElementsByClassName("dropzone")){
+		zone.innerHTML="";
+	}
+
 });
 
 $(allPokemon("#importedSets")).click(function () {

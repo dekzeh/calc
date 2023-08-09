@@ -598,7 +598,7 @@ table.field {
     background-color: #4d0a5a;
 }
 
-.team-poke-list, .box-poke-list{
+.dropzone{
     min-height: 30px;
 }
 

@@ -1593,14 +1593,20 @@ function drop(ev) {
 		pokeDragged.parentNode.removeChild(pokeDragged);
 		ev.target.appendChild(pokeDragged);	
 	}
-	// if it's a pokemon AND a sibling switch them
+	// if it's a pokemon
 	else if(ev.target.classList.contains("left-side")) {
+		//And if a sibling switch them
 		if(ev.target.parentNode == pokeDragged.parentNode){
 			let prev1 = ev.target.previousSibling;
 			let prev2 = pokeDragged.previousSibling;
 
 			prev1.after(pokeDragged);
 			prev2.after(ev.target);
+		}
+		//if not just append to the box it belongs
+		else{
+			let prev1 = ev.target.previousSibling;
+			prev1.after(pokeDragged);
 		}
 	}
 	ev.target.classList.remove('over');
