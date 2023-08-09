@@ -807,7 +807,8 @@ function createPokemon(pokeInfo) {
 		var pokemonMoves = [];
 		for (var i = 0; i < 4; i++) {
 			var moveName = moveNames[i];
-			pokemonMoves.push(new calc.Move(gen, moves[moveName] ? moveName : "(No Move)", { ability: ability, item: item }));
+			var isCrit = $('.move-crit')[i].checked;
+			pokemonMoves.push(new calc.Move(gen, moves[moveName] ? moveName : "(No Move)", { ability: ability, item: item, isCrit: isCrit, }));
 		}
 
 		if (isRandoms) {
