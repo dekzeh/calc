@@ -127,19 +127,19 @@ function calculationsColors(p1info, p2) {
 		//lowest rolls in %
 		damage = result.damage[0] ? result.damage[0] : result.damage;
 		lowestRoll = damage * p1.moves[i].hits / p2.stats.hp * 100;
+		damage = result.damage[15] ? result.damage[15] : result.damage;
+		highestRoll = damage * p1.moves[i].hits / p2.stats.hp * 100;
+		if (highestRoll > p1HD) {
+			p1HD = highestRoll;
+		}
 		if (lowestRoll >= 100) {
 			p1KO = 1;
 		} else { //if lowest kill obviously highest will
-			damage = result.damage[15] ? result.damage[15] : result.damage;
-			highestRoll = damage * p1.moves[i].hits / p2.stats.hp * 100;
 			//highest rolls in %
 			if (highestRoll >= 100) {
 				if (p1KO == 0) {
 					p1KO = 2;
 				}
-			}
-			if (highestRoll > p1HD) {
-				p1HD = highestRoll;
 			}
 		}
 
@@ -148,20 +148,18 @@ function calculationsColors(p1info, p2) {
 		//some damage like sonic boom acts a bit weird.
 		damage = result.damage[0] ? result.damage[0] : result.damage;
 		lowestRoll = damage * p2.moves[i].hits / p1.stats.hp * 100;
+		damage = result.damage[15] ? result.damage[15] : result.damage;
+		highestRoll = damage * p2.moves[i].hits / p1.stats.hp * 100;
+		if (highestRoll > p2HD) {
+			p2HD = highestRoll;
+		}
 		if (lowestRoll >= 100) {
-			if (p2KO < 4) {
-				p2KO = 4;
-			}
+			p2KO = 4;
 		} else {
-			damage = result.damage[15] ? result.damage[15] : result.damage;
-			highestRoll = damage * p2.moves[i].hits / p1.stats.hp * 100;
 			if (highestRoll >= 100) {
 				if (p2KO < 3) {
 					p2KO = 3;
 				}
-			}
-			if (highestRoll > p2HD) {
-				p2HD = highestRoll;
 			}
 		}
 	}

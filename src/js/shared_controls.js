@@ -1608,15 +1608,15 @@ function drop(ev) {
 	else if(ev.target.classList.contains("left-side")) {
 		//And if a sibling switch them
 		if(ev.target.parentNode == pokeDragged.parentNode){
-			let prev1 = ev.target.previousSibling;
-			let prev2 = pokeDragged.previousSibling;
+			let prev1 = ev.target.previousSibling || ev.target;
+			let prev2 = pokeDragged.previousSibling || pokeDragged;
 
 			prev1.after(pokeDragged);
 			prev2.after(ev.target);
 		}
 		//if not just append to the box it belongs
 		else{
-			let prev1 = ev.target.previousSibling;
+			let prev1 = ev.target.previousSibling || ev.target;
 			prev1.after(pokeDragged);
 		}
 	}
