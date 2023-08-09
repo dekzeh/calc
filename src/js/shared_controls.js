@@ -1531,11 +1531,26 @@ function HideShowCCSettings(){
 }
 
 function colorCodeUpdate(){
+	var speCheck = document.getElementById("cc-spe-border").checked;
+	var ohkoCheck = document.getElementById("cc-ohko-color").checked;
+	if (!speCheck && !ohkoCheck){
+		return
+	}
 	var pMons = document.getElementsByClassName("trainer-pok left-side");
 	for (let i = 0; i < pMons.length; i++) {
 		let set = pMons[i].getAttribute("data-id");
 		let idColor = calculationsColors(set);
-		pMons[i].className = `trainer-pok left-side mon-speed-${idColor.speed} mon-dmg-${idColor.code}`;
+		if (speCheck && ohkoCheck){
+			pMons[i].className = `trainer-pok left-side mon-speed-${idColor.speed} mon-dmg-${idColor.code}`;
+		}
+		else if (speCheck){
+			pMons[i].className = `trainer-pok left-side mon-speed-${idColor.speed}`;
+		}
+		else if (ohkoCheck){
+			pMons[i].className = `trainer-pok left-side mon-dmg-${idColor.code}`;
+		}
+		
+		
 	}
 }
 function showColorCodes(){
