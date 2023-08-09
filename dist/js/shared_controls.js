@@ -1471,11 +1471,13 @@ $(document).on('click', '.right-side', function () {
 })
 
 $(document).on('click', '.left-side', function () {
+	window.PERFC=false;
 	var set = $(this).attr('data-id');
 	topPokemonIcon(set, $("#p1mon")[0])
 	$('.player').val(set);
 	$('.player').change();
 	$('.player .select2-chosen').text(set);
+	window.PERFC=true;
 })
 
 
@@ -1538,9 +1540,12 @@ function colorCodeUpdate(){
 		return
 	}
 	var pMons = document.getElementsByClassName("trainer-pok left-side");
+	// i calc here to alleviate some calculation
+	var p2info = $("#p2");
+	var p2 = createPokemon(p2info);
 	for (let i = 0; i < pMons.length; i++) {
 		let set = pMons[i].getAttribute("data-id");
-		let idColor = calculationsColors(set);
+		let idColor = calculationsColors(set, p2);
 		if (speCheck && ohkoCheck){
 			pMons[i].className = `trainer-pok left-side mon-speed-${idColor.speed} mon-dmg-${idColor.code}`;
 		}
@@ -1555,11 +1560,8 @@ function colorCodeUpdate(){
 	}
 }
 function showColorCodes(){
-	window.PERFC = false;
 	colorCodeUpdate();
 	HideShowCCSettings();
-	window.PERFC = true;
-	
 }
 
 function refreshColorCode(){
@@ -1574,10 +1576,10 @@ function hideColorCodes(){
 	for (let i = 0; i < pMons.length; i++) {
 		pMons[i].className = "trainer-pok left-side";
 	}
+	document.getElementById("cc-auto-refr").checked = false;
 	HideShowCCSettings();
 	window.PERFC = true;
 }
-
 
 function RemoveCurrentPokemon() {
 	let yes = confirm("do you really want to remove this pokemon from your set?")

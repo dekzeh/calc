@@ -1416,7 +1416,7 @@ function get_trainer_names() {
 	return trainer_names
 }
 function addBoxed(poke) {
-	window.PERFC = false;
+	 = false;
 	if (document.getElementById(`${poke.name}${poke.nameProp}`)) {
 		//nothing to do it already exist
 		return
@@ -1428,7 +1428,7 @@ function addBoxed(poke) {
 	newPoke.dataset.id = `${poke.name} (${poke.nameProp})`
 	newPoke.addEventListener("dragstart", dragstart_handler);
 	$('.box-poke-list')[0].appendChild(newPoke)
-	window.PERFC = true;
+	 = true;
 }
 
 function getSrcImgPokemon(poke) {
@@ -1455,11 +1455,11 @@ function get_trainer_poks(trainer_name) {
 }
 
 function topPokemonIcon(fullname, node) {
-	window.PERFC=false;
+	=false;
 	var mon = { name: fullname.split(" (")[0] };
 	var src = getSrcImgPokemon(mon);
 	node.src = src;
-	window.PERFC=true;
+	=true;
 }
 
 $(document).on('click', '.right-side', function () {
@@ -1471,11 +1471,13 @@ $(document).on('click', '.right-side', function () {
 })
 
 $(document).on('click', '.left-side', function () {
+	=false;
 	var set = $(this).attr('data-id');
 	topPokemonIcon(set, $("#p1mon")[0])
 	$('.player').val(set);
 	$('.player').change();
 	$('.player .select2-chosen').text(set);
+	=true;
 })
 
 
@@ -1538,9 +1540,12 @@ function colorCodeUpdate(){
 		return
 	}
 	var pMons = document.getElementsByClassName("trainer-pok left-side");
+	// i calc here to alleviate some calculation
+	var p2info = $("#p2");
+	var p2 = createPokemon(p2info);
 	for (let i = 0; i < pMons.length; i++) {
 		let set = pMons[i].getAttribute("data-id");
-		let idColor = calculationsColors(set);
+		let idColor = calculationsColors(set, p2);
 		if (speCheck && ohkoCheck){
 			pMons[i].className = `trainer-pok left-side mon-speed-${idColor.speed} mon-dmg-${idColor.code}`;
 		}
@@ -1555,29 +1560,26 @@ function colorCodeUpdate(){
 	}
 }
 function showColorCodes(){
-	window.PERFC = false;
 	colorCodeUpdate();
 	HideShowCCSettings();
-	window.PERFC = true;
-	
 }
 
 function refreshColorCode(){
-	window.PERFC = false;
+	 = false;
 	colorCodeUpdate();
-	window.PERFC = true;
+	 = true;
 }
 
 function hideColorCodes(){
-	window.PERFC = false;
+	 = false;
 	var pMons = document.getElementsByClassName("trainer-pok left-side");
 	for (let i = 0; i < pMons.length; i++) {
 		pMons[i].className = "trainer-pok left-side";
 	}
+	document.getElementById("cc-auto-refr").checked = false;
 	HideShowCCSettings();
-	window.PERFC = true;
+	 = true;
 }
-
 
 function RemoveCurrentPokemon() {
 	let yes = confirm("do you really want to remove this pokemon from your set?")

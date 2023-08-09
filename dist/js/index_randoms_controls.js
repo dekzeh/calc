@@ -97,10 +97,13 @@ function performCalculations() {
 	$("#resultHeaderR").text(p2.name + "'s Moves (select one to show detailed results)");
 }
 
-function calculationsColors(p1info) {
-	var p2info = $("#p2");
+
+function calculationsColors(p1info, p2) {
+	if (!p2) {
+		var p2info = $("#p2");
+		var p2 = createPokemon(p2info);
+	}
 	var p1 = createPokemon(p1info);
-	var p2 = createPokemon(p2info);
 	var p1field = createField();
 	var p2field = p1field.clone().swap();
 
@@ -281,9 +284,14 @@ $(document).ready(function () {
 	}
 	$(".calc-trigger").bind("change keyup", function () {
 		if (!window.PERFC) {
+			console.log("perfc was wrong,");
 			return;
 		}
-		setTimeout(performCalculations, 0);
+		if (document.getElementById("cc-auto-refr").checked) {
+			window.refreshColorCode();
+		}
+		//console.log("performed from .calc-trigger");
+		performCalculations();
 	});
 	performCalculations();
 });
