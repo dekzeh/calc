@@ -9,27 +9,6 @@ function placeBsBtn() {
 		//erase the import text area
 		document.getElementsByClassName("import-team-text")[0].value="";
 	});
-
-	if (typeof navigator.clipboard.readText == "undefined") {
-		//probably firefox, it won't work
-		//check https://stackoverflow.com/questions/67440036/navigator-clipboard-readtext-is-not-working-in-firefox
-		return;
-	}
-
-	// import from clipboard
-	var importCb = "<button id='importCb' class='bs-btn bs-btn-default'>Import from clipboard</button>";
-	$("#import-1_wrapper").append(importCb);
-
-	$("#importCb.bs-btn").click(function () {
-		navigator.clipboard
-			.readText()
-			.then(
-			(clipText) => {
-				var name = document.getElementsByClassName("import-name-text")[0].value.trim() === "" ? "Custom Set" : document.getElementsByClassName("import-name-text")[0].value;
-				window.addSets(clipText, name);
-			}
-		);
-	});
 }
 
 function ExportPokemon(pokeInfo) {
