@@ -162,11 +162,6 @@ function calculationsColors(p1info) {
 			}
 		}
 	}
-	if (p1KO > 0 || p2KO > 0) {
-		p1KO = p1KO > 0 ? p1KO.toString() : "";
-		p2KO = p2KO > 0 ? p2KO.toString() : "";
-		return {speed: fastest, code: p1KO + p2KO};
-	}
 	// Checks if the pokemon walls it
 	// i wouldn't mind change this algo for a smarter one.
 
@@ -175,10 +170,10 @@ function calculationsColors(p1info) {
 		// And if our pokemon does more damage
 		if (p1HD > p2HD) {
 			if (p1HD > 100) {
-				// Then i consider it a wall that can OHKO
-				return {speed: fastest, code: "WO"};
+				// Then i consider it a wall that may OHKO
+				return {speed: fastest, code: "WMO"};
 			}
-			// Then i consider it a good wall
+			// if not Then i consider it a good wall
 			return {speed: fastest, code: "W"};
 		}
 	}

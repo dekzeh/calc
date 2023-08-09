@@ -535,7 +535,7 @@ table.field {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     border: solid;
-    border-color: #378aa3;
+    border-color: #7ee1ff;
     border-radius: 20%;
 }
 .mon-speed-T{
@@ -543,7 +543,7 @@ table.field {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     border: solid;
-    border-color: #b74dcc;
+    border-color: #894197;
     border-radius: 20%;
 }
 .mon-speed-S{
@@ -551,51 +551,49 @@ table.field {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     border: solid;
-    border-color: #57310d;
+    border-color: #1c1414;;
     border-radius: 20%;
 }
 .mon-dmg-W{
     /* Is considerable a wall*/
     background-color: #110f70;
 }
-.mon-dmg-WO{
-    /* Is considerable a wall that can OHKO*/
-    background-color: #110f70;
-    background: linear-gradient(90deg, #110f70 0%, rgb(7,255,0) 100%);
+.mon-dmg-WMO{
+    /* Is considerable a wall that may OHKO*/
+    background: linear-gradient(to right, #110f70 50%, #adff16 0%);
 }
 .mon-dmg-4{
     /*Gets OHKO*/
-    background-color: #dd0b0b;
+    background: linear-gradient(to right, #2a2a2a 50%, #dd0b0b 0%);
 }
 .mon-dmg-3{
     /*maybe gets OHKO*/
-    background: rgb(255,199,0);
-    background: linear-gradient(90deg, rgba(255,199,0,1) 0%, rgba(255,0,0,1) 100%);
-}
-.mon-dmg-2{
-    /*may inflicts OHKO*/
-    background: rgb(7,255,0);
-    background: linear-gradient(90deg, rgba(7,255,0,1) 0%, rgba(255,199,0,1) 100%);
+    background: linear-gradient(to right, #2a2a2a 50%, #ff7f16 0%);
 }
 .mon-dmg-1{
     /*inflicts OHKO*/
-    background-color: #189207;
+    background: linear-gradient(to right, #20d408 50%, #2a2a2a 0%);
 }
+.mon-dmg-2{
+    /*may inflicts OHKO*/
+    background: linear-gradient(to right, #daff08 50%, #2a2a2a 0%);
+}
+
 .mon-dmg-14{
     /*both sides Gets OHKO*/
-    background-color: #8342a8;
-}
-.mon-dmg-13{
-    /*inflict OHKO but may Gets OHKO*/
-    background-color: #db710d;
-}
-.mon-dmg-24{
-    /*may inflict OHKO but Gets OHKO*/
-    background-color: #a53306;
+    background: linear-gradient(to right, #20d408 50%, #dd0b0b 0%);
 }
 .mon-dmg-23{
     /*both sides might inflict OHKO*/
-    background-color: #4d0a5a;
+    background: linear-gradient(to right, #daff08 50%, #ff7f16 0%);
+}
+.mon-dmg-13{
+    /*inflict OHKO but may Gets OHKO*/
+    background: linear-gradient(to right, #20d408 50%, #ff7f16 0%);
+}
+.mon-dmg-24{
+    /*may inflict OHKO but Gets OHKO*/
+    background: linear-gradient(to right, #daff08 50%, #dd0b0b 0%);
 }
 
 .dropzone{
