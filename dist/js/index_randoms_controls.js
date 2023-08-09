@@ -281,12 +281,18 @@ $(document).ready(function () {
 			}
 		}
 	}
-	$(".calc-trigger").bind("change keyup", function () {
-		if (document.getElementById("cc-auto-refr").checked) {
-			window.refreshColorCode();
+	$(".calc-trigger").bind("change keyup", function (ev) {
+		/*
+			this was found purely by empirical methods and i don't understand what's behind
+			But it prevents the calc from calculating 10 times in the void
+			it might break things, yet i haven't found yet.
+		*/
+		if (ev.target.type == "text" && ev.target.tabIndex == -1) {
+			if (document.getElementById("cc-auto-refr").checked) {
+				window.refreshColorCode();
+			}
+			performCalculations();
 		}
-		//console.log("performed from .calc-trigger");
-		performCalculations();
 	});
 	performCalculations();
 });
