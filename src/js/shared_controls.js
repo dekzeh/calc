@@ -1416,7 +1416,6 @@ function get_trainer_names() {
 	return trainer_names
 }
 function addBoxed(poke) {
-	 = false;
 	if (document.getElementById(`${poke.name}${poke.nameProp}`)) {
 		//nothing to do it already exist
 		return
@@ -1428,7 +1427,6 @@ function addBoxed(poke) {
 	newPoke.dataset.id = `${poke.name} (${poke.nameProp})`
 	newPoke.addEventListener("dragstart", dragstart_handler);
 	$('.box-poke-list')[0].appendChild(newPoke)
-	 = true;
 }
 
 function getSrcImgPokemon(poke) {
@@ -1455,11 +1453,9 @@ function get_trainer_poks(trainer_name) {
 }
 
 function topPokemonIcon(fullname, node) {
-	=false;
 	var mon = { name: fullname.split(" (")[0] };
 	var src = getSrcImgPokemon(mon);
 	node.src = src;
-	=true;
 }
 
 $(document).on('click', '.right-side', function () {
@@ -1471,13 +1467,11 @@ $(document).on('click', '.right-side', function () {
 })
 
 $(document).on('click', '.left-side', function () {
-	=false;
 	var set = $(this).attr('data-id');
 	topPokemonIcon(set, $("#p1mon")[0])
 	$('.player').val(set);
 	$('.player').change();
 	$('.player .select2-chosen').text(set);
-	=true;
 })
 
 
@@ -1565,20 +1559,16 @@ function showColorCodes(){
 }
 
 function refreshColorCode(){
-	 = false;
 	colorCodeUpdate();
-	 = true;
 }
 
 function hideColorCodes(){
-	 = false;
 	var pMons = document.getElementsByClassName("trainer-pok left-side");
 	for (let i = 0; i < pMons.length; i++) {
 		pMons[i].className = "trainer-pok left-side";
 	}
 	document.getElementById("cc-auto-refr").checked = false;
 	HideShowCCSettings();
-	 = true;
 }
 
 function RemoveCurrentPokemon() {

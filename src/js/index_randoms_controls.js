@@ -264,7 +264,6 @@ $(".notation").change(function () {
 });
 
 $(document).ready(function () {
-	 = true;
 	var params = new URLSearchParams(window.location.search);
 	var m = params.get('mode');
 	if (m) {
@@ -283,10 +282,6 @@ $(document).ready(function () {
 		}
 	}
 	$(".calc-trigger").bind("change keyup", function () {
-		if (!) {
-			console.log("perfc was wrong,");
-			return;
-		}
 		if (document.getElementById("cc-auto-refr").checked) {
 			window.refreshColorCode();
 		}
