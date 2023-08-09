@@ -1523,28 +1523,32 @@ function resetTrainer() {
 }
 
 
-function showColorCodes(){
-	window.PERFC = false;
+function HideShowCCSettings(){
+	$('#show-cc')[0].toggleAttribute("hidden");
+	$('#hide-cc')[0].toggleAttribute("hidden");
+	$('#refr-cc')[0].toggleAttribute("hidden");
+	$('#cc-sets')[0].toggleAttribute("hidden");
+}
+
+function colorCodeUpdate(){
 	var pMons = document.getElementsByClassName("trainer-pok left-side");
 	for (let i = 0; i < pMons.length; i++) {
 		let set = pMons[i].getAttribute("data-id");
 		let idColor = calculationsColors(set);
 		pMons[i].className = `trainer-pok left-side mon-speed-${idColor.speed} mon-dmg-${idColor.code}`;
 	}
+}
+function showColorCodes(){
+	window.PERFC = false;
+	colorCodeUpdate();
+	HideShowCCSettings();
 	window.PERFC = true;
-	$('#show-cc')[0].toggleAttribute("hidden");
-	$('#hide-cc')[0].toggleAttribute("hidden");
-	$('#refr-cc')[0].toggleAttribute("hidden");
+	
 }
 
 function refreshColorCode(){
 	window.PERFC = false;
-	var pMons = document.getElementsByClassName("trainer-pok left-side");
-	for (let i = 0; i < pMons.length; i++) {
-		let set = pMons[i].getAttribute("data-id");
-		let idColor = calculationsColors(set);
-		pMons[i].className = `trainer-pok left-side mon-speed-${idColor.speed} mon-dmg-${idColor.code}`;
-	}
+	colorCodeUpdate();
 	window.PERFC = true;
 }
 
@@ -1554,10 +1558,8 @@ function hideColorCodes(){
 	for (let i = 0; i < pMons.length; i++) {
 		pMons[i].className = "trainer-pok left-side";
 	}
+	HideShowCCSettings();
 	window.PERFC = true;
-	$('#show-cc')[0].toggleAttribute("hidden");
-	$('#hide-cc')[0].toggleAttribute("hidden");
-	$('#refr-cc')[0].toggleAttribute("hidden");
 }
 
 
@@ -1620,6 +1622,32 @@ function handleDragLeave(ev) {
 	ev.target.classList.remove('over');
 }
 
+function SpeedBorderSetsChange(ev){
+	var monImgs = document.getElementsByClassName("left-side");
+	if (ev.target.checked){
+		for (let monImg of monImgs){
+			monImg.classList.remove("mon-speed-none")
+		}
+	}else{
+		for (let monImg of monImgs){
+			monImg.classList.add("mon-speed-none")
+		}
+	}
+}
+
+function ColorCodeSetsChange(ev){
+	var monImgs = document.getElementsByClassName("left-side");
+	if (ev.target.checked){
+		for (let monImg of monImgs){
+			monImg.classList.remove("mon-dmg-none")
+		}
+	}else{
+		for (let monImg of monImgs){
+			monImg.classList.add("mon-dmg-none")
+		}
+	}
+}
+
 $(document).ready(function () {
 	var params = new URLSearchParams(window.location.search);
 	var g = GENERATION[params.get('gen')] || 8;
@@ -1647,6 +1675,10 @@ $(document).ready(function () {
 	$('#hide-cc').click(hideColorCodes);
 	$('#refr-cc').click(refreshColorCode);
 	$('#rm-current').click(RemoveCurrentPokemon);
+	$('#cc-spe-border').change(SpeedBorderSetsChange);
+	$('#cc-ohko-color').change(ColorCodeSetsChange);
+	$('#cc-spe-border')[0].checked=true;
+	$('#cc-ohko-color')[0].checked=true;
 	for (let dropzone of document.getElementsByClassName("dropzone")){
 		dropzone.ondragenter=handleDragEnter;
 		dropzone.ondragleave=handleDragLeave;
