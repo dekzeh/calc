@@ -452,8 +452,10 @@ function sortmons(a, b) {
 
 // auto-update set details on select
 $(".set-selector").change(function () {
+	window.NO_CALC = true;
 	var fullSetName = $(this).val();
 	if ($(this).hasClass('opposing')) {
+		topPokemonIcon(fullSetName, $("#p2mon")[0])
 		CURRENT_TRAINER_POKS = get_trainer_poks(fullSetName)
 		var next_poks = CURRENT_TRAINER_POKS.sort(sortmons)
 
@@ -468,8 +470,6 @@ $(".set-selector").change(function () {
 			}//this ruined my day
 			var pok = `<img class="trainer-pok right-side" src="https://raw.githubusercontent.com/May8th1995/sprites/master/${pok_name}.png" data-id="${CURRENT_TRAINER_POKS[i].split("]")[1]}" title="${next_poks[i]}, ${next_poks[i]} BP">`
 			trpok_html += pok
-
-			topPokemonIcon(fullSetName, $("#p2mon")[0])
 		}
 	} else {
 		topPokemonIcon(fullSetName, $("#p1mon")[0])
@@ -641,6 +641,7 @@ $(".set-selector").change(function () {
 			pokeObj.find(".gender").val("");
 		} else pokeObj.find(".gender").parent().show();
 	}
+	window.NO_CALC = false;
 });
 
 function formatMovePool(moves) {

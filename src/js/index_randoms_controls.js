@@ -283,16 +283,16 @@ $(document).ready(function () {
 	}
 	$(".calc-trigger").bind("change keyup", function (ev) {
 		/*
-			this was found purely by empirical methods and i don't understand what's behind
-			But it prevents the calc from calculating 10 times in the void
-			it might break things, yet i haven't found any issues yet.
+			This prevents like 8 performCalculations out of 8 that were useless
+			without causing bugs (so far)
 		*/
-		if (ev.target.type == "text" && ev.target.tabIndex == -1) {
-			if (document.getElementById("cc-auto-refr").checked) {
-				window.refreshColorCode();
-			}
-			performCalculations();
+		if (window.NO_CALC) {
+			return;
 		}
+		if (document.getElementById("cc-auto-refr").checked) {
+			window.refreshColorCode();
+		}
+		performCalculations();
 	});
 	performCalculations();
 });
