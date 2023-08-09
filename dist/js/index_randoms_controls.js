@@ -285,7 +285,7 @@ $(document).ready(function () {
 		/*
 			this was found purely by empirical methods and i don't understand what's behind
 			But it prevents the calc from calculating 10 times in the void
-			it might break things, yet i haven't found yet.
+			it might break things, yet i haven't found any issues yet.
 		*/
 		if (ev.target.type == "text" && ev.target.tabIndex == -1) {
 			if (document.getElementById("cc-auto-refr").checked) {
