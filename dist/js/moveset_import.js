@@ -384,4 +384,6 @@ $(document).ready(function () {
 	} else {
 		loadDefaultLists();
 	}
+	//adjust the side buttons that collapse the data wished to be hidden
+	setupSideCollapsers();
 });

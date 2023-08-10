@@ -609,3 +609,43 @@ table.field {
 .over{
     background: #373232;
 }
+
+.s-arrow{
+    border: solid rgb(175, 155, 155);
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+}
+.arrowdown {
+    transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+.arrowright {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
+.arrowtop {
+    transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+.arrowleft{
+    transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+.l-side-button, .r-side-button{
+    position: absolute;
+}
+.side-pannel{
+    display: grid;
+    position: relative;
+}
+.left-side-pannel{
+    float: left;
+}
+.right-side-pannel{
+    float: none;
+}
+
+#p2mon, p1mon{
+    min-height: 30px;
+}
