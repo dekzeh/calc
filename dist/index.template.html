@@ -688,6 +688,36 @@
                 <button id="show-cc">Show</button>
                 <button id="hide-cc" hidden>Hide</button>
                 <button id="refr-cc" hidden>Refresh</button>
+                <button id="info-cc" hidden>Colors Explanation</button>
+                <div id="info-cc-field" class="info-paragraph" hidden>
+                    <h5>Speed Borders</h5>
+                    <b class="mon-speed-F">Blue</b> Outspeeds
+                    <b class="mon-speed-T">Purple</b> Speed Tie
+                    <b class="mon-speed-S">Black</b> Slower
+                    <h5>OHKO Colors</h5>
+                    <b class="mon-dmg-W">Walls</b>(get 4 HKO at worse and does more damage)
+                    <br>
+                    <b class="mon-dmg-WMO">Walls may OHKO</b>(gets 4 HKO at worse and may OHKO)
+                    <br>
+                    <b class="mon-dmg-1">100% OHKO</b>
+                    <br>
+                    <b class="mon-dmg-2">May 0HKO</b>
+                    <br>
+                    <b class="mon-dmg-3">May Get 0HKO</b>
+                    <br>
+                    <b class="mon-dmg-4">100% Get 0HKO</b>
+                    <br>
+                    <b class="mon-dmg-14">Both side 100% OHKO</b>
+                    <br>
+                    <b class="mon-dmg-23">Both side may OHKO</b>
+                    <br>
+                    <b class="mon-dmg-13">100% OHKO but may gets OHKO</b>
+                    <br>
+                    <b class="mon-dmg-24">May 0HKO but 100% Get 0HKO</b>
+                    <p>
+                        Note: Color codes are intended to be a helper, some caveats and quirks are missed by the calculation
+                    </p>
+                </div>
                 <div id ="cc-sets" hidden>
                     <input type="checkbox" name="cc-spe-border" id="cc-spe-border" checked>speed border
                     <input type="checkbox" name="cc-ohko-color" id="cc-ohko-color" checked>OHKO color
@@ -1597,7 +1627,7 @@
                 <hr>
                 <button type="button" id="previous-trainer"> Previous Trainer</button>
                 <button type="button" id="next-trainer"> Next Trainer</button>
-                <button type="button" id="reset-trainer"> Reset Trainer</button>
+                <button type="button" id="reset-trainer">Truck</button>
             </fieldset>
         </div>
     </div>

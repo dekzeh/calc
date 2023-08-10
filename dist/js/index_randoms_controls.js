@@ -167,7 +167,7 @@ function calculationsColors(p1info, p2) {
 	// i wouldn't mind change this algo for a smarter one.
 
 	// if the adversary don't three shots our pokemon
-	if (p2HD * 3 < 100) {
+	if (Math.round(p2HD * 3) < 100) {
 		// And if our pokemon does more damage
 		if (p1HD > p2HD) {
 			if (p1HD > 100) {

@@ -558,31 +558,31 @@ table.field {
     border: none !important; 
 }
 .mon-dmg-none{
-    background: #2a2a2a !important;
+    background: var(--fieldset-color) !important;
 }
 .mon-dmg-W{
     /* Is considerable a wall*/
-    background: linear-gradient(to right, #2824ff 50%, #2a2a2a 0%);
+    background: linear-gradient(to right, #0f0bf3 50%, var(--fieldset-color) 0%);
 }
 .mon-dmg-WMO{
     /* Is considerable a wall that may OHKO*/
-    background: linear-gradient(to right, #141280 50%, #2a2a2a 0%);
+    background: linear-gradient(to right, #1295ec 50%, var(--fieldset-color) 0%);
 }
 .mon-dmg-4{
     /*Gets OHKO*/
-    background: linear-gradient(to right, #2a2a2a 50%, #dd0b0b 0%);
+    background: linear-gradient(to right, var(--fieldset-color) 50%, #dd0b0b 0%);
 }
 .mon-dmg-3{
     /*maybe gets OHKO*/
-    background: linear-gradient(to right, #2a2a2a 50%, #ff7f16 0%);
+    background: linear-gradient(to right, var(--fieldset-color) 50%, #ff7f16 0%);
 }
 .mon-dmg-1{
     /*inflicts OHKO*/
-    background: linear-gradient(to right, #20d408 50%, #2a2a2a 0%);
+    background: linear-gradient(to right, #20d408 50%, var(--fieldset-color) 0%);
 }
 .mon-dmg-2{
     /*may inflicts OHKO*/
-    background: linear-gradient(to right, #daff08 50%, #2a2a2a 0%);
+    background: linear-gradient(to right, #daff08 50%, var(--fieldset-color) 0%);
 }
 
 .mon-dmg-14{
@@ -646,6 +646,14 @@ table.field {
     float: none;
 }
 
-#p2mon, p1mon{
+#p2mon, #p1mon{
     min-height: 30px;
+}
+
+.info-paragraph > b{
+    color: rgb(15, 14, 14);
+}
+.info-paragraph > b:hover{
+    background: var(--fieldset-color);
+    color: unset;
 }

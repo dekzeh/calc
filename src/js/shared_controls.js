@@ -1444,6 +1444,7 @@ function getSrcImgPokemon(poke) {
 
 function get_trainer_poks(trainer_name) {
 	var true_name = trainer_name.split("(")[1].split("\n")[0].trim()
+	window.CURRENT_TRAINER = true_name.substring(0, true_name.length -1);
 	var matches = []
 	for (i in TR_NAMES) {
 		if (TR_NAMES[i].includes(true_name)) {
@@ -1517,7 +1518,16 @@ function previousTrainer() {
 }
 
 function resetTrainer() {
-	selectTrainer(1)
+	if (confirm(`You wiped to ${window.CURRENT_TRAINER} ? Hey there, I know you just lost your run so take it easy and think in the Truck about your next moves against these opponents`)){
+		selectTrainer(1);
+		localStorage.removeItem("customsets");
+		$(allPokemon("#importedSetsOptions")).hide();
+		loadDefaultLists();
+		for (let zone of document.getElementsByClassName("dropzone")){
+			zone.innerHTML="";
+		}
+	}
+	
 }
 
 
@@ -1525,6 +1535,7 @@ function HideShowCCSettings(){
 	$('#show-cc')[0].toggleAttribute("hidden");
 	$('#hide-cc')[0].toggleAttribute("hidden");
 	$('#refr-cc')[0].toggleAttribute("hidden");
+	$('#info-cc')[0].toggleAttribute("hidden");
 	$('#cc-sets')[0].toggleAttribute("hidden");
 }
 
@@ -1570,6 +1581,10 @@ function hideColorCodes(){
 	}
 	document.getElementById("cc-auto-refr").checked = false;
 	HideShowCCSettings();
+}
+
+function toggleInfoColorCode(){
+	document.getElementById("info-cc-field").toggleAttribute("hidden");
 }
 
 function RemoveCurrentPokemon() {
@@ -1774,6 +1789,7 @@ $(document).ready(function () {
 	$('#show-cc').click(showColorCodes);
 	$('#hide-cc').click(hideColorCodes);
 	$('#refr-cc').click(refreshColorCode);
+	$('#info-cc').click(toggleInfoColorCode);
 	$('#rm-current').click(RemoveCurrentPokemon);
 	$('#cc-spe-border').change(SpeedBorderSetsChange);
 	$('#cc-ohko-color').change(ColorCodeSetsChange);
