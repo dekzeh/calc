@@ -602,10 +602,13 @@ table.field {
     background: linear-gradient(to right, #daff08 50%, #dd0b0b 0%);
 }
 
-.dropzone{
+.box-poke{
     min-height: 30px;
 }
 
+.deadzone:hover{
+    background: #722323;
+}
 .over{
     background: #373232;
 }
@@ -646,7 +649,7 @@ table.field {
     float: none;
 }
 
-#p2mon, #p1mon{
+#p2mon, #p1mon, #monSingle, #monDouble {
     min-height: 30px;
 }
 

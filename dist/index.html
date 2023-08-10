@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <title>Pok&eacute;mon Damage Calculator</title>
     <link type="text/css" rel="stylesheet" href="./js/vendor/select2/select2.css" />
-    <link type="text/css" rel="stylesheet" href="./css/main.css?ca4366f0" />
+    <link type="text/css" rel="stylesheet" href="./css/main.css?569ec498" />
     <link type="text/css" rel="stylesheet" href="./css/vendor/bootstrap.css" />
     <link type="text/css" rel="stylesheet" href="./css/dark-theme.css" id="dark-theme-styles">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -145,8 +145,6 @@
                 <input type="text" class="set-selector calc-trigger player" />
                 <span id="importedSetsOptions" style="width:auto; display:none">
                     <input type="checkbox" id="importedSets"> Only show imported sets</input> 
-                    <br/>
-                    <button id="clearSets">Clear Imported Sets</button>
                 </span>
                 <div class="info-group top i-f-type">
                     <div>
@@ -666,62 +664,72 @@
         <div aria-label="trainer-poks" role="region">
             <fieldset class="poke-info" id="trainer-mons">
                 <legend align="center">TEAM/BOX</legend>
-                <button id="rm-current">Remove Current pokemon from sets</button>
                 <div>
                     <legend align="center">TEAM</legend>
-                    <div class="team-poke-list dropzone">
+                    <div id="team-poke-list" class="box-poke dropzone">
                     </div>
                 </div>
                 <hr>
                 <div>
                     <legend align="center">BOX</legend>
-                    <div class="box-poke-list dropzone">
+                    <div id="box-poke-list" class="box-poke dropzone">
                     </div>
                 </div>
                 <div>
                     <legend align="center">BOX 2</legend>
-                    <div class="box-poke-list2 dropzone">
+                    <div id="box-poke-list2" class="box-poke dropzone">
                     </div>
                 </div>
                 <hr>
-                <legend align="center">Color Codes</legend>
-                <button id="show-cc">Show</button>
-                <button id="hide-cc" hidden>Hide</button>
-                <button id="refr-cc" hidden>Refresh</button>
-                <button id="info-cc" hidden>Colors Explanation</button>
-                <div id="info-cc-field" class="info-paragraph" hidden>
-                    <h5>Speed Borders</h5>
-                    <b class="mon-speed-F">Blue</b> Outspeeds
-                    <b class="mon-speed-T">Purple</b> Speed Tie
-                    <b class="mon-speed-S">Black</b> Slower
-                    <h5>OHKO Colors</h5>
-                    <b class="mon-dmg-W">Walls</b>(get 4 HKO at worse and does more damage)
-                    <br>
-                    <b class="mon-dmg-WMO">Walls may OHKO</b>(gets 4 HKO at worse and may OHKO)
-                    <br>
-                    <b class="mon-dmg-1">100% OHKO</b>
-                    <br>
-                    <b class="mon-dmg-2">May 0HKO</b>
-                    <br>
-                    <b class="mon-dmg-3">May Get 0HKO</b>
-                    <br>
-                    <b class="mon-dmg-4">100% Get 0HKO</b>
-                    <br>
-                    <b class="mon-dmg-14">Both side 100% OHKO</b>
-                    <br>
-                    <b class="mon-dmg-23">Both side may OHKO</b>
-                    <br>
-                    <b class="mon-dmg-13">100% OHKO but may gets OHKO</b>
-                    <br>
-                    <b class="mon-dmg-24">May 0HKO but 100% Get 0HKO</b>
-                    <p>
-                        Note: Color codes are intended to be a helper, some caveats and quirks are missed by the calculation
-                    </p>
+                <div>
+                    <legend align="center">Color Codes</legend>
+                    <button id="show-cc">Show</button>
+                    <button id="hide-cc" hidden>Hide</button>
+                    <button id="refr-cc" hidden>Refresh</button>
+                    <button id="info-cc" hidden>Colors Explanation</button>
+                    <div id="info-cc-field" class="info-paragraph" hidden>
+                        <h5>Speed Borders</h5>
+                        <b class="mon-speed-F">Blue</b> Outspeeds
+                        <b class="mon-speed-T">Purple</b> Speed Tie
+                        <b class="mon-speed-S">Black</b> Slower
+                        <h5>OHKO Colors</h5>
+                        <b class="mon-dmg-W">Walls</b>(get 4 HKO at worse and does more damage)
+                        <br>
+                        <b class="mon-dmg-WMO">Walls may OHKO</b>(gets 4 HKO at worse and may OHKO)
+                        <br>
+                        <b class="mon-dmg-1">100% OHKO</b>
+                        <br>
+                        <b class="mon-dmg-2">May 0HKO</b>
+                        <br>
+                        <b class="mon-dmg-3">May Get 0HKO</b>
+                        <br>
+                        <b class="mon-dmg-4">100% Get 0HKO</b>
+                        <br>
+                        <b class="mon-dmg-14">Both side 100% OHKO</b>
+                        <br>
+                        <b class="mon-dmg-23">Both side may OHKO</b>
+                        <br>
+                        <b class="mon-dmg-13">100% OHKO but may gets OHKO</b>
+                        <br>
+                        <b class="mon-dmg-24">May 0HKO but 100% Get 0HKO</b>
+                        <p>
+                            Note: Color codes are intended to be a helper, some caveats and quirks are missed by the calculation
+                        </p>
+                    </div>
+                    <div id ="cc-sets" hidden>
+                        <input type="checkbox" name="cc-spe-border" id="cc-spe-border" checked>speed border
+                        <input type="checkbox" name="cc-ohko-color" id="cc-ohko-color" checked>OHKO color
+                        <input type="checkbox" name="cc-auto-refr" id="cc-auto-refr" autocomplete="off">auto-refresh
+                    </div>
                 </div>
-                <div id ="cc-sets" hidden>
-                    <input type="checkbox" name="cc-spe-border" id="cc-spe-border" checked>speed border
-                    <input type="checkbox" name="cc-ohko-color" id="cc-ohko-color" checked>OHKO color
-                    <input type="checkbox" name="cc-auto-refr" id="cc-auto-refr" autocomplete="off">auto-refresh
+                <hr>
+                <div>
+                    <legend align="center">TRASH ZONE</legend>
+                    <div id="trash-box" class="box-poke dropzone">
+                        
+                    </div>
+                    <button class="deadzone" id="trash-pok">Remove pokemon in the Trash</button>
+                    <button class="deadzone" id="clearSets">Remove all pokemons from all boxes</button>
                 </div>
             </fieldset>
         </div>
@@ -729,7 +737,10 @@
     <div class="panel">
         <div aria-label="Field information" role="region">
             <fieldset class="field-info">
-                <legend align="center">Field</legend>
+                <legend align="center">Field
+                    <img id="monSingle" src="https://raw.githubusercontent.com/May8th1995/sprites/master/Minun.png" alt="">
+                    <img id="monDouble" src="https://raw.githubusercontent.com/May8th1995/sprites/master/Plusle.png" alt="" hidden>
+                </legend>
                 <div aria-labelledby="selectBattleFormatInstruction" class="gen-specific g3 g4 g5 g6 g7 g8 g9" role="radiogroup" style="width: 10.6em; margin: 0 auto 5px;" title="Select the battle format.">
                     <span class="visually-hidden" id="selectBattleFormatInstruction">Select the battle format.</span>
                     <input class="visually-hidden calc-trigger" type="radio" name="format" value="Singles" id="singles-format" />
@@ -1090,9 +1101,6 @@
                 <input type="text" class="set-selector calc-trigger opposing" />
                 <span id="importedSetsOptions" style="width:auto; display:none">
                     <input type="checkbox" id="importedSets"> Only show imported sets</input>
-                    <br/>
-                    <button id="clearSets">Clear Imported Sets</button>
-                    
                 </span>
                 <div class="info-group top i-f-o-type">
                     <div>
@@ -1623,7 +1631,7 @@
                     </div-->
                 </div>
                 <!--hr>
-                <xbutton id="set-double-opp">Set in doubles</button-->
+                <button id="set-double-opp">Set in doubles</button-->
                 <hr>
                 <button type="button" id="previous-trainer"> Previous Trainer</button>
                 <button type="button" id="next-trainer"> Next Trainer</button>
@@ -1695,15 +1703,18 @@
     <script type="text/javascript" src="./calc/result.js?9f8881b5"></script>
     <script type="text/javascript" src="./calc/adaptable.js?92e49194"></script>
     <script type="text/javascript" src="./calc/index.js?0b1745b9"></script>
-    <script type="text/javascript" src="./js/shared_controls.js?581a9a97"></script>
+    <script type="text/javascript" src="./js/shared_controls.js?3399c04e"></script>
     <script type="text/javascript" src="./js/index_randoms_controls.js?4dacd79c"></script>
-    <script type="text/javascript" src="./js/moveset_import.js?bc3a0b42"></script>
+    <script type="text/javascript" src="./js/moveset_import.js?b9df1dd2"></script>
 </div>
 
-<div class="credits">Created by Honko, maintained by Austin and Kris, Special thanks to Hzla
-    <ul><li><a href="https://github.com/smogon/damage-calc/contributors" class="links-lighten" target="_blank">Contributors</a></li>
-        <li><a href="https://www.smogon.com/forums/threads/pok%C3%A9mon-showdown-damage-calculator.3593546/" class="links-lighten" target="_blank">Bug Reports</a></li>
-        <li><a href="https://github.com/smogon/damage-calc" class="links-lighten" target="_blank">GitHub repository</a></li></ul>
+<div class="credits">Modification by ForwardFeed Originaly Created by Honko, maintained by Austin and Kris, Special thanks to Hzla
+    <ul>
+        <li><a href="https://github.com/ForwardFeed/runbuncalc" class="links-lighten" target="_blank">Modification Repository</a></li>
+        <br>
+        <li><a href="https://github.com/smogon/damage-calc/contributors" class="links-lighten" target="_blank">Smogon Contributors</a></li>
+        <li><a href="https://www.smogon.com/forums/threads/pok%C3%A9mon-showdown-damage-calculator.3593546/" class="links-lighten" target="_blank">Smogon Bug Reports</a></li>
+        <li><a href="https://github.com/smogon/damage-calc" class="links-lighten" target="_blank">Smogong qGitHub repository</a></li></ul>
     
         <button type="button" id="dark-theme-toggle"></button>
         <script type="text/javascript" src="./js/dark-theme-toggle.js?b8bb93fc"></script>

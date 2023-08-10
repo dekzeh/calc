@@ -1427,7 +1427,7 @@ function addBoxed(poke) {
 	newPoke.src = getSrcImgPokemon(poke);
 	newPoke.dataset.id = `${poke.name} (${poke.nameProp})`
 	newPoke.addEventListener("dragstart", dragstart_handler);
-	$('.box-poke-list')[0].appendChild(newPoke)
+	$('#box-poke-list')[0].appendChild(newPoke)
 }
 
 function getSrcImgPokemon(poke) {
@@ -1587,22 +1587,31 @@ function toggleInfoColorCode(){
 	document.getElementById("info-cc-field").toggleAttribute("hidden");
 }
 
-function RemoveCurrentPokemon() {
-	let yes = confirm("do you really want to remove this pokemon from your set?")
-	if (!yes) {
-		return
+function TrashPokemon() {
+	var maybeMultiple = document.getElementById("trash-box").getElementsByClassName("trainer-pok");
+	if (maybeMultiple.length == 0){
+		return; //nothing to delete
 	}
-	var current = $('.player').val().split(" (");
-	var name = current[0];
-	var nameProp = current[1].split(")")[0];
-	var id = `${name}${nameProp}`;
-	var toRm = document.getElementById(id);
-	toRm.parentNode.removeChild(toRm);
+	var numberPKM = maybeMultiple.length > 1 ? `${maybeMultiple.length} Pokemon(s)` : "this Pokemon"; 
+	var yes = confirm(`do you really want to remove ${numberPKM}?`);
+	if (!yes) {
+		return;
+	}
 	var customSets = JSON.parse(localStorage.customsets);
-	delete customSets[name]
+	var length= maybeMultiple.length;
+	for( let i = 0; i<length; i++){
+		var pokeTrashed = maybeMultiple[i];
+		var name = pokeTrashed.getAttribute("data-id").split(" (")[0];
+		delete customSets[name];
+	}
+	document.getElementById("trash-box").innerHTML="";
 	localStorage.setItem("customsets", JSON.stringify(customSets));
+	$('#box-poke-list')[0].click();
 	//switch to the next pokemon automatically
-	$('.box-poke-list')[0].click()
+	
+}
+function RemoveAllPokemon() {
+	document.getEle
 }
 function allowDrop(ev) {
 	ev.preventDefault();
@@ -1763,6 +1772,16 @@ function collapseArrow(arrow){
 	}
 }
 
+/* although those two function could be factorised in one, i may think about more in depth 
+functionality laters that may involve two separate functions, i will remove this comment if i do*/
+function switchIconSingle(){
+	document.getElementById("monDouble").toggleAttribute("hidden")
+}
+
+function switchIconDouble(){
+	document.getElementById("monDouble").toggleAttribute("hidden")
+}
+
 $(document).ready(function () {
 	var params = new URLSearchParams(window.location.search);
 	var g = GENERATION[params.get('gen')] || 8;
@@ -1790,11 +1809,13 @@ $(document).ready(function () {
 	$('#hide-cc').click(hideColorCodes);
 	$('#refr-cc').click(refreshColorCode);
 	$('#info-cc').click(toggleInfoColorCode);
-	$('#rm-current').click(RemoveCurrentPokemon);
+	$('#trash-pok').click(TrashPokemon);
 	$('#cc-spe-border').change(SpeedBorderSetsChange);
 	$('#cc-ohko-color').change(ColorCodeSetsChange);
 	$('#cc-spe-border')[0].checked=true;
 	$('#cc-ohko-color')[0].checked=true;
+	$('#singles-format').click(switchIconDouble);
+	$('#doubles-format').click(switchIconSingle);
 	for (let dropzone of document.getElementsByClassName("dropzone")){
 		dropzone.ondragenter=handleDragEnter;
 		dropzone.ondragleave=handleDragLeave;
