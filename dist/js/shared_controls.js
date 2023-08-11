@@ -1475,17 +1475,39 @@ $(document).on('click', '.left-side', function () {
 	$('.player .select2-chosen').text(set);
 })
 
+function truckMessage(){
+	var truckMsgId= Number(localStorage.getItem("truckMsg"));
+	if (truckMsgId == undefined){
+		truckMsgId = -1;
+	} 
+	truckMsgId+=1;
+	if(truckMsgId >= TRUCK_MESSAGES.length){
+		truckMsgId = 2;
+	}
+	localStorage.setItem("truckMsg", truckMsgId);
+	//yaayy dynamic strings
+	return typeof TRUCK_MESSAGES[truckMsgId] === 'string' ? TRUCK_MESSAGES[truckMsgId] : TRUCK_MESSAGES[truckMsgId]() ;
+	
+}
 
 //select first mon of the box when loading
 function selectFirstMon() {
-	var pMons = document.getElementsByClassName("trainer-pok left-side");
-	let set = pMons[i].getAttribute("data-id");
+	var pMons = document.getElementsByClassName("trainer-pok left-side")[0];
+	if(!pMons){
+		return
+	}
+	let set = pMons.getAttribute("data-id");
 	$('.player').val(set);
 	$('.player').change();
 	$('.player .select2-chosen').text(set);
 }
 
 function selectTrainer(value) {
+	if(value >= 1620){
+		value = 1620;
+	}else if(value<=0){
+		value=1;
+	}
 	localStorage.setItem("lasttimetrainer", value);
 	all_poks = SETDEX_SS
 	for (const [pok_name, poks] of Object.entries(all_poks)) {
@@ -1502,21 +1524,6 @@ function selectTrainer(value) {
 
 		}
 	}
-}
-
-function truckMessage(){
-	var truckMsgId= Number(localStorage.getItem("truckMsg"));
-	if (truckMsgId == undefined){
-		truckMsgId = -1;
-	} 
-	truckMsgId+=1;
-	if(truckMsgId >= TRUCK_MESSAGES.length){
-		truckMsgId = 2;
-	}
-	localStorage.setItem("truckMsg", truckMsgId);
-	//yaayy dynamic strings
-	return typeof TRUCK_MESSAGES[truckMsgId] === 'string' ? TRUCK_MESSAGES[truckMsgId] : TRUCK_MESSAGES[truckMsgId]() ;
-	
 }
 
 function nextTrainer() {
@@ -1803,7 +1810,6 @@ function openCloseItemBox(){
 
 function SelectItem(ev){
 	var newItem = ev.target.getAttribute("data-id");
-	console.log(newItem);
 	document.getElementById("itemL1").value=newItem;
 	performCalculations();
 }
@@ -1851,11 +1857,12 @@ $(document).ready(function () {
 		dropzone.ondragover=allowDrop;
 	}
 	//select last trainer
-	let last = localStorage.getItem("lasttimetrainer");
-	if (last != "NaN" && last) {
-		selectTrainer(parseInt(last, 10));
-	}else{
+	let last = parseInt(localStorage.getItem("lasttimetrainer"),10);
+	
+	if (isNaN(last)) {
 		selectTrainer(1);
+	}else{
+		selectTrainer(last);
 	}
 });
 
