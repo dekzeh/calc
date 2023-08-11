@@ -1648,7 +1648,12 @@ function drop(ev) {
 	ev.preventDefault();
 	if (ev.target.classList.contains("dropzone")) {
 		pokeDragged.parentNode.removeChild(pokeDragged);
-		ev.target.appendChild(pokeDragged);	
+		if(ev.target.tagName=="LEGEND"){
+			ev.target.parentNode.children[1].appendChild(pokeDragged);
+		}else{
+			ev.target.appendChild(pokeDragged);
+		}
+			
 	}
 	// if it's a pokemon
 	else if(ev.target.classList.contains("left-side")) {
