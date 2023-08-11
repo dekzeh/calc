@@ -5,6 +5,3 @@ eslint-cache/
 Thumbs.db
 pnpm-debug.log
 npm-debug.log
-dist/runbun_exports.js
-dist/runbun_exports_auto.lua
-
