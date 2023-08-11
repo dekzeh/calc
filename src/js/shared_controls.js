@@ -1416,7 +1416,7 @@ function get_trainer_names() {
 	}
 	return trainer_names
 }
-function addBoxed(poke) {
+function addBoxed(poke, boxNode) {
 	if (document.getElementById(`${poke.name}${poke.nameProp}`)) {
 		//nothing to do it already exist
 		return
@@ -1425,9 +1425,13 @@ function addBoxed(poke) {
 	newPoke.id = `${poke.name}${poke.nameProp}`
 	newPoke.className = "trainer-pok left-side";
 	newPoke.src = getSrcImgPokemon(poke);
-	newPoke.dataset.id = `${poke.name} (${poke.nameProp})`
+	newPoke.dataset.id = `${poke.name} (${poke.nameProp})`;
 	newPoke.addEventListener("dragstart", dragstart_handler);
-	$('#box-poke-list')[0].appendChild(newPoke)
+	if (boxNode){
+		boxNode.appendChild(newPoke);
+	}else{
+		$('#box-poke-list')[0].appendChild(newPoke);
+	}
 }
 
 function getSrcImgPokemon(poke) {
@@ -1480,7 +1484,10 @@ $(document).on('click', '.left-side', function () {
 //select first mon of the box when loading
 function selectFirstMon() {
 	var pMons = document.getElementsByClassName("trainer-pok left-side");
-	let set = pMons[i].getAttribute("data-id");
+	if (!pMons[0]){
+		return;
+	}
+	let set = pMons[0].getAttribute("data-id");
 	$('.player').val(set);
 	$('.player').change();
 	$('.player .select2-chosen').text(set);
@@ -1776,10 +1783,12 @@ function collapseArrow(arrow){
 functionality laters that may involve two separate functions, i will remove this comment if i do*/
 function switchIconSingle(){
 	document.getElementById("monDouble").toggleAttribute("hidden")
+	//document.getElementById("trainer-pok-list-opposing2").toggleAttribute("hidden")
 }
 
 function switchIconDouble(){
 	document.getElementById("monDouble").toggleAttribute("hidden")
+	//document.getElementById("trainer-pok-list-opposing2").toggleAttribute("hidden")
 }
 
 $(document).ready(function () {

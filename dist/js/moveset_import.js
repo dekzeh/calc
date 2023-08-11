@@ -6,7 +6,7 @@ function placeBsBtn() {
 		var pokes = document.getElementsByClassName("import-team-text")[0].value;
 		var name = document.getElementsByClassName("import-name-text")[0].value.trim() === "" ? "Custom Set" : document.getElementsByClassName("import-name-text")[0].value;
 		addSets(pokes, name);
-		//erase the import text area
+		//empty the import text area
 		document.getElementsByClassName("import-team-text")[0].value="";
 	});
 }
@@ -191,7 +191,7 @@ function getMoves(currentPoke, rows, offset) {
 	return currentPoke;
 }
 
-function addToDex(poke) {
+function addToDex(poke, boxNode) {
 	var dexObject = {};
 	if ($("#randoms").prop("checked")) {
 		if (GEN9RANDOMBATTLE[poke.name] == undefined) GEN9RANDOMBATTLE[poke.name] = {};
@@ -243,10 +243,10 @@ function addToDex(poke) {
 		}
 		customsets["Aegislash-Shield"][poke.nameProp] = dexObject;
 	}
-	updateDex(customsets);
+	updateDex(customsets, boxNode);
 }
 
-function updateDex(customsets) {
+function updateDex(customsets, boxNode) {
 	for (var pokemon in customsets) {
 		for (var moveset in customsets[pokemon]) {
 			if (!SETDEX_SV[pokemon]) SETDEX_SV[pokemon] = {};
@@ -267,14 +267,17 @@ function updateDex(customsets) {
 			SETDEX_GSC[pokemon][moveset] = customsets[pokemon][moveset];
 			if (!SETDEX_RBY[pokemon]) SETDEX_RBY[pokemon] = {};
 			SETDEX_RBY[pokemon][moveset] = customsets[pokemon][moveset];
-			var poke = {name: pokemon, nameProp: moveset};	
-			addBoxed(poke);
+			if(boxNode){
+				var poke = {name: pokemon, nameProp: moveset};
+				addBoxed(poke, boxNode);
+			}
+			
 		}
 	}
 	localStorage.customsets = JSON.stringify(customsets);
 }
-
-function addSets(pokes, name) {
+/* @boxNode is optional */
+function addSets(pokes, name, boxNode) {
 	var rows = pokes.split("\n");
 	var currentRow;
 	var currentPoke;
@@ -297,16 +300,16 @@ function addSets(pokes, name) {
 				currentPoke.teraType = getTeraType(rows[i + 1].split(":"));
 				currentPoke = getStats(currentPoke, rows, i + 1);
 				currentPoke = getMoves(currentPoke, rows, i);
-				addToDex(currentPoke);
-				addBoxed(currentPoke);
+				addToDex(currentPoke, boxNode);
 				addedpokes++;
 				break;
 			}
 		}
 	}
+	console.log(addedpokes);
 	if (addedpokes > 0) {
 		$(allPokemon("#importedSetsOptions")).css("display", "inline");
-	} else {
+	} else if (!boxNode) { //it may be a reset
 		alert("No sets imported, please check your syntax and try again");
 	}
 }
@@ -382,7 +385,7 @@ $(document).ready(function () {
 	placeBsBtn();
 	if (localStorage.customsets) {
 		customSets = JSON.parse(localStorage.customsets);
-		updateDex(customSets);
+		updateDex(customSets, document.getElementById("box-poke-list"));
 		selectFirstMon();
 		$(allPokemon("#importedSetsOptions")).css("display", "inline");
 	} else {
