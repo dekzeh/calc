@@ -24,7 +24,7 @@ function autoLoadEnable() {
 }
 
 function autoLoadDisable() {
-	document.getElementById("autoload-import").toggleAttribute("hidden");
+	document.getElementById("autoload-export").toggleAttribute("hidden");
 }
 
 function autoLoadRefresh() {
