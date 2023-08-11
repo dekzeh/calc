@@ -4,7 +4,7 @@ function placeBsBtn() {
 
 	$("#import.bs-btn").click(function () {
 		var pokes = document.getElementsByClassName("import-team-text")[0].value;
-		var name = document.getElementsByClassName("import-name-text")[0].value.trim() === "" ? "Custom Set" : document.getElementsByClassName("import-name-text")[0].value;
+		var name = "Custom Set";
 		addSets(pokes, name);
 		//empty the import text area
 		document.getElementsByClassName("import-team-text")[0].value="";
@@ -267,10 +267,8 @@ function updateDex(customsets, boxNode) {
 			SETDEX_GSC[pokemon][moveset] = customsets[pokemon][moveset];
 			if (!SETDEX_RBY[pokemon]) SETDEX_RBY[pokemon] = {};
 			SETDEX_RBY[pokemon][moveset] = customsets[pokemon][moveset];
-			if(boxNode){
-				var poke = {name: pokemon, nameProp: moveset};
-				addBoxed(poke, boxNode);
-			}
+			var poke = {name: pokemon, nameProp: moveset};
+			addBoxed(poke, boxNode);
 			
 		}
 	}
@@ -306,7 +304,6 @@ function addSets(pokes, name, boxNode) {
 			}
 		}
 	}
-	console.log(addedpokes);
 	if (addedpokes > 0) {
 		$(allPokemon("#importedSetsOptions")).css("display", "inline");
 	} else if (!boxNode) { //it may be a reset
