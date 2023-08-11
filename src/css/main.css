@@ -660,3 +660,120 @@ table.field {
     background: var(--fieldset-color);
     color: unset;
 }
+
+.mid-pop-win{
+    position: fixed;
+    z-index: 1;
+    width: 650px;
+    height: 600px;
+    margin: 0 auto;
+    background: var(--fieldset-color);
+    border: 1px solid #AAA;
+    top: 50%;
+    left: 50%;
+    overflow: scroll;
+    padding: 3px;
+}
+.pop-win-header{
+    position: relative;
+}
+.pop-win-header>legend{
+    font-size: larger;
+    text-align: unset;
+}
+
+#close-pop-win{
+    width: 25px;
+    height: 25px;
+    background-color: red;
+    border: 1px solid black;
+    margin-left: auto;
+    position: absolute;
+    top: 0%;
+    right: 0%;
+}
+
+#close-pop-win:hover{
+    background-color: white;
+    overflow: auto;
+    
+}
+
+.mdiv {
+  height: 25px;
+  width: 2px;
+  margin-left: 12px;
+  background-color: black;
+  transform: rotate(45deg);
+  Z-index: 2;
+}
+
+.md {
+  height: 25px;
+  width: 2px;
+  background-color: black;
+  transform: rotate(90deg);
+  Z-index: 3;
+}
+
+.box-item-list>img:hover{
+    background: var(--button-hover);
+}
+
+
+.berry-bb{
+    background:#B8B8D0; 
+} 
+.berry-cr{
+    background:#B8A038;
+}   
+.berry-cl{
+    background:#A8A878;
+}   
+.berry-cp{
+    background:#C03028; 
+}   
+.berry-co{
+    background:#A890F0; 
+}   
+.berry-cb{
+    background:#705848; 
+}   
+.berry-ha{
+    background:#7038F8;
+}   
+.berry-ka{
+    background:#705898; 
+}   
+.berry-ke{
+    background:#A040A0; 
+}   
+.berry-oc{
+    background:#F08030;
+}   
+.berry-ps{
+    background:#6890F0;
+}   
+.berry-py{
+    background:#F85888;
+    
+}   
+.berry-ri{
+    background:#78C850;
+    
+}  
+.berry-ro{
+    background:#EE99AC; 
+}   
+.berry-sh{
+    background:#E0C068; 
+}   
+.berry-ta{
+    background:#A8B820; 
+}   
+.berry-wa{
+    background:#F8D030;
+}   
+.berry-ya{
+    background:#98D8D8; 
+}  

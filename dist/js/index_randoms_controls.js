@@ -78,8 +78,9 @@ function performCalculations() {
 		if (fastestSide === "tie") {
 			// Technically the order should be random in a speed tie, but this non-determinism makes manual testing more difficult.
 			// battling.sort(function () { return 0.5 - Math.random(); });
+			// Following some demands, the speed tie will be affect to the adversary
 			bestMove = battling[0].maxDamages[0].moveOrder;
-			var chosenPokemon = battling[0] === p1 ? "0" : "1";
+			var chosenPokemon = battling[0] === p2 ? "0" : "1";
 			bestResult = $(resultLocations[chosenPokemon][bestMove].move);
 		} else {
 			bestMove = battling[fastestSide].maxDamages[0].moveOrder;

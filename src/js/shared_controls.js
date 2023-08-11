@@ -1797,10 +1797,17 @@ function switchIconDouble(){
 	document.getElementById("monDouble").toggleAttribute("hidden")
 }
 
+function openCloseItemBox(){
+	document.getElementById("mid-pop-win").toggleAttribute("hidden");
+}
 
-/* uncomprehensible bug, but the first time it loads, on a browser
-this litterally don't get called and that's bad
-*/
+function SelectItem(ev){
+	var newItem = ev.target.getAttribute("data-id");
+	console.log(newItem);
+	document.getElementById("itemL1").value=newItem;
+	performCalculations();
+}
+
 $(document).ready(function () {
 	var params = new URLSearchParams(window.location.search);
 	var g = GENERATION[params.get('gen')] || 8;
@@ -1835,6 +1842,8 @@ $(document).ready(function () {
 	$('#cc-ohko-color')[0].checked=true;
 	$('#singles-format').click(switchIconDouble);
 	$('#doubles-format').click(switchIconSingle);
+	$('#close-pop-win, #ball-item').click(openCloseItemBox);
+	$('.ic').click(SelectItem);
 	for (let dropzone of document.getElementsByClassName("dropzone")){
 		dropzone.ondragenter=handleDragEnter;
 		dropzone.ondragleave=handleDragLeave;
