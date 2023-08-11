@@ -523,3 +523,140 @@ table.field {
 .extraSetMoves {
     width: 100%;
 }
+
+/*
+
+    F = Faster 
+    T = Speed tie
+    S = slower
+*/
+.mon-speed-F{
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border: solid;
+    border-color: #7ee1ff;
+    border-radius: 20%;
+}
+.mon-speed-T{
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border: solid;
+    border-color: #894197;
+    border-radius: 20%;
+}
+.mon-speed-S{
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border: solid;
+    border-color: #1c1414;;
+    border-radius: 20%;
+}
+.mon-speed-none{
+    border: none !important; 
+}
+.mon-dmg-none{
+    background: var(--fieldset-color) !important;
+}
+.mon-dmg-W{
+    /* Is considerable a wall*/
+    background: linear-gradient(to right, #0f0bf3 50%, var(--fieldset-color) 0%);
+}
+.mon-dmg-WMO{
+    /* Is considerable a wall that may OHKO*/
+    background: linear-gradient(to right, #1295ec 50%, var(--fieldset-color) 0%);
+}
+.mon-dmg-4{
+    /*Gets OHKO*/
+    background: linear-gradient(to right, var(--fieldset-color) 50%, #dd0b0b 0%);
+}
+.mon-dmg-3{
+    /*maybe gets OHKO*/
+    background: linear-gradient(to right, var(--fieldset-color) 50%, #ff7f16 0%);
+}
+.mon-dmg-1{
+    /*inflicts OHKO*/
+    background: linear-gradient(to right, #20d408 50%, var(--fieldset-color) 0%);
+}
+.mon-dmg-2{
+    /*may inflicts OHKO*/
+    background: linear-gradient(to right, #daff08 50%, var(--fieldset-color) 0%);
+}
+
+.mon-dmg-14{
+    /*both sides Gets OHKO*/
+    background: linear-gradient(to right, #20d408 50%, #dd0b0b 0%);
+}
+.mon-dmg-23{
+    /*both sides might inflict OHKO*/
+    background: linear-gradient(to right, #daff08 50%, #ff7f16 0%);
+}
+.mon-dmg-13{
+    /*inflict OHKO but may Gets OHKO*/
+    background: linear-gradient(to right, #20d408 50%, #ff7f16 0%);
+}
+.mon-dmg-24{
+    /*may inflict OHKO but Gets OHKO*/
+    background: linear-gradient(to right, #daff08 50%, #dd0b0b 0%);
+}
+
+.box-poke{
+    min-height: 30px;
+}
+
+.deadzone:hover{
+    background: #722323;
+}
+.over{
+    background: #373232;
+}
+
+.s-arrow{
+    border: solid rgb(175, 155, 155);
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+}
+.arrowdown {
+    transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+.arrowright {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
+.arrowtop {
+    transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+.arrowleft{
+    transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+.l-side-button, .r-side-button{
+    position: absolute;
+}
+.side-pannel{
+    display: grid;
+    position: relative;
+}
+.left-side-pannel{
+    float: left;
+}
+.right-side-pannel{
+    float: none;
+}
+
+#p2mon, #p1mon, #monSingle, #monDouble {
+    min-height: 30px;
+}
+
+.info-paragraph > b{
+    color: rgb(15, 14, 14);
+}
+.info-paragraph > b:hover{
+    background: var(--fieldset-color);
+    color: unset;
+}

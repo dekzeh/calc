@@ -48,20 +48,20 @@ var CALC_STATUS = {
 
 function legacyStatToStat(st) {
 	switch (st) {
-	case 'hp':
-		return "hp";
-	case 'at':
-		return "atk";
-	case 'df':
-		return "def";
-	case 'sa':
-		return "spa";
-	case 'sd':
-		return "spd";
-	case 'sp':
-		return "spe";
-	case 'sl':
-		return "spc";
+		case 'hp':
+			return "hp";
+		case 'at':
+			return "atk";
+		case 'df':
+			return "def";
+		case 'sa':
+			return "spa";
+		case 'sd':
+			return "spd";
+		case 'sp':
+			return "spe";
+		case 'sl':
+			return "spc";
 	}
 }
 
@@ -165,9 +165,9 @@ $(".sl .dvs").keyup(function () {
 
 function getHPDVs(poke) {
 	return (~~poke.find(".at .dvs").val() % 2) * 8 +
-(~~poke.find(".df .dvs").val() % 2) * 4 +
-(~~poke.find(".sp .dvs").val() % 2) * 2 +
-(~~poke.find(gen === 1 ? ".sl .dvs" : ".sa .dvs").val() % 2);
+		(~~poke.find(".df .dvs").val() % 2) * 4 +
+		(~~poke.find(".sp .dvs").val() % 2) * 2 +
+		(~~poke.find(gen === 1 ? ".sl .dvs" : ".sa .dvs").val() % 2);
 }
 
 function calcStats(poke) {
@@ -257,42 +257,42 @@ function autosetWeather(ability, i) {
 		lastAutoWeather[1 - i] = "";
 	}
 	switch (ability) {
-	case "Drought":
-	case "Orichalcum Pulse":
-		lastAutoWeather[i] = "Sun";
-		$("#sun").prop("checked", true);
-		break;
-	case "Drizzle":
-		lastAutoWeather[i] = "Rain";
-		$("#rain").prop("checked", true);
-		break;
-	case "Sand Stream":
-		lastAutoWeather[i] = "Sand";
-		$("#sand").prop("checked", true);
-		break;
-	case "Snow Warning":
-		if (gen >= 9) {
-			lastAutoWeather[i] = "Snow";
-			$("#snow").prop("checked", true);
-		} else {
-			lastAutoWeather[i] = "Hail";
-			$("#hail").prop("checked", true);
-		}
-		break;
-	case "Desolate Land":
-		lastAutoWeather[i] = "Harsh Sunshine";
-		$("#harsh-sunshine").prop("checked", true);
-		break;
-	case "Primordial Sea":
-		lastAutoWeather[i] = "Heavy Rain";
-		$("#heavy-rain").prop("checked", true);
-		break;
-	case "Delta Stream":
-		lastAutoWeather[i] = "Strong Winds";
-		$("#strong-winds").prop("checked", true);
-		break;
-	default:
-		break;
+		case "Drought":
+		case "Orichalcum Pulse":
+			lastAutoWeather[i] = "Sun";
+			$("#sun").prop("checked", true);
+			break;
+		case "Drizzle":
+			lastAutoWeather[i] = "Rain";
+			$("#rain").prop("checked", true);
+			break;
+		case "Sand Stream":
+			lastAutoWeather[i] = "Sand";
+			$("#sand").prop("checked", true);
+			break;
+		case "Snow Warning":
+			if (gen >= 9) {
+				lastAutoWeather[i] = "Snow";
+				$("#snow").prop("checked", true);
+			} else {
+				lastAutoWeather[i] = "Hail";
+				$("#hail").prop("checked", true);
+			}
+			break;
+		case "Desolate Land":
+			lastAutoWeather[i] = "Harsh Sunshine";
+			$("#harsh-sunshine").prop("checked", true);
+			break;
+		case "Primordial Sea":
+			lastAutoWeather[i] = "Heavy Rain";
+			$("#heavy-rain").prop("checked", true);
+			break;
+		case "Delta Stream":
+			lastAutoWeather[i] = "Strong Winds";
+			$("#strong-winds").prop("checked", true);
+			break;
+		default:
+			break;
 	}
 }
 
@@ -307,30 +307,30 @@ function autosetTerrain(ability, i) {
 	// terrain input uses checkbox instead of radio, need to uncheck all first
 	$("input:checkbox[name='terrain']:checked").prop("checked", false);
 	switch (ability) {
-	case "Electric Surge":
-	case "Hadron Engine":
-		lastAutoTerrain[i] = "Electric";
-		$("#electric").prop("checked", true);
-		break;
-	case "Grassy Surge":
-		lastAutoTerrain[i] = "Grassy";
-		$("#grassy").prop("checked", true);
-		break;
-	case "Misty Surge":
-		lastAutoTerrain[i] = "Misty";
-		$("#misty").prop("checked", true);
-		break;
-	case "Psychic Surge":
-		lastAutoTerrain[i] = "Psychic";
-		$("#psychic").prop("checked", true);
-		break;
-	default:
-		lastAutoTerrain[i] = "";
-		var newTerrain = lastAutoTerrain[1 - i] !== "" ? lastAutoTerrain[1 - i] : lastManualTerrain;
-		if ("No terrain" !== newTerrain) {
-			$("input:checkbox[name='terrain'][value='" + newTerrain + "']").prop("checked", true);
-		}
-		break;
+		case "Electric Surge":
+		case "Hadron Engine":
+			lastAutoTerrain[i] = "Electric";
+			$("#electric").prop("checked", true);
+			break;
+		case "Grassy Surge":
+			lastAutoTerrain[i] = "Grassy";
+			$("#grassy").prop("checked", true);
+			break;
+		case "Misty Surge":
+			lastAutoTerrain[i] = "Misty";
+			$("#misty").prop("checked", true);
+			break;
+		case "Psychic Surge":
+			lastAutoTerrain[i] = "Psychic";
+			$("#psychic").prop("checked", true);
+			break;
+		default:
+			lastAutoTerrain[i] = "";
+			var newTerrain = lastAutoTerrain[1 - i] !== "" ? lastAutoTerrain[1 - i] : lastManualTerrain;
+			if ("No terrain" !== newTerrain) {
+				$("input:checkbox[name='terrain'][value='" + newTerrain + "']").prop("checked", true);
+			}
+			break;
 	}
 }
 
@@ -338,8 +338,8 @@ $("#p1 .item").bind("keyup change", function () {
 	autosetStatus("#p1", $(this).val());
 });
 
-var lastManualStatus = {"#p1": "Healthy"};
-var lastAutoStatus = {"#p1": "Healthy"};
+var lastManualStatus = { "#p1": "Healthy" };
+var lastAutoStatus = { "#p1": "Healthy" };
 function autosetStatus(p, item) {
 	var currentStatus = $(p + " .status").val();
 	if (item === "Flame Orb") {
@@ -446,30 +446,33 @@ function smogonAnalysis(pokemonName) {
 	return "https://smogon.com/dex/" + generation + "/pokemon/" + pokemonName.toLowerCase() + "/";
 }
 
-function sortmons(a,b){
+function sortmons(a, b) {
 	return parseInt(a.split("[")[1].split("]")[0]) - parseInt(b.split("[")[1].split("]")[0])
 }
 
 // auto-update set details on select
 $(".set-selector").change(function () {
+	window.NO_CALC = true;
 	var fullSetName = $(this).val();
-
 	if ($(this).hasClass('opposing')) {
+		topPokemonIcon(fullSetName, $("#p2mon")[0])
 		CURRENT_TRAINER_POKS = get_trainer_poks(fullSetName)
 		var next_poks = CURRENT_TRAINER_POKS.sort(sortmons)
 
 		var trpok_html = ""
-		for (i in next_poks ) {
-			if (next_poks[i][0].includes($('input.opposing').val())){
+		for (i in next_poks) {
+			if (next_poks[i][0].includes($('input.opposing').val())) {
 				continue
 			}
 			var pok_name = next_poks[i].split("]")[1].split(" (")[0]
-			if (pok_name == "Zygarde-10%"){
+			if (pok_name == "Zygarde-10%") {
 				pok_name = "Zygarde-10%25"
 			}//this ruined my day
 			var pok = `<img class="trainer-pok right-side" src="https://raw.githubusercontent.com/May8th1995/sprites/master/${pok_name}.png" data-id="${CURRENT_TRAINER_POKS[i].split("]")[1]}" title="${next_poks[i]}, ${next_poks[i]} BP">`
 			trpok_html += pok
 		}
+	} else {
+		topPokemonIcon(fullSetName, $("#p1mon")[0])
 	}
 
 	$('.trainer-pok-list-opposing').html(trpok_html)
@@ -638,6 +641,7 @@ $(".set-selector").change(function () {
 			pokeObj.find(".gender").val("");
 		} else pokeObj.find(".gender").parent().show();
 	}
+	window.NO_CALC = false;
 });
 
 function formatMovePool(moves) {
@@ -754,8 +758,8 @@ function correctHiddenPower(pokemon) {
 			var hpIVs = calc.Stats.getHiddenPowerIVs(GENERATION, m[1]);
 			if (!hpIVs) continue; // some impossible type was specified, ignore
 
-			pokemon.ivs = pokemon.ivs || {hp: 31, at: 31, df: 31, sa: 31, sd: 31, sp: 31};
-			pokemon.dvs = pokemon.dvs || {hp: 15, at: 15, df: 15, sa: 15, sd: 15, sp: 15};
+			pokemon.ivs = pokemon.ivs || { hp: 31, at: 31, df: 31, sa: 31, sd: 31, sp: 31 };
+			pokemon.dvs = pokemon.dvs || { hp: 15, at: 15, df: 15, sa: 15, sd: 15, sp: 15 };
 			for (var stat in hpIVs) {
 				pokemon.ivs[calc.Stats.shortForm(stat)] = hpIVs[stat];
 				pokemon.dvs[calc.Stats.shortForm(stat)] = calc.Stats.IVToDV(hpIVs[stat]);
@@ -804,7 +808,8 @@ function createPokemon(pokeInfo) {
 		var pokemonMoves = [];
 		for (var i = 0; i < 4; i++) {
 			var moveName = moveNames[i];
-			pokemonMoves.push(new calc.Move(gen, moves[moveName] ? moveName : "(No Move)", {ability: ability, item: item}));
+			var isCrit = $('.move-crit')[i].checked;
+			pokemonMoves.push(new calc.Move(gen, moves[moveName] ? moveName : "(No Move)", { ability: ability, item: item, isCrit: isCrit, }));
 		}
 
 		if (isRandoms) {
@@ -1069,7 +1074,7 @@ $(".gen").change(function () {
 			params.sort();
 			var path = window.location.pathname + '?' + params;
 			window.history.pushState({}, document.title, path);
-			gtag('config', 'UA-26211653-3', {'page_path': path});
+			gtag('config', 'UA-26211653-3', { 'page_path': path });
 		}
 	}
 	genWasChanged = true;
@@ -1255,10 +1260,10 @@ var stickyMoves = (function () {
 function isPokeInfoGrounded(pokeInfo) {
 	var teraType = pokeInfo.find(".teraToggle").is(":checked") ? pokeInfo.find(".teraType").val() : undefined;
 	return $("#gravity").prop("checked") || (
-		  teraType ? teraType !== "Flying" : pokeInfo.find(".type1").val() !== "Flying" &&
-        teraType ? teraType !== "Flying" : pokeInfo.find(".type2").val() !== "Flying" &&
-        pokeInfo.find(".ability").val() !== "Levitate" &&
-        pokeInfo.find(".item").val() !== "Air Balloon"
+		teraType ? teraType !== "Flying" : pokeInfo.find(".type1").val() !== "Flying" &&
+			teraType ? teraType !== "Flying" : pokeInfo.find(".type2").val() !== "Flying" &&
+			pokeInfo.find(".ability").val() !== "Levitate" &&
+		pokeInfo.find(".item").val() !== "Air Balloon"
 	);
 }
 
@@ -1266,55 +1271,55 @@ function getTerrainEffects() {
 	var className = $(this).prop("className");
 	className = className.substring(0, className.indexOf(" "));
 	switch (className) {
-	case "type1":
-	case "type2":
-	case "teraType":
-	case "teraToggle":
-	case "item":
-		var id = $(this).closest(".poke-info").prop("id");
-		var terrainValue = $("input:checkbox[name='terrain']:checked").val();
-		if (terrainValue === "Electric") {
-			$("#" + id).find("[value='Asleep']").prop("disabled", isPokeInfoGrounded($("#" + id)));
-		} else if (terrainValue === "Misty") {
-			$("#" + id).find(".status").prop("disabled", isPokeInfoGrounded($("#" + id)));
-		}
-		break;
-	case "ability":
-		// with autoset, ability change may cause terrain change, need to consider both sides
-		var terrainValue = $("input:checkbox[name='terrain']:checked").val();
-		if (terrainValue === "Electric") {
-			$("#p1").find(".status").prop("disabled", false);
-			$("#p2").find(".status").prop("disabled", false);
-			$("#p1").find("[value='Asleep']").prop("disabled", isPokeInfoGrounded($("#p1")));
-			$("#p2").find("[value='Asleep']").prop("disabled", isPokeInfoGrounded($("#p2")));
-		} else if (terrainValue === "Misty") {
-			$("#p1").find(".status").prop("disabled", isPokeInfoGrounded($("#p1")));
-			$("#p2").find(".status").prop("disabled", isPokeInfoGrounded($("#p2")));
-		} else {
-			$("#p1").find("[value='Asleep']").prop("disabled", false);
-			$("#p1").find(".status").prop("disabled", false);
-			$("#p2").find("[value='Asleep']").prop("disabled", false);
-			$("#p2").find(".status").prop("disabled", false);
-		}
-		break;
-	default:
-		$("input:checkbox[name='terrain']").not(this).prop("checked", false);
-		if ($(this).prop("checked") && $(this).val() === "Electric") {
-			// need to enable status because it may be disabled by Misty Terrain before.
-			$("#p1").find(".status").prop("disabled", false);
-			$("#p2").find(".status").prop("disabled", false);
-			$("#p1").find("[value='Asleep']").prop("disabled", isPokeInfoGrounded($("#p1")));
-			$("#p2").find("[value='Asleep']").prop("disabled", isPokeInfoGrounded($("#p2")));
-		} else if ($(this).prop("checked") && $(this).val() === "Misty") {
-			$("#p1").find(".status").prop("disabled", isPokeInfoGrounded($("#p1")));
-			$("#p2").find(".status").prop("disabled", isPokeInfoGrounded($("#p2")));
-		} else {
-			$("#p1").find("[value='Asleep']").prop("disabled", false);
-			$("#p1").find(".status").prop("disabled", false);
-			$("#p2").find("[value='Asleep']").prop("disabled", false);
-			$("#p2").find(".status").prop("disabled", false);
-		}
-		break;
+		case "type1":
+		case "type2":
+		case "teraType":
+		case "teraToggle":
+		case "item":
+			var id = $(this).closest(".poke-info").prop("id");
+			var terrainValue = $("input:checkbox[name='terrain']:checked").val();
+			if (terrainValue === "Electric") {
+				$("#" + id).find("[value='Asleep']").prop("disabled", isPokeInfoGrounded($("#" + id)));
+			} else if (terrainValue === "Misty") {
+				$("#" + id).find(".status").prop("disabled", isPokeInfoGrounded($("#" + id)));
+			}
+			break;
+		case "ability":
+			// with autoset, ability change may cause terrain change, need to consider both sides
+			var terrainValue = $("input:checkbox[name='terrain']:checked").val();
+			if (terrainValue === "Electric") {
+				$("#p1").find(".status").prop("disabled", false);
+				$("#p2").find(".status").prop("disabled", false);
+				$("#p1").find("[value='Asleep']").prop("disabled", isPokeInfoGrounded($("#p1")));
+				$("#p2").find("[value='Asleep']").prop("disabled", isPokeInfoGrounded($("#p2")));
+			} else if (terrainValue === "Misty") {
+				$("#p1").find(".status").prop("disabled", isPokeInfoGrounded($("#p1")));
+				$("#p2").find(".status").prop("disabled", isPokeInfoGrounded($("#p2")));
+			} else {
+				$("#p1").find("[value='Asleep']").prop("disabled", false);
+				$("#p1").find(".status").prop("disabled", false);
+				$("#p2").find("[value='Asleep']").prop("disabled", false);
+				$("#p2").find(".status").prop("disabled", false);
+			}
+			break;
+		default:
+			$("input:checkbox[name='terrain']").not(this).prop("checked", false);
+			if ($(this).prop("checked") && $(this).val() === "Electric") {
+				// need to enable status because it may be disabled by Misty Terrain before.
+				$("#p1").find(".status").prop("disabled", false);
+				$("#p2").find(".status").prop("disabled", false);
+				$("#p1").find("[value='Asleep']").prop("disabled", isPokeInfoGrounded($("#p1")));
+				$("#p2").find("[value='Asleep']").prop("disabled", isPokeInfoGrounded($("#p2")));
+			} else if ($(this).prop("checked") && $(this).val() === "Misty") {
+				$("#p1").find(".status").prop("disabled", isPokeInfoGrounded($("#p1")));
+				$("#p2").find(".status").prop("disabled", isPokeInfoGrounded($("#p2")));
+			} else {
+				$("#p1").find("[value='Asleep']").prop("disabled", false);
+				$("#p1").find(".status").prop("disabled", false);
+				$("#p2").find("[value='Asleep']").prop("disabled", false);
+				$("#p2").find(".status").prop("disabled", false);
+			}
+			break;
 	}
 }
 
@@ -1398,126 +1403,393 @@ function loadCustomList(id) {
 }
 
 function get_trainer_names() {
-    var all_poks = SETDEX_SS
-    var trainer_names = [] 
+	var all_poks = SETDEX_SS
+	var trainer_names = []
 
-    for (const [pok_name, poks] of Object.entries(all_poks)) {
-        var pok_tr_names = Object.keys(poks)
-        for (i in pok_tr_names) {
-		   var index = (poks[pok_tr_names[i]]["index"])
-           var trainer_name = pok_tr_names[i]
-           trainer_names.push(`[${index}]${pok_name} (${trainer_name})`) 
-        }      
-    }
-    return trainer_names
+	for (const [pok_name, poks] of Object.entries(all_poks)) {
+		var pok_tr_names = Object.keys(poks)
+		for (i in pok_tr_names) {
+			var index = (poks[pok_tr_names[i]]["index"])
+			var trainer_name = pok_tr_names[i]
+			trainer_names.push(`[${index}]${pok_name} (${trainer_name})`)
+		}
+	}
+	return trainer_names
+}
+function addBoxed(poke, boxNode) {
+	if (document.getElementById(`${poke.name}${poke.nameProp}`)) {
+		//nothing to do it already exist
+		return
+	}
+	var newPoke = document.createElement("img");
+	newPoke.id = `${poke.name}${poke.nameProp}`
+	newPoke.className = "trainer-pok left-side";
+	newPoke.src = getSrcImgPokemon(poke);
+	newPoke.dataset.id = `${poke.name} (${poke.nameProp})`;
+	newPoke.addEventListener("dragstart", dragstart_handler);
+	if (boxNode){
+		boxNode.appendChild(newPoke);
+	}else{
+		$('#box-poke-list')[0].appendChild(newPoke);
+	}
 }
 
-function get_box() {
-    var names = get_trainer_names()
-
-    var box = []
-
-    var box_html = ""
-
-    for (i in names) {
-        if (names[i].includes("Custom")) {
-            box.push(names[i].split("]")[1])
-
-            var pok_name = names[i].split("]")[1].split(" (")[0]
-            var pok = `<img class="trainer-pok left-side" src="https://raw.githubusercontent.com/May8th1995/sprites/master/${pok_name}.png" data-id="${names[i].split("]")[1]}">`
-
-            box_html += pok
-        }   
-    }
-
-    $('.player-poks').html(box_html)
-
-
-    return box
+function getSrcImgPokemon(poke) {
+	//edge case
+	if (!poke) {
+		return
+	}
+	if (poke.name == "Aegislash-Shield") {
+		return `https://raw.githubusercontent.com/May8th1995/sprites/master/Aegislash.png`
+	} else {
+		return `https://raw.githubusercontent.com/May8th1995/sprites/master/${poke.name}.png`
+	}
 }
 
-function get_trainer_poks(trainer_name)
-{
+function get_trainer_poks(trainer_name) {
 	var true_name = trainer_name.split("(")[1].split("\n")[0].trim()
-    var matches = []
-    for (i in TR_NAMES) {
-        if (TR_NAMES[i].includes(true_name)) {
-            matches.push(TR_NAMES[i])
-        }
-    }
-    return matches
+	window.CURRENT_TRAINER = true_name.substring(0, true_name.length -1);
+	var matches = []
+	for (i in TR_NAMES) {
+		if (TR_NAMES[i].includes(true_name)) {
+			matches.push(TR_NAMES[i])
+		}
+	}
+	return matches
 }
 
-$(document).on('click', '.right-side', function() {
-	var set = $(this).attr('data-id')
-	$('.opposing').val(set)
+function topPokemonIcon(fullname, node) {
+	var mon = { name: fullname.split(" (")[0] };
+	var src = getSrcImgPokemon(mon);
+	node.src = src;
+}
 
-	$('.opposing').change()
-	$('.opposing .select2-chosen').text(set)
+$(document).on('click', '.right-side', function () {
+	var set = $(this).attr('data-id');
+	topPokemonIcon(set, $("#p2mon")[0])
+	$('.opposing').val(set);
+	$('.opposing').change();
+	$('.opposing .select2-chosen').text(set);
 })
 
-$(document).on('click', '.left-side', function() {
-	var set = $(this).attr('data-id')
-	$('.player').val(set)
-
-	$('.player').change()
-	$('.player .select2-chosen').text(set)
-	get_box()
+$(document).on('click', '.left-side', function () {
+	var set = $(this).attr('data-id');
+	topPokemonIcon(set, $("#p1mon")[0])
+	$('.player').val(set);
+	$('.player').change();
+	$('.player .select2-chosen').text(set);
 })
+
+
+//select first mon of the box when loading
+function selectFirstMon() {
+	var pMons = document.getElementsByClassName("trainer-pok left-side");
+	if (!pMons[0]){
+		return;
+	}
+	let set = pMons[0].getAttribute("data-id");
+	$('.player').val(set);
+	$('.player').change();
+	$('.player .select2-chosen').text(set);
+}
+
+function selectTrainer(value) {
+	localStorage.setItem("lasttimetrainer", value);
+	all_poks = SETDEX_SS
+	for (const [pok_name, poks] of Object.entries(all_poks)) {
+		var pok_tr_names = Object.keys(poks)
+		for (i in pok_tr_names) {
+			var index = (poks[pok_tr_names[i]]["index"])
+			if (index == value) {
+				var set = `${pok_name} (${pok_tr_names[i]})`;
+				$('.opposing').val(set);
+				$('.opposing').change();
+				$('.opposing .select2-chosen').text(set);
+			}
+
+		}
+	}
+}
 
 function nextTrainer() {
 	string = ($(".trainer-pok-list-opposing")).html()
 	initialSplit = string.split("[")
-	value = parseInt(initialSplit[initialSplit.length -2].split("]")[0]) + 1
-
-	all_poks = SETDEX_SS
-	for (const [pok_name, poks] of Object.entries(all_poks)) {
-        var pok_tr_names = Object.keys(poks)
-        for (i in pok_tr_names) {
-		   var index = (poks[pok_tr_names[i]]["index"])
-			if (index == value){
-				var set = `${pok_name} (${pok_tr_names[i]})`
-				$('.opposing').val(set)
-
-				$('.opposing').change()
-				$('.opposing .select2-chosen').text(set)
-			}
-
-        }      
-    }
+	value = parseInt(initialSplit[initialSplit.length - 2].split("]")[0]) + 1
+	selectTrainer(value)
 }
 
 function previousTrainer() {
 	string = ($(".trainer-pok-list-opposing")).html()
-	value = parseInt(string.split("]")[0].split("[")[1])-1
-	console.log(value)
+	value = parseInt(string.split("]")[0].split("[")[1]) - 1
+	selectTrainer(value)
+}
 
-	all_poks = SETDEX_SS
-	for (const [pok_name, poks] of Object.entries(all_poks)) {
-        var pok_tr_names = Object.keys(poks)
-        for (i in pok_tr_names) {
-		   var index = (poks[pok_tr_names[i]]["index"])
-			if (index == value){
-				var set = `${pok_name} (${pok_tr_names[i]})`
-				$('.opposing').val(set)
-
-				$('.opposing').change()
-				$('.opposing .select2-chosen').text(set)
-			}
-
-        }      
-    }
+function resetTrainer() {
+	if (confirm(`You wiped to ${window.CURRENT_TRAINER} ? Hey there, I know you just lost your run so take it easy and think in the Truck about your next moves against these opponents`)){
+		selectTrainer(1);
+		localStorage.removeItem("customsets");
+		$(allPokemon("#importedSetsOptions")).hide();
+		loadDefaultLists();
+		for (let zone of document.getElementsByClassName("dropzone")){
+			zone.innerHTML="";
+		}
+	}
+	
 }
 
 
-var previousTrainerButton = document.getElementById('previous-trainer');
-previousTrainerButton.innerText = 'Previous Trainer';
-previousTrainerButton.addEventListener('click', previousTrainer);
+function HideShowCCSettings(){
+	$('#show-cc')[0].toggleAttribute("hidden");
+	$('#hide-cc')[0].toggleAttribute("hidden");
+	$('#refr-cc')[0].toggleAttribute("hidden");
+	$('#info-cc')[0].toggleAttribute("hidden");
+	$('#cc-sets')[0].toggleAttribute("hidden");
+}
 
-var nextTrainerButton = document.getElementById('next-trainer');
-nextTrainerButton.innerText = 'Next Trainer';
-nextTrainerButton.addEventListener('click', nextTrainer);
+function colorCodeUpdate(){
+	var speCheck = document.getElementById("cc-spe-border").checked;
+	var ohkoCheck = document.getElementById("cc-ohko-color").checked;
+	if (!speCheck && !ohkoCheck){
+		return
+	}
+	var pMons = document.getElementsByClassName("trainer-pok left-side");
+	// i calc here to alleviate some calculation
+	var p2info = $("#p2");
+	var p2 = createPokemon(p2info);
+	for (let i = 0; i < pMons.length; i++) {
+		let set = pMons[i].getAttribute("data-id");
+		let idColor = calculationsColors(set, p2);
+		if (speCheck && ohkoCheck){
+			pMons[i].className = `trainer-pok left-side mon-speed-${idColor.speed} mon-dmg-${idColor.code}`;
+		}
+		else if (speCheck){
+			pMons[i].className = `trainer-pok left-side mon-speed-${idColor.speed}`;
+		}
+		else if (ohkoCheck){
+			pMons[i].className = `trainer-pok left-side mon-dmg-${idColor.code}`;
+		}
+		
+		
+	}
+}
+function showColorCodes(){
+	colorCodeUpdate();
+	HideShowCCSettings();
+}
 
+function refreshColorCode(){
+	colorCodeUpdate();
+}
+
+function hideColorCodes(){
+	var pMons = document.getElementsByClassName("trainer-pok left-side");
+	for (let i = 0; i < pMons.length; i++) {
+		pMons[i].className = "trainer-pok left-side";
+	}
+	document.getElementById("cc-auto-refr").checked = false;
+	HideShowCCSettings();
+}
+
+function toggleInfoColorCode(){
+	document.getElementById("info-cc-field").toggleAttribute("hidden");
+}
+
+function TrashPokemon() {
+	var maybeMultiple = document.getElementById("trash-box").getElementsByClassName("trainer-pok");
+	if (maybeMultiple.length == 0){
+		return; //nothing to delete
+	}
+	var numberPKM = maybeMultiple.length > 1 ? `${maybeMultiple.length} Pokemon(s)` : "this Pokemon"; 
+	var yes = confirm(`do you really want to remove ${numberPKM}?`);
+	if (!yes) {
+		return;
+	}
+	var customSets = JSON.parse(localStorage.customsets);
+	var length= maybeMultiple.length;
+	for( let i = 0; i<length; i++){
+		var pokeTrashed = maybeMultiple[i];
+		var name = pokeTrashed.getAttribute("data-id").split(" (")[0];
+		delete customSets[name];
+	}
+	document.getElementById("trash-box").innerHTML="";
+	localStorage.setItem("customsets", JSON.stringify(customSets));
+	$('#box-poke-list')[0].click();
+	//switch to the next pokemon automatically
+	
+}
+function RemoveAllPokemon() {
+	document.getEle
+}
+function allowDrop(ev) {
+	ev.preventDefault();
+}
+
+var pokeDragged = null;
+function dragstart_handler(ev) {
+	pokeDragged = ev.target;
+}
+
+function drop(ev) {
+	ev.preventDefault();
+	if (ev.target.classList.contains("dropzone")) {
+		pokeDragged.parentNode.removeChild(pokeDragged);
+		ev.target.appendChild(pokeDragged);	
+	}
+	// if it's a pokemon
+	else if(ev.target.classList.contains("left-side")) {
+		//And if a sibling switch them
+		if(ev.target.parentNode == pokeDragged.parentNode){
+			let prev1 = ev.target.previousSibling || ev.target;
+			let prev2 = pokeDragged.previousSibling || pokeDragged;
+
+			prev1.after(pokeDragged);
+			prev2.after(ev.target);
+		}
+		//if not just append to the box it belongs
+		else{
+			let prev1 = ev.target.previousSibling || ev.target;
+			prev1.after(pokeDragged);
+		}
+	}
+	ev.target.classList.remove('over');
+}
+
+function handleDragEnter(ev) {
+	ev.target.classList.add('over');
+}
+
+function handleDragLeave(ev) {
+	ev.target.classList.remove('over');
+}
+
+function SpeedBorderSetsChange(ev){
+	var monImgs = document.getElementsByClassName("left-side");
+	if (ev.target.checked){
+		for (let monImg of monImgs){
+			monImg.classList.remove("mon-speed-none")
+		}
+	}else{
+		for (let monImg of monImgs){
+			monImg.classList.add("mon-speed-none")
+		}
+	}
+}
+
+function ColorCodeSetsChange(ev){
+	var monImgs = document.getElementsByClassName("left-side");
+	if (ev.target.checked){
+		for (let monImg of monImgs){
+			monImg.classList.remove("mon-dmg-none")
+		}
+	}else{
+		for (let monImg of monImgs){
+			monImg.classList.add("mon-dmg-none")
+		}
+	}
+}
+function setupSideCollapsers(){
+	var applyF = (btns) => {
+		for (var i = 0; i < btns.length; i++) {
+			let btn = btns[i];
+			btn.cum = btn.offsetHeight;
+			btn.sisterEl = document.getElementsByClassName(btn.getAttribute("data-set"))[0];
+			btn.prevEl = btns[i-1] || null;
+			if (btn.prevEl){
+				btn.cum += btn.prevEl.cum
+			}else{
+				btn.cum = 0;
+			}
+			btn.nextEl = btns[i+1] || null;
+			btn.onclick = sideCollapsersCorrection
+		}
+	}
+	var leftBtns = document.getElementsByClassName("l-side-button");
+	var rigtBtns = document.getElementsByClassName("r-side-button");
+	applyF(leftBtns);
+	applyF(rigtBtns);
+	/*
+		readjust the left buttons
+		Because i couldn't find a proper way to do it with css
+	*/
+	for(let btn of leftBtns){
+		btn.style.left = "-" + btn.offsetWidth + "px";
+	}
+	leftBtns[0].onclick();
+	rigtBtns[0].onclick();
+}
+function sideCollapsersCorrection(ev){
+	if (ev){
+		var arrow = ev.target.children[0] || ev.target.parentNode.children[0];
+		collapseArrow(arrow);
+	}
+	var node = this;
+	if (node.tagName != "BUTTON"){
+		node = this.target.parentNode;
+	}
+	var prev = node.prevEl;
+	var offset = node.sisterEl.offsetTop;
+	var relativeHeight = node.parentNode.offsetTop;
+	if(prev){
+		//since the position is absolute, this will prevent from eating fellows.
+		var prevLowPos = prev.offsetTop + prev.offsetHeight; - relativeHeight ;
+		if(offset==0){// collapsed
+			offset = prevLowPos;
+		}else{// standing
+			offset = offset - relativeHeight;
+			if (offset < prevLowPos){
+				offset = prevLowPos;
+			}
+		}
+	}else{
+		if(offset==0){// collapsed
+			offset = node.offsetTop;
+		}else{// standing
+			offset = offset - relativeHeight;
+		}
+	}
+	node.style.top = offset + "px"
+	//propagate to next buttons
+	if(node.nextEl){
+		node.nextEl.onclick()
+	}
+}
+function collapseArrow(arrow){
+	var arrBtn = arrow.parentNode;
+	var target = arrBtn.getAttribute("data-set");
+	for (let div of document.getElementsByClassName(target)){
+		div.toggleAttribute("hidden");
+	}
+	if (arrBtn.classList.contains("l-side-button")){
+		if (arrow.classList.contains("arrowdown")){
+			arrow.classList.remove("arrowdown");
+			arrow.classList.add("arrowright");
+		}else{
+			arrow.classList.remove("arrowright");
+			arrow.classList.add("arrowdown");
+		}
+	}
+	else if (arrBtn.classList.contains("r-side-button")){
+		if (arrow.classList.contains("arrowdown")){
+			arrow.classList.remove("arrowdown");
+			arrow.classList.add("arrowleft");
+		}else{
+			arrow.classList.remove("arrowleft");
+			arrow.classList.add("arrowdown");
+		}
+	}
+}
+
+/* although those two function could be factorised in one, i may think about more in depth 
+functionality laters that may involve two separate functions, i will remove this comment if i do*/
+function switchIconSingle(){
+	document.getElementById("monDouble").toggleAttribute("hidden")
+	//document.getElementById("trainer-pok-list-opposing2").toggleAttribute("hidden")
+}
+
+function switchIconDouble(){
+	document.getElementById("monDouble").toggleAttribute("hidden")
+	//document.getElementById("trainer-pok-list-opposing2").toggleAttribute("hidden")
+}
 
 $(document).ready(function () {
 	var params = new URLSearchParams(window.location.search);
@@ -1539,6 +1811,31 @@ $(document).ready(function () {
 	$(".set-selector").val(getFirstValidSetOption().id);
 	$(".set-selector").change();
 	$(".terrain-trigger").bind("change keyup", getTerrainEffects);
+	$("#previous-trainer").click(previousTrainer);
+	$("#next-trainer").click(nextTrainer);
+	$("#reset-trainer").click(resetTrainer);
+	$('#show-cc').click(showColorCodes);
+	$('#hide-cc').click(hideColorCodes);
+	$('#refr-cc').click(refreshColorCode);
+	$('#info-cc').click(toggleInfoColorCode);
+	$('#trash-pok').click(TrashPokemon);
+	$('#cc-spe-border').change(SpeedBorderSetsChange);
+	$('#cc-ohko-color').change(ColorCodeSetsChange);
+	$('#cc-spe-border')[0].checked=true;
+	$('#cc-ohko-color')[0].checked=true;
+	$('#singles-format').click(switchIconDouble);
+	$('#doubles-format').click(switchIconSingle);
+	for (let dropzone of document.getElementsByClassName("dropzone")){
+		dropzone.ondragenter=handleDragEnter;
+		dropzone.ondragleave=handleDragLeave;
+		dropzone.ondrop=drop;
+		dropzone.ondragover=allowDrop;
+	}
+	//select last trainer
+	let last = localStorage.getItem("lasttimetrainer");
+	if (last != "") {
+		selectTrainer(parseInt(last, 10));
+	};
 });
 
 /* Click-to-copy function */
