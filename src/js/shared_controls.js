@@ -1518,7 +1518,7 @@ function previousTrainer() {
 }
 
 function resetTrainer() {
-	if (confirm(`You wiped to ${window.CURRENT_TRAINER} ? Hey there, I know you just lost your run so take it easy and think in the Truck about your next moves against these opponents`)){
+	if (confirm(`Are you sure you want to reset? This will clear all imported sets and change your current trainer back to Younger Calvin. This cannot be undone.`)){
 		selectTrainer(1);
 		localStorage.removeItem("customsets");
 		$(allPokemon("#importedSetsOptions")).hide();
