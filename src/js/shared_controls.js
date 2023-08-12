@@ -1699,7 +1699,7 @@ function SpeedBorderSetsChange(ev){
 	}
 }
 function widthSpeedBorder(ev){
-	document.documentElement.style.cssText = `--spe-bor-width: ${ev.target.value}px`
+	document.documentElement.style.setProperty("--spe-bor-width", `${ev.target.value}px`)
 }
 
 function ColorCodeSetsChange(ev){
@@ -1890,7 +1890,7 @@ $(document).ready(function () {
 		localStorage.setItem("isNotNew", true)
 	}
 	//some CSS variable;
-	document.documentElement.style.cssText = "--spe-bor-width: 3px";
+	document.documentElement.style.setProperty("--spe-bor-width", "3px");
 });
 
 /* Click-to-copy function */
