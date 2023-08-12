@@ -1716,6 +1716,12 @@ function ColorCodeSetsChange(ev){
 	}
 }
 function setupSideCollapsers(){
+	var status = localStorage.getItem("hsidearrow");
+	if (!status){
+
+	}else{
+		sideArrowToggle()
+	}
 	var applyF = (btns) => {
 		for (var i = 0; i < btns.length; i++) {
 			let btn = btns[i];
@@ -1831,6 +1837,25 @@ function onFirstTime(){
 	document.getElementById("trash-box").setAttribute("data-placeholder", "drop here and click remove to remove");
 }
 
+function sideArrowToggle(){
+	var btn = document.getElementById("side-arrow-toggle");
+	var onHide= btn.getAttribute("data-id")
+	if (onHide=="true"){
+		btn.setAttribute("data-id", "false");
+		btn.innerText="Show Side Arrows";
+		localStorage.setItem("hsidearrow", "1");
+	}else{
+		btn.setAttribute("data-id", "true");
+		btn.innerText="Hide Side Arrows";
+		localStorage.removeItem("hsidearrow");
+	}
+	for(pannel of document.getElementsByClassName("side-pannel")){
+		pannel.toggleAttribute("hidden")
+	}
+	if (onHide=="false"){
+		setupSideCollapsers()
+	}
+}
 
 window.AUTO_REFRESH = false;
 $(document).ready(function () {
@@ -1869,6 +1894,7 @@ $(document).ready(function () {
 	$('#cc-spe-width').change(widthSpeedBorder);
 	$('#singles-format').click(switchIconDouble);
 	$('#doubles-format').click(switchIconSingle);
+	$('#side-arrow-toggle').click(sideArrowToggle);
 	$('#close-pop-win, #ball-item').click(openCloseItemBox);
 	$('.ic').click(selectItem);
 	$('#save-change').click(saveTrainerPokemon)
