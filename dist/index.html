@@ -139,7 +139,9 @@
     <div class="panel">
         <div aria-label="Pok&eacute;mon 1" role="region">
             <fieldset class="poke-info" id="p1">
-                <legend align="center">Pok&eacute;mon 1
+                <legend align="center">
+                    <button id="save-change" hidden>Save Changes</button>
+                    Pok&eacute;mon 1
                     <img id="p1mon" src="" alt="">
                 </legend>
                 <input type="text" class="set-selector calc-trigger player" />
@@ -168,7 +170,7 @@
                     </div>
                     <div>
                         <label for="levelL1">Level</label>
-                        <input class="level calc-trigger" id="levelL1" value="100" />
+                        <input class="level save-trigger calc-trigger" id="levelL1" value="100" />
                     </div>
                     <div class="hide">
                         <label for="weightL1">Weight (kg)</label>
@@ -197,7 +199,7 @@
                                     <input class="base calc-trigger" value="100" />
                                 </td>
                                 <td class="gen-specific g3 g4 g5 g6 g7 g8 g9">
-                                    <input class="ivs calc-trigger" value="31" />
+                                    <input class="ivs save-trigger calc-trigger" value="31" />
                                 </td>
                                 <td class="gen-specific g3 g4 g5 g6 g7 g8 g9">
                                     <input class="evs calc-trigger" type="number" min="0" max="252" step="4" value="0" />
@@ -217,7 +219,7 @@
                                     <input class="base calc-trigger" value="100" />
                                 </td>
                                 <td class="gen-specific g3 g4 g5 g6 g7 g8 g9">
-                                    <input class="ivs calc-trigger" value="31" />
+                                    <input class="ivs save-trigger calc-trigger" value="31" />
                                 </td>
                                 <td class="gen-specific g3 g4 g5 g6 g7 g8 g9">
                                     <input class="evs calc-trigger" type="number" min="0" max="252" step="4" value="0" />
@@ -253,7 +255,7 @@
                                     <input class="base calc-trigger" value="100" />
                                 </td>
                                 <td class="gen-specific g3 g4 g5 g6 g7 g8 g9">
-                                    <input class="ivs calc-trigger" value="31" />
+                                    <input class="ivs save-trigger calc-trigger" value="31" />
                                 </td>
                                 <td class="gen-specific g3 g4 g5 g6 g7 g8 g9">
                                     <input class="evs calc-trigger" type="number" min="0" max="252" step="4" value="0" />
@@ -289,7 +291,7 @@
                                     <input class="base calc-trigger" value="100" />
                                 </td>
                                 <td class="gen-specific g3 g4 g5 g6 g7 g8 g9">
-                                    <input class="ivs calc-trigger" value="31" />
+                                    <input class="ivs save-trigger calc-trigger" value="31" />
                                 </td>
                                 <td class="gen-specific g3 g4 g5 g6 g7 g8 g9">
                                     <input class="evs calc-trigger" type="number" min="0" max="252" step="4" value="0" />
@@ -325,7 +327,7 @@
                                     <input class="base calc-trigger" value="100" />
                                 </td>
                                 <td class="gen-specific g3 g4 g5 g6 g7 g8 g9">
-                                    <input class="ivs calc-trigger" value="31" />
+                                    <input class="ivs save-trigger calc-trigger" value="31" />
                                 </td>
                                 <td class="gen-specific g3 g4 g5 g6 g7 g8 g9">
                                     <input class="evs calc-trigger" type="number" min="0" max="252" step="4" value="0" />
@@ -391,7 +393,7 @@
                                     <input class="base calc-trigger" value="100" />
                                 </td>
                                 <td class="gen-specific g3 g4 g5 g6 g7 g8 g9">
-                                    <input class="ivs calc-trigger" value="31" />
+                                    <input class="ivs save-trigger calc-trigger" value="31" />
                                 </td>
                                 <td class="gen-specific g3 g4 g5 g6 g7 g8 g9">
                                     <input class="evs calc-trigger" type="number" min="0" max="252" step="4" value="0" />
@@ -427,7 +429,7 @@
                 <div class="info-group info-selectors i-f-stats">
                     <div class="gen-specific g3 g4 g5 g6 g7 g8 g9">
                         <label for="natureL1">Nature</label>
-                        <select class="nature calc-trigger" id="natureL1">
+                        <select class="nature save-trigger calc-trigger" id="natureL1">
                             <option value="Adamant">Adamant (+Atk, -SpA)</option>
                             <option value="Bashful">Bashful</option>
                             <option value="Bold">Bold (+Def, -Atk)</option>
@@ -457,7 +459,7 @@
                     </div>
                     <div class="gen-specific g3 g4 g5 g6 g7 g8 g9">
                         <label for="abilityL1">Ability</label>
-                        <select class="ability terrain-trigger calc-trigger" id="abilityL1"></select>
+                        <select class="ability terrain-trigger save-trigger calc-trigger" id="abilityL1"></select>
                         <input hidden type="checkbox" title= "Is this ability active?" class="abilityToggle calc-trigger">
                             <select hidden aria-label="Allies fainted" class="alliesFainted calc-trigger">
                                     <option value="0">Zero allies fainted</option>
@@ -470,7 +472,7 @@
                     </div>
                     <div class="gen-specific g2 g3 g4 g5 g6 g7 g8 g9">
                         <label for="itemL1">Item</label>
-                        <select class="item terrain-trigger calc-trigger" id="itemL1"></select>
+                        <select class="item terrain-trigger save-trigger calc-trigger" id="itemL1"></select>
                         <button id="ball-item"><img src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/ball/poke.png" alt=""></button>
                     </div>
                     <div>
@@ -523,7 +525,7 @@
                 <div hidden id="criticalHitInstruction">Force this attack to be a critical hit?</div>
                 <div hidden id="zMoveInstruction">Make this attack a Z-move?</div>
                 <div class="move1 i-f-move">
-                    <select class="move-selector calc-trigger small-select"></select>
+                    <select class="move-selector save-trigger calc-trigger small-select"></select>
                     <input class="move-bp calc-trigger" value="50" />
                     <select class="move-type calc-trigger"></select>
                     <select class="move-cat calc-trigger gen-specific g4 g5 g6 g7 g8 g9">
@@ -557,7 +559,7 @@
                     </select>
                 </div>
                 <div class="move2 i-f-move"">
-                    <select class="move-selector calc-trigger small-select"></select>
+                    <select class="move-selector save-trigger calc-trigger small-select"></select>
                     <input class="move-bp calc-trigger" value="0" />
                     <select class="move-type calc-trigger"></select>
                     <select class="move-cat calc-trigger gen-specific g4 g5 g6 g7 g8 g9">
@@ -591,7 +593,7 @@
                     </select>
                 </div>
                 <div class="move3 i-f-move"">
-                    <select class="move-selector calc-trigger small-select"></select>
+                    <select class="move-selector save-trigger calc-trigger small-select"></select>
                     <input class="move-bp calc-trigger" value="0" />
                     <select class="move-type calc-trigger"></select>
                     <select class="move-cat calc-trigger gen-specific g4 g5 g6 g7 g8 g9">
@@ -625,7 +627,7 @@
                     </select>
                 </div>
                 <div class="move4 i-f-move"">
-                    <select class="move-selector calc-trigger small-select"></select>
+                    <select class="move-selector save-trigger calc-trigger small-select"></select>
                     <input class="move-bp calc-trigger" value="0" />
                     <select class="move-type calc-trigger"></select>
                     <select class="move-cat calc-trigger gen-specific g4 g5 g6 g7 g8 g9">
@@ -1665,104 +1667,104 @@
         <div class="pop-win-body">
             <legend>Damage</legend>
             <div class="box-item-list">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/silk-scarf.png" data-id="Silk Scarf">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/silver-powder.png" data-id="Silver Powder">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/poison-barb.png" data-id="Poison Barb">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/soft-sand.png" data-id="Soft Sand">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/miracle-seed.png" data-id="Miracle Seed">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/metal-coat.png" data-id="Metal Coat">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/mystic-water.png" data-id="Mystic Water">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/magnet.png" data-id="Magnet">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/hard-stone.png" data-id="Hard Stone">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/never-melt-ice.png" data-id="Nevermelt Ice">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/dragon-fang.png" data-id="Dragon Fang">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/charcoal.png" data-id="Charcoal">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/black-glasses.png" data-id="Black Glasses">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/sharp-beak.png" data-id="Sharp Beak">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/twisted-spoon.png" data-id="Twisted Spoon">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/plate/pixie.png" data-id="Pixie Plate">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/black-belt.png" data-id="Black Belt">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/spell-tag.png" data-id="Spell Tag">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/silk-scarf.png" data-id="Silk Scarf">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/silver-powder.png" data-id="Silver Powder">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/poison-barb.png" data-id="Poison Barb">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/soft-sand.png" data-id="Soft Sand">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/miracle-seed.png" data-id="Miracle Seed">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/metal-coat.png" data-id="Metal Coat">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/mystic-water.png" data-id="Mystic Water">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/magnet.png" data-id="Magnet">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/hard-stone.png" data-id="Hard Stone">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/never-melt-ice.png" data-id="Nevermelt Ice">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/dragon-fang.png" data-id="Dragon Fang">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/charcoal.png" data-id="Charcoal">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/black-glasses.png" data-id="Black Glasses">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/sharp-beak.png" data-id="Sharp Beak">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/twisted-spoon.png" data-id="Twisted Spoon">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/plate/pixie.png" data-id="Pixie Plate">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/black-belt.png" data-id="Black Belt">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/spell-tag.png" data-id="Spell Tag">
             </div>
             <hr>
             <legend>Held</legend>
             <div class="box-item-list">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/wide-lens.png" data-id="Wide Lens">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/muscle-band.png" data-id="Muscle Band">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/wise-glasses.png" data-id="Wise Glasses">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/protective-pads.png" data-id="Protective Pads">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/zoom-lens.png" data-id="Zoom Lens">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/evo-item/razor-claw.png" data-id="Razor Claw">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/evo-item/razor-fang.png" data-id="Razor Fang">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/kings-rock.png" data-id="King's Rock">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/life-orb.png" data-id="Life Orb">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/metronome.png" data-id="Metronome">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/shell-bell.png" data-id="Shell Bell">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/expert-belt.png" data-id="Expert Belt">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/assault-vest.png" data-id="Assault Vest">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/leftovers.png" data-id="Leftovers">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/choice-band.png" data-id="Choice Band">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/choice-scarf.png" data-id="Choice Scarf">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/choice-specs.png" data-id="Choice Specs">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/rocky-helmet.png" data-id="Rocky Helmet">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/heavy-duty-boots.png" data-id="Heavy Duty Boots">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/white-herb.png" data-id="White Herb">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/shed-shell.png" data-id="Shed Shell">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/electric-seed.png" data-id="Electric Seed">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/grassy-seed.png" data-id="Grassy Seed">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/misty-seed.png" data-id="Misty Seed">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/psychic-seed.png" data-id="Psychic Seed">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/power-herb.png" data-id="Power Herb">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/mental-herb.png" data-id="Mental Herb">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/room-service.png" data-id="Room Service">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/eject-button.png" data-id="Eject Button">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/eject-pack.png" data-id="Eject Pack">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/red-card.png" data-id="Red Card">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/focus-sash.png" data-id="Focus Sash">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/wide-lens.png" data-id="Wide Lens">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/muscle-band.png" data-id="Muscle Band">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/wise-glasses.png" data-id="Wise Glasses">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/protective-pads.png" data-id="Protective Pads">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/zoom-lens.png" data-id="Zoom Lens">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/evo-item/razor-claw.png" data-id="Razor Claw">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/evo-item/razor-fang.png" data-id="Razor Fang">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/kings-rock.png" data-id="King's Rock">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/life-orb.png" data-id="Life Orb">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/metronome.png" data-id="Metronome">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/shell-bell.png" data-id="Shell Bell">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/expert-belt.png" data-id="Expert Belt">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/assault-vest.png" data-id="Assault Vest">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/leftovers.png" data-id="Leftovers">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/choice-band.png" data-id="Choice Band">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/choice-scarf.png" data-id="Choice Scarf">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/choice-specs.png" data-id="Choice Specs">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/rocky-helmet.png" data-id="Rocky Helmet">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/heavy-duty-boots.png" data-id="Heavy Duty Boots">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/white-herb.png" data-id="White Herb">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/shed-shell.png" data-id="Shed Shell">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/electric-seed.png" data-id="Electric Seed">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/grassy-seed.png" data-id="Grassy Seed">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/misty-seed.png" data-id="Misty Seed">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/psychic-seed.png" data-id="Psychic Seed">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/power-herb.png" data-id="Power Herb">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/mental-herb.png" data-id="Mental Herb">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/room-service.png" data-id="Room Service">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/eject-button.png" data-id="Eject Button">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/eject-pack.png" data-id="Eject Pack">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/red-card.png" data-id="Red Card">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/hold-item/focus-sash.png" data-id="Focus Sash">
             </div>
             <hr>
             <legend>Gems</legend>
             <div class="box-item-list">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/gem/bug.png" data-id="Bug Gem">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/gem/dark.png" data-id="Dark Gem">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/gem/steel.png" data-id="Steel Gem">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/gem/water.png" data-id="Water Gem">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/gem/fire.png" data-id="Fire Gem">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/gem/grass.png" data-id="Grass Gem">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/gem/electric.png" data-id="Electric Gem">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/gem/ground.png" data-id="Ground Gem">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/gem/flying.png" data-id="Grass Gem">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/gem/fairy.png" data-id="Fairy Gem">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/gem/psychic.png" data-id="Psychic Gem">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/gem/fighting.png" data-id="Fighting Gem">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/gem/ghost.png" data-id="Ghost Gem">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/gem/dragon.png" data-id="Dragon Gem">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/gem/ice.png" data-id="Ice Gem">
-                <img class="ic"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/gem/rock.png" data-id="Rock Gem">
-                <img class="ic" src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/gem/poison.png" data-id="Poison Gem">
-                <img class="ic" src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/gem/normal.png" data-id="Normal Gem">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/gem/bug.png" data-id="Bug Gem">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/gem/dark.png" data-id="Dark Gem">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/gem/steel.png" data-id="Steel Gem">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/gem/water.png" data-id="Water Gem">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/gem/fire.png" data-id="Fire Gem">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/gem/grass.png" data-id="Grass Gem">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/gem/electric.png" data-id="Electric Gem">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/gem/ground.png" data-id="Ground Gem">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/gem/flying.png" data-id="Grass Gem">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/gem/fairy.png" data-id="Fairy Gem">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/gem/psychic.png" data-id="Psychic Gem">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/gem/fighting.png" data-id="Fighting Gem">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/gem/ghost.png" data-id="Ghost Gem">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/gem/dragon.png" data-id="Dragon Gem">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/gem/ice.png" data-id="Ice Gem">
+                <img class="ic save-trigger"src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/gem/rock.png" data-id="Rock Gem">
+                <img class="ic save-trigger" src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/gem/poison.png" data-id="Poison Gem">
+                <img class="ic save-trigger" src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/gem/normal.png" data-id="Normal Gem">
             </div>
             <hr>
             <legend>Damage reduction Berry</legend>
             <div class="box-item-list"> 
-                <img class="berry-bb ic"  src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/berry/babiri.png" data-id="Babiri Berry">
-                <img class="berry-cr ic"  src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/berry/charti.png" data-id="Charti Berry">
-                <img class="berry-cl ic"  src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/berry/chilan.png" data-id="Chilan Berry">
-                <img class="berry-cp ic"  src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/berry/chople.png" data-id="Chople Berry">
-                <img class="berry-co ic"  src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/berry/coba.png" data-id="Coba Berry">
-                <img class="berry-cb ic"  src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/berry/colbur.png" data-id="Colbur Berry">
-                <img class="berry-ha ic"  src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/berry/haban.png" data-id="Haban Berry">
-                <img class="berry-ka ic"  src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/berry/kasib.png" data-id="Kasib Berry">
-                <img class="berry-ke ic"  src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/berry/kebia.png" data-id="Kebia Berry">
-                <img class="berry-oc ic"  src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/berry/occa.png" data-id="Occa Berry">
-                <img class="berry-ps ic"  src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/berry/passho.png" data-id="Passho Berry">
-                <img class="berry-py ic"  src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/berry/payapa.png" data-id="Payapa Berry">
-                <img class="berry-ri ic"  src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/berry/rindo.png" data-id="Rindo Berry">
-                <img class="berry-ro ic"  src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/berry/roseli.png" data-id="Roseli Berry">
-                <img class="berry-sh ic"  src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/berry/shuca.png" data-id="Shuca Berry">
-                <img class="berry-ta ic"  src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/berry/tanga.png" data-id="Tanga Berry">
-                <img class="berry-wa ic"  src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/berry/wacan.png" data-id="Wacan Berry">
-                <img class="berry-ya ic"  src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/berry/yache.png" data-id="Yache Berry">
+                <img class="berry-bb ic save-trigger"  src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/berry/babiri.png" data-id="Babiri Berry">
+                <img class="berry-cr ic save-trigger"  src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/berry/charti.png" data-id="Charti Berry">
+                <img class="berry-cl ic save-trigger"  src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/berry/chilan.png" data-id="Chilan Berry">
+                <img class="berry-cp ic save-trigger"  src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/berry/chople.png" data-id="Chople Berry">
+                <img class="berry-co ic save-trigger"  src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/berry/coba.png" data-id="Coba Berry">
+                <img class="berry-cb ic save-trigger"  src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/berry/colbur.png" data-id="Colbur Berry">
+                <img class="berry-ha ic save-trigger"  src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/berry/haban.png" data-id="Haban Berry">
+                <img class="berry-ka ic save-trigger"  src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/berry/kasib.png" data-id="Kasib Berry">
+                <img class="berry-ke ic save-trigger"  src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/berry/kebia.png" data-id="Kebia Berry">
+                <img class="berry-oc ic save-trigger"  src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/berry/occa.png" data-id="Occa Berry">
+                <img class="berry-ps ic save-trigger"  src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/berry/passho.png" data-id="Passho Berry">
+                <img class="berry-py ic save-trigger"  src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/berry/payapa.png" data-id="Payapa Berry">
+                <img class="berry-ri ic save-trigger"  src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/berry/rindo.png" data-id="Rindo Berry">
+                <img class="berry-ro ic save-trigger"  src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/berry/roseli.png" data-id="Roseli Berry">
+                <img class="berry-sh ic save-trigger"  src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/berry/shuca.png" data-id="Shuca Berry">
+                <img class="berry-ta ic save-trigger"  src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/berry/tanga.png" data-id="Tanga Berry">
+                <img class="berry-wa ic save-trigger"  src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/berry/wacan.png" data-id="Wacan Berry">
+                <img class="berry-ya ic save-trigger"  src="https://raw.githubusercontent.com/msikma/pokesprite/master/items/berry/yache.png" data-id="Yache Berry">
 
             </div>
         </div>
@@ -1803,20 +1805,20 @@
     <script type="text/javascript" src="./calc/pokemon.js?1cd9f7fb"></script>
     <script type="text/javascript" src="./calc/field.js?bbf04408"></script>
     <script type="text/javascript" src="./calc/items.js?10064fda"></script>
-    <script type="text/javascript" src="./calc/mechanics/util.js?a028ab1f"></script>
-    <script type="text/javascript" src="./calc/mechanics/gen789.js?ec01206b"></script>
-    <script type="text/javascript" src="./calc/mechanics/gen56.js?a1115b60"></script>
-    <script type="text/javascript" src="./calc/mechanics/gen4.js?f3f448f1"></script>
-    <script type="text/javascript" src="./calc/mechanics/gen3.js?8c0fb6f4"></script>
-    <script type="text/javascript" src="./calc/mechanics/gen12.js?199f8ca6"></script>
+    <script type="text/javascript" src="./calc/mechanics/util.js?7ed156b5"></script>
+    <script type="text/javascript" src="./calc/mechanics/gen789.js?a29fed4e"></script>
+    <script type="text/javascript" src="./calc/mechanics/gen56.js?7ba8f5e6"></script>
+    <script type="text/javascript" src="./calc/mechanics/gen4.js?c352a0ef"></script>
+    <script type="text/javascript" src="./calc/mechanics/gen3.js?1b8c8afc"></script>
+    <script type="text/javascript" src="./calc/mechanics/gen12.js?15338dfc"></script>
     <script type="text/javascript" src="./calc/calc.js?40a2d9b1"></script>
     <script type="text/javascript" src="./calc/desc.js?edafb82b"></script>
     <script type="text/javascript" src="./calc/result.js?9f8881b5"></script>
     <script type="text/javascript" src="./calc/adaptable.js?92e49194"></script>
     <script type="text/javascript" src="./calc/index.js?0b1745b9"></script>
-    <script type="text/javascript" src="./js/shared_controls.js?f1c82b5c"></script>
-    <script type="text/javascript" src="./js/index_randoms_controls.js?51d04109"></script>
-    <script type="text/javascript" src="./js/moveset_import.js?cc6513d2"></script>
+    <script type="text/javascript" src="./js/shared_controls.js?7da88d61"></script>
+    <script type="text/javascript" src="./js/index_randoms_controls.js?7a561596"></script>
+    <script type="text/javascript" src="./js/moveset_import.js?2c1cafd9"></script>
 </div>
 
 <div class="credits">Modification by ForwardFeed Originaly Created by Honko, maintained by Austin and Kris, Special thanks to Hzla

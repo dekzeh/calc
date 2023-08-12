@@ -262,6 +262,28 @@ $(".notation").change(function () {
 	performCalculations();
 });
 
+
+function saveTrigger(ev) {
+	var isUser = ev.originalEvent ? ev.originalEvent.isTrusted : false;
+	if (isUser || ev.added) { //ev.added is for the moves buttons
+		$('#save-change').attr("hidden", false);
+	}
+}
+
+function calcTrigger() {
+	/*
+		This prevents like 8 performCalculations out of 8 that were useless
+		without causing bugs (so far)
+	*/
+	if (window.NO_CALC) {
+		return;
+	}
+	if (document.getElementById("cc-auto-refr").checked) {
+		window.refreshColorCode();
+	}
+	performCalculations();
+}
+
 $(document).ready(function () {
 	var params = new URLSearchParams(window.location.search);
 	var m = params.get('mode');
@@ -280,19 +302,10 @@ $(document).ready(function () {
 			}
 		}
 	}
-	$(".calc-trigger").bind("change keyup", function (ev) {
-		/*
-			This prevents like 8 performCalculations out of 8 that were useless
-			without causing bugs (so far)
-		*/
-		if (window.NO_CALC) {
-			return;
-		}
-		if (document.getElementById("cc-auto-refr").checked) {
-			window.refreshColorCode();
-		}
-		performCalculations();
-	});
+	$(".calc-trigger").bind("change keyup", calcTrigger);
+	$(".save-trigger").bind("change keyup", saveTrigger);
+	$(".ic").click(calcTrigger);
+	$(".ic").click(saveTrigger);
 	performCalculations();
 });
 

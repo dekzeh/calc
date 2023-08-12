@@ -27,7 +27,7 @@ export declare function getShellSideArmCategory(source: Pokemon, target: Pokemon
 export declare function getWeightFactor(pokemon: Pokemon): 1 | 2 | 0.5;
 export declare function countBoosts(gen: Generation, boosts: StatsTable): number;
 export declare function getEVDescriptionText(gen: Generation, pokemon: Pokemon, stat: 'atk' | 'def' | 'spd' | 'spa', natureName: NatureName): string;
-export declare function handleFixedDamageMoves(attacker: Pokemon, move: Move): number;
+export declare function handleFixedDamageMoves(attacker: Pokemon, move: Move, defender: Pokemon): number;
 export declare function pokeRound(num: number): number;
 export declare function OF16(n: number): number;
 export declare function OF32(n: number): number;

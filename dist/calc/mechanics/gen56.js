@@ -183,7 +183,7 @@ function calculateBWXY(gen, attacker, defender, move, field) {
         return result;
     }
     desc.HPEVs = "".concat(defender.evs.hp, " HP");
-    var fixedDamage = (0, util_2.handleFixedDamageMoves)(attacker, move);
+    var fixedDamage = (0, util_2.handleFixedDamageMoves)(attacker, move, defender);
     if (fixedDamage) {
         if (attacker.hasAbility('Parental Bond')) {
             result.damage = [fixedDamage, fixedDamage];

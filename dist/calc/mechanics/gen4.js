@@ -130,7 +130,7 @@ function calculateDPP(gen, attacker, defender, move, field) {
         return result;
     }
     desc.HPEVs = "".concat(defender.evs.hp, " HP");
-    var fixedDamage = (0, util_1.handleFixedDamageMoves)(attacker, move);
+    var fixedDamage = (0, util_1.handleFixedDamageMoves)(attacker, move, defender);
     if (fixedDamage) {
         result.damage = fixedDamage;
         return result;

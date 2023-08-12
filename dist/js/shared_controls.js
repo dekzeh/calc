@@ -450,7 +450,7 @@ function sortmons(a, b) {
 	return parseInt(a.split("[")[1].split("]")[0]) - parseInt(b.split("[")[1].split("]")[0])
 }
 
-// auto-update set details on select
+// auto-update set details on select top bar pokemon
 $(".set-selector").change(function () {
 	window.NO_CALC = true;
 	var fullSetName = $(this).val();
@@ -1469,7 +1469,8 @@ $(document).on('click', '.right-side', function () {
 
 $(document).on('click', '.left-side', function () {
 	var set = $(this).attr('data-id');
-	topPokemonIcon(set, $("#p1mon")[0])
+	topPokemonIcon(set, $("#p1mon")[0]);
+	$('#save-change').attr("hidden", true);
 	$('.player').val(set);
 	$('.player').change();
 	$('.player .select2-chosen').text(set);
@@ -1816,7 +1817,6 @@ function openCloseItemBox(){
 function SelectItem(ev){
 	var newItem = ev.target.getAttribute("data-id");
 	document.getElementById("itemL1").value=newItem;
-	performCalculations();
 }
 
 $(document).ready(function () {
@@ -1855,6 +1855,7 @@ $(document).ready(function () {
 	$('#doubles-format').click(switchIconSingle);
 	$('#close-pop-win, #ball-item').click(openCloseItemBox);
 	$('.ic').click(SelectItem);
+	$('#save-change').click(saveTrainerPokemon)
 	for (let dropzone of document.getElementsByClassName("dropzone")){
 		dropzone.ondragenter=handleDragEnter;
 		dropzone.ondragleave=handleDragLeave;

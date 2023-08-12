@@ -45,7 +45,7 @@ function calculateRBYGSC(gen, attacker, defender, move, field) {
         return result;
     }
     if (gen.num === 1) {
-        var fixedDamage = (0, util_1.handleFixedDamageMoves)(attacker, move);
+        var fixedDamage = (0, util_1.handleFixedDamageMoves)(attacker, move, defender);
         if (fixedDamage) {
             result.damage = fixedDamage;
             return result;
@@ -60,7 +60,7 @@ function calculateRBYGSC(gen, attacker, defender, move, field) {
         return result;
     }
     if (gen.num === 2) {
-        var fixedDamage = (0, util_1.handleFixedDamageMoves)(attacker, move);
+        var fixedDamage = (0, util_1.handleFixedDamageMoves)(attacker, move, defender);
         if (fixedDamage) {
             result.damage = fixedDamage;
             return result;

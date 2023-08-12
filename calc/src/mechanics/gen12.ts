@@ -35,7 +35,7 @@ export function calculateRBYGSC(
 
   // Fixed damage moves (eg. Night Shade) ignore type effectiveness in Gen 1
   if (gen.num === 1) {
-    const fixedDamage = handleFixedDamageMoves(attacker, move);
+    const fixedDamage = handleFixedDamageMoves(attacker, move, defender);
     if (fixedDamage) {
       result.damage = fixedDamage;
       return result;
@@ -54,7 +54,7 @@ export function calculateRBYGSC(
   }
 
   if (gen.num === 2) {
-    const fixedDamage = handleFixedDamageMoves(attacker, move);
+    const fixedDamage = handleFixedDamageMoves(attacker, move, defender);
     if (fixedDamage) {
       result.damage = fixedDamage;
       return result;

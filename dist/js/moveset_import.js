@@ -11,6 +11,16 @@ function placeBsBtn() {
 	});
 }
 
+
+/*
+	for now only save the current trainer #p1
+*/
+function saveTrainerPokemon(){
+	$('#save-change').attr("hidden", true);
+	ExportPokemon($("#p1"));
+	$("#import.bs-btn").click()
+}
+
 function ExportPokemon(pokeInfo) {
 	var pokemon = createPokemon(pokeInfo);
 	var EV_counter = 0;

@@ -270,7 +270,7 @@ export function getKOChance(
   const eot = getEndOfTurn(gen, attacker, defender, move, field);
   const toxicCounter =
      defender.hasStatus('tox') && !defender.hasAbility('Magic Guard') ? defender.toxicCounter : 0;
-
+  // var berryHP = todo!s
   // multi-hit moves have too many possibilities for brute-forcing to work, so reduce it
   // to an approximate distribution
   let qualifier = '';

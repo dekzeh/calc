@@ -262,6 +262,38 @@ $(".notation").change(function () {
 	performCalculations();
 });
 
+
+function saveTrigger(ev) {
+	var isUser = ev.originalEvent ? ev.originalEvent.isTrusted : false;
+	if (isUser || ev.added) { //ev.added is for the moves buttons
+		$('#save-change').attr("hidden", false);
+		console.log("triggered save", ev);
+	}
+	/*var tar = ev.target;
+	if (tar.classList.contains("move-crit") || tar.classList.contains("boost")) {
+		// don't trigger the save for that.
+	} else if (tar.parentNode.classList.contains("i-f-hp")) {
+		// this is the HP, i may add a feature about that one day;
+	} else if (isUser || ev.added) { //ev.added is for the button moves
+		$('#save-change').attr("hidden", false);
+		console.log("triggered save", ev);
+	}*/
+}
+
+function calcTrigger() {
+	/*
+		This prevents like 8 performCalculations out of 8 that were useless
+		without causing bugs (so far)
+	*/
+	if (window.NO_CALC) {
+		return;
+	}
+	if (document.getElementById("cc-auto-refr").checked) {
+		window.refreshColorCode();
+	}
+	performCalculations();
+}
+
 $(document).ready(function () {
 	var params = new URLSearchParams(window.location.search);
 	var m = params.get('mode');
@@ -280,19 +312,10 @@ $(document).ready(function () {
 			}
 		}
 	}
-	$(".calc-trigger").bind("change keyup", function (ev) {
-		/*
-			This prevents like 8 performCalculations out of 8 that were useless
-			without causing bugs (so far)
-		*/
-		if (window.NO_CALC) {
-			return;
-		}
-		if (document.getElementById("cc-auto-refr").checked) {
-			window.refreshColorCode();
-		}
-		performCalculations();
-	});
+	$(".calc-trigger").bind("change keyup", calcTrigger);
+	$(".save-trigger").bind("change keyup", saveTrigger);
+	$(".ic").click(calcTrigger);
+	$(".ic").click(saveTrigger);
 	performCalculations();
 });
 

@@ -487,7 +487,7 @@ function getEVDescriptionText(gen, pokemon, stat, natureName) {
         stats_1.Stats.displayStat(stat));
 }
 exports.getEVDescriptionText = getEVDescriptionText;
-function handleFixedDamageMoves(attacker, move) {
+function handleFixedDamageMoves(attacker, move, defender) {
     if (move.named('Seismic Toss', 'Night Shade')) {
         return attacker.level;
     }
@@ -496,6 +496,9 @@ function handleFixedDamageMoves(attacker, move) {
     }
     else if (move.named('Sonic Boom')) {
         return 20;
+    }
+    else if (move.named('Super Fang')) {
+        return Math.floor(defender.originalCurHP / 2) > 0 ? Math.floor(defender.originalCurHP / 2) : 1;
     }
     return 0;
 }
