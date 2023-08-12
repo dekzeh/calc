@@ -1800,14 +1800,13 @@ function collapseArrow(arrow){
 	}
 }
 
-/* although those two function could be factorised in one, i may think about more in depth 
-functionality laters that may involve two separate functions, i will remove this comment if i do*/
+
 function switchIconSingle(){
-	document.getElementById("monDouble").toggleAttribute("hidden")
+	document.getElementById("monDouble").removeAttribute("hidden");
 }
 
 function switchIconDouble(){
-	document.getElementById("monDouble").toggleAttribute("hidden")
+	document.getElementById("monDouble").setAttribute("hidden" ,true);
 }
 
 function openCloseItemBox(){

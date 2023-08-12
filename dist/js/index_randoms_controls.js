@@ -267,17 +267,7 @@ function saveTrigger(ev) {
 	var isUser = ev.originalEvent ? ev.originalEvent.isTrusted : false;
 	if (isUser || ev.added) { //ev.added is for the moves buttons
 		$('#save-change').attr("hidden", false);
-		console.log("triggered save", ev);
 	}
-	/*var tar = ev.target;
-	if (tar.classList.contains("move-crit") || tar.classList.contains("boost")) {
-		// don't trigger the save for that.
-	} else if (tar.parentNode.classList.contains("i-f-hp")) {
-		// this is the HP, i may add a feature about that one day;
-	} else if (isUser || ev.added) { //ev.added is for the button moves
-		$('#save-change').attr("hidden", false);
-		console.log("triggered save", ev);
-	}*/
 }
 
 function calcTrigger() {
