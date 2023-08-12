@@ -1,3 +1,5 @@
+const { json } = require("express");
+
 if (!Array.prototype.indexOf) {
 	Array.prototype.indexOf = function (searchElement, fromIndex) { // eslint-disable-line no-extend-native
 		var k;
@@ -1677,6 +1679,7 @@ function drop(ev) {
 
 function handleDragEnter(ev) {
 	ev.target.classList.add('over');
+	ev.target.removeAttribute("data-placeholder");
 }
 
 function handleDragLeave(ev) {
@@ -1813,9 +1816,15 @@ function openCloseItemBox(){
 	document.getElementById("mid-pop-win").toggleAttribute("hidden");
 }
 
-function SelectItem(ev){
+function selectItem(ev){
 	var newItem = ev.target.getAttribute("data-id");
 	document.getElementById("itemL1").value=newItem;
+}
+
+function onFirstTime(){
+	document.getElementById("team-poke-list").setAttribute("data-placeholder", "You can drag & drop your pokemons here");
+	document.getElementById("box-poke-list2").setAttribute("data-placeholder","You can drag & drop your pokemons here");
+	document.getElementById("trash-box").setAttribute("data-placeholder", "drop here and click remove to remove");
 }
 
 $(document).ready(function () {
@@ -1853,7 +1862,7 @@ $(document).ready(function () {
 	$('#singles-format').click(switchIconDouble);
 	$('#doubles-format').click(switchIconSingle);
 	$('#close-pop-win, #ball-item').click(openCloseItemBox);
-	$('.ic').click(SelectItem);
+	$('.ic').click(selectItem);
 	$('#save-change').click(saveTrainerPokemon)
 	for (let dropzone of document.getElementsByClassName("dropzone")){
 		dropzone.ondragenter=handleDragEnter;
@@ -1862,12 +1871,17 @@ $(document).ready(function () {
 		dropzone.ondragover=allowDrop;
 	}
 	//select last trainer
-	let last = parseInt(localStorage.getItem("lasttimetrainer"),10);
-	
+	var last = parseInt(localStorage.getItem("lasttimetrainer"),10);
 	if (isNaN(last)) {
 		selectTrainer(1);
 	}else{
 		selectTrainer(last);
+	}
+	//to indicate some features
+	var isNotNew = JSON.parse(localStorage.getItem("isNotNew"))
+	if (!isNotNew){//first time loading the page
+		onFirstTime()
+		localStorage.setItem("isNotNew", true)
 	}
 });
 

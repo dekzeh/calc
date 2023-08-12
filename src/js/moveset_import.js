@@ -283,12 +283,20 @@ function updateDex(customsets) {
 	}
 	localStorage.customsets = JSON.stringify(customsets);
 }
+function sortImports (a,b){
+	var sorted = [a.name, b.name].sort()[0]
+	if (sorted == b.name){
+		return 1
+	}
+	return -1
+}
 
 function addSets(pokes, name) {
 	var rows = pokes.split("\n");
 	var currentRow;
 	var currentPoke;
 	var addedpokes = 0;
+	var pokelist = []
 	for (var i = 0; i < rows.length; i++) {
 		currentRow = rows[i].split(/[()@]/);
 		for (var j = 0; j < currentRow.length; j++) {
@@ -307,12 +315,15 @@ function addSets(pokes, name) {
 				currentPoke.teraType = getTeraType(rows[i + 1].split(":"));
 				currentPoke = getStats(currentPoke, rows, i + 1);
 				currentPoke = getMoves(currentPoke, rows, i);
-				addToDex(currentPoke);
-				addBoxed(currentPoke);
+				pokelist.push(currentPoke);
 				addedpokes++;
 				break;
 			}
 		}
+	}
+	pokelist.sort(sortImports)
+	for(var i=0 ; i<pokelist.length; i++){
+		addToDex(pokelist[i]);
 	}
 	if (addedpokes > 0) {
 		$(allPokemon("#importedSetsOptions")).css("display", "inline");

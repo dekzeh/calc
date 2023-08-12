@@ -605,6 +605,10 @@ table.field {
 .box-poke{
     min-height: 30px;
 }
+.dropzone::before{
+    content:attr(data-placeholder);
+    color:gray
+}
 
 .deadzone:hover{
     background: #722323;
