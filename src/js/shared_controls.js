@@ -1698,6 +1698,9 @@ function SpeedBorderSetsChange(ev){
 		}
 	}
 }
+function widthSpeedBorder(ev){
+	document.documentElement.style.cssText = `--spe-bor-width: ${ev.target.value}px`
+}
 
 function ColorCodeSetsChange(ev){
 	var monImgs = document.getElementsByClassName("left-side");
@@ -1827,6 +1830,8 @@ function onFirstTime(){
 	document.getElementById("trash-box").setAttribute("data-placeholder", "drop here and click remove to remove");
 }
 
+
+
 $(document).ready(function () {
 	var params = new URLSearchParams(window.location.search);
 	var g = GENERATION[params.get('gen')] || 8;
@@ -1859,6 +1864,7 @@ $(document).ready(function () {
 	$('#cc-ohko-color').change(ColorCodeSetsChange);
 	$('#cc-spe-border')[0].checked=true;
 	$('#cc-ohko-color')[0].checked=true;
+	$('#cc-spe-width').change(widthSpeedBorder);
 	$('#singles-format').click(switchIconDouble);
 	$('#doubles-format').click(switchIconSingle);
 	$('#close-pop-win, #ball-item').click(openCloseItemBox);
@@ -1883,6 +1889,8 @@ $(document).ready(function () {
 		onFirstTime()
 		localStorage.setItem("isNotNew", true)
 	}
+	//some CSS variable;
+	document.documentElement.style.cssText = "--spe-bor-width: 3px";
 });
 
 /* Click-to-copy function */

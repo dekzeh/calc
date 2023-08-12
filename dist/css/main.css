@@ -537,6 +537,7 @@ table.field {
     border: solid;
     border-color: #7ee1ff;
     border-radius: 20%;
+    border-width: var(--spe-bor-width)
 }
 .mon-speed-T{
     box-sizing: border-box;
@@ -545,6 +546,7 @@ table.field {
     border: solid;
     border-color: #894197;
     border-radius: 20%;
+    border-width: var(--spe-bor-width)
 }
 .mon-speed-S{
     box-sizing: border-box;
@@ -553,6 +555,7 @@ table.field {
     border: solid;
     border-color: #1c1414;;
     border-radius: 20%;
+    border-width: var(--spe-bor-width);
 }
 .mon-speed-none{
     border: none !important; 
