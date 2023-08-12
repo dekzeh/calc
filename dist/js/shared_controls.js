@@ -1555,7 +1555,6 @@ function resetTrainer() {
 	
 }
 
-
 function HideShowCCSettings(){
 	$('#show-cc')[0].toggleAttribute("hidden");
 	$('#hide-cc')[0].toggleAttribute("hidden");
@@ -1591,11 +1590,13 @@ function colorCodeUpdate(){
 	}
 }
 function showColorCodes(){
+	window.AUTO_REFRESH = document.getElementById("cc-auto-refr").checked;
 	colorCodeUpdate();
 	HideShowCCSettings();
 }
 
 function refreshColorCode(){
+	window.AUTO_REFRESH = document.getElementById("cc-auto-refr").checked;
 	colorCodeUpdate();
 }
 
@@ -1604,7 +1605,7 @@ function hideColorCodes(){
 	for (let i = 0; i < pMons.length; i++) {
 		pMons[i].className = "trainer-pok left-side";
 	}
-	document.getElementById("cc-auto-refr").checked = false;
+	window.AUTO_REFRESH = false;
 	HideShowCCSettings();
 }
 
@@ -1831,7 +1832,7 @@ function onFirstTime(){
 }
 
 
-
+window.AUTO_REFRESH = false;
 $(document).ready(function () {
 	var params = new URLSearchParams(window.location.search);
 	var g = GENERATION[params.get('gen')] || 8;
@@ -1862,6 +1863,7 @@ $(document).ready(function () {
 	$('#trash-pok').click(TrashPokemon);
 	$('#cc-spe-border').change(SpeedBorderSetsChange);
 	$('#cc-ohko-color').change(ColorCodeSetsChange);
+	$('#cc-auto-refr').change(refreshColorCode);
 	$('#cc-spe-border')[0].checked=true;
 	$('#cc-ohko-color')[0].checked=true;
 	$('#cc-spe-width').change(widthSpeedBorder);

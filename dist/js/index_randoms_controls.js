@@ -278,7 +278,7 @@ function calcTrigger() {
 	if (window.NO_CALC) {
 		return;
 	}
-	if (document.getElementById("cc-auto-refr").checked) {
+	if (window.AUTO_REFRESH) {
 		window.refreshColorCode();
 	}
 	performCalculations();
