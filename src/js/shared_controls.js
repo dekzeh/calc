@@ -463,19 +463,26 @@ function isMonFromCurrentTrainer(current, neew) {
 		return false
 	}
 }
-window.nextTrainerId = 1;
+var nextTrainerId = 1;
+var previousTrainerId = 1;
 // auto-update set details on select top bar pokemon
 $(".set-selector").change(function () {
 	window.NO_CALC = true;
 	var fullSetName = $(this).val();
+	var nextTrainer = "";
+	var monNumbers = 0
 	if ($(this).hasClass('opposing')) {
 		topPokemonIcon(fullSetName, $("#p2mon")[0])
 		var currentTrainerMon = document.getElementsByClassName('opposite-pok')[0]
+		
 		if (isMonFromCurrentTrainer(currentTrainerMon, fullSetName)){
-
+			console.log("no reload")
+			// don't reload
 		}else{
+			console.log(nextTrainer)
 			CURRENT_TRAINER_POKS = get_trainer_poks(fullSetName)
 			var next_poks = CURRENT_TRAINER_POKS.sort(sortmons)
+			monNumbers = next_poks.length;
 			var frag = new DocumentFragment();
 			$('.trainer-pok-list-opposing').html('');
 			for (i in next_poks) {
@@ -490,12 +497,19 @@ $(".set-selector").change(function () {
 				newPoke.className = "opposite-pok right-side";
 				newPoke.src = `https://raw.githubusercontent.com/May8th1995/sprites/master/${pok_name}.png`;
 				newPoke.title = `${next_poks[i]}, ${next_poks[i]} BP`;
-				window.nextTrainerId=next_poks[i]
+				nextTrainer=`${next_poks[i]}`
 				newPoke.dataset.id = `${CURRENT_TRAINER_POKS[i].split("]")[1]}`;
 				frag.append(newPoke);
 			}
+			console.log(nextTrainer)
 		}
-		console.log(window.nextTrainerId);
+		if (nextTrainer){
+			let trainerId = nextTrainer.match(/^\[\d+/)[0].substring(1);
+			nextTrainerId = parseInt(trainerId) + 1;
+			previousTrainerId = nextTrainerId- monNumbers - 1 ;
+		}
+		
+		
 	} else {
 		topPokemonIcon(fullSetName, $("#p1mon")[0])
 	}
@@ -1561,16 +1575,11 @@ function selectTrainer(value) {
 }
 
 function nextTrainer() {
-	//string = ($(".trainer-pok-list-opposing")).html()
-	//initialSplit = string.split("[")
-	//value = parseInt(initialSplit[initialSplit.length - 2].split("]")[0]) + 1
-	selectTrainer(window.nextTrainerId)
+	selectTrainer(nextTrainerId)
 }
 
 function previousTrainer() {
-	string = ($(".trainer-pok-list-opposing")).html()
-	value = parseInt(string.split("]")[0].split("[")[1]) - 1
-	selectTrainer(value)
+	selectTrainer(previousTrainerId)
 }
 
 function resetTrainer() {

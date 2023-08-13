@@ -293,7 +293,7 @@ $(".mode").change(function () {
 });
 
 $(".notation").change(function () {
-	performCalculations();
+	calcTrigger();
 });
 
 
@@ -330,8 +330,8 @@ function calcTrigger() {
 			performCalculations();
 			performCalculations(monRow2, true);
 		} else {
-			performCalculations();
-			performCalculations(monRow1, true);
+			performCalculations(monRow1, false);
+			performCalculations(false, true);
 		}
 	} else {
 		performCalculations();
