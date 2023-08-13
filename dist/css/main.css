@@ -605,7 +605,7 @@ table.field {
     background: linear-gradient(to right, #daff08 50%, #dd0b0b 0%);
 }
 
-.box-poke, #trainer-pok-list-opposing2{
+.box-poke, #trainer-pok-list-opposing2, #trainer-pok-list-opposing{
     min-height: 30px;
 }
 .dropzone::before{

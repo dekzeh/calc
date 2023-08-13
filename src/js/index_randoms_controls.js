@@ -124,16 +124,18 @@ function performCalculations(pP2, double) {
 	if ($('.locked-move').length) {
 		bestResult = $('.locked-move');
 	} else {
-		stickyMoves.setSelectedMove(bestResult.prop("id"));
+		if (!double) {
+			stickyMoves.setSelectedMove(bestResult.prop("id"));
+		}
 	}
-	bestResult.prop("checked", true);
-	bestResult.change();
 	if (!double) {
-		$("#resultHeaderL").text(p1.name + "'s Moves (select one to show detailed results)");
-		$("#resultHeaderR").text(p2.name + "'s Moves (select one to show detailed results)");
+		bestResult.prop("checked", true);
+		bestResult.change();
+		$("#resultHeaderL").text(p1.name + "'s Moves");
+		$("#resultHeaderR").text(p2.name + "'s Moves");
 	} else {
-		$("#resultHeader2L").text(p1.name + "'s Moves (select one to show detailed results)");
-		$("#resultHeader2R").text(p2.name + "'s Moves (select one to show detailed results)");
+		$("#resultHeader2L").text(p1.name + "'s Moves");
+		$("#resultHeader2R").text(p2.name + "'s Moves");
 	}
 }
 
