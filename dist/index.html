@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <title>Pok&eacute;mon Damage Calculator</title>
     <link type="text/css" rel="stylesheet" href="./js/vendor/select2/select2.css" />
-    <link type="text/css" rel="stylesheet" href="./css/main.css?b3da57c4" />
+    <link type="text/css" rel="stylesheet" href="./css/main.css?66837abc" />
     <link type="text/css" rel="stylesheet" href="./css/vendor/bootstrap.css" />
     <link type="text/css" rel="stylesheet" href="./css/dark-theme.css" id="dark-theme-styles">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -694,27 +694,27 @@
                         <b class="mon-speed-T">Purple</b> Speed Tie
                         <b class="mon-speed-S">Black</b> Slower
                         <h5>OHKO Colors</h5>
-                        <b class="mon-dmg-W">Walls</b>(get 4 HKO at worse and does more damage)
+                        <b class="mon-dmg-WMO">Hard Counter</b> (Gets 4HKO'd at worse and may OHKO)
                         <br>
-                        <b class="mon-dmg-WMO">Walls may OHKO</b>(gets 4 HKO at worse and may OHKO)
+                        <b class="mon-dmg-W">Walls</b> (Gets 4HKO'd at worse and does more damage)
                         <br>
-                        <b class="mon-dmg-1">100% OHKO</b>
+                        <b class="mon-dmg-1">Always OHKOs</b>
                         <br>
-                        <b class="mon-dmg-2">May 0HKO</b>
+                        <b class="mon-dmg-2">Might OHKO</b>
                         <br>
-                        <b class="mon-dmg-3">May Get 0HKO</b>
+                        <b class="mon-dmg-3">Might get OHKO'd</b>
                         <br>
-                        <b class="mon-dmg-4">100% Get 0HKO</b>
+                        <b class="mon-dmg-4">Always gets OHKO'd</b>
                         <br>
-                        <b class="mon-dmg-14">Both side 100% OHKO</b>
+                        <b class="mon-dmg-14">Both sides OHKO each other</b>
                         <br>
-                        <b class="mon-dmg-23">Both side may OHKO</b>
+                        <b class="mon-dmg-23">Both sides might OHKO each other</b>
                         <br>
-                        <b class="mon-dmg-13">100% OHKO but may gets OHKO</b>
+                        <b class="mon-dmg-13">Always OHKOs but may get OHKO'd</b>
                         <br>
-                        <b class="mon-dmg-24">May 0HKO but 100% Get 0HKO</b>
+                        <b class="mon-dmg-24">Might OHKO but always gets OHKO'd</b>
                         <p>
-                            Note: Color codes are intended to be a helper, some caveats and quirks are missed by the calculation
+                            Note: Color coding is intended to help, though some caveats and quirks are missed
                         </p>
                     </div>
                     <div id ="cc-sets" hidden>
@@ -1079,6 +1079,12 @@
                         </tr>
                     </tbody>
                 </table>
+            </fieldset>
+        </div>
+        <div aria-label="Import team" role="region">
+            <fieldset class="note-button">
+                <legend align="center">Note</legend>
+                <button id="open-note">Open Notes</button>
             </fieldset>
         </div>
         <div aria-label="Import team" role="region">
@@ -1829,7 +1835,7 @@
     <script type="text/javascript" src="./calc/result.js?9f8881b5"></script>
     <script type="text/javascript" src="./calc/adaptable.js?92e49194"></script>
     <script type="text/javascript" src="./calc/index.js?0b1745b9"></script>
-    <script type="text/javascript" src="./js/shared_controls.js?9b3eadb2"></script>
+    <script type="text/javascript" src="./js/shared_controls.js?1a1c21d0"></script>
     <script type="text/javascript" src="./js/index_randoms_controls.js?b12818c8"></script>
     <script type="text/javascript" src="./js/moveset_import.js?1ea94d3d"></script>
 </div>
@@ -1849,6 +1855,17 @@
     </div>
 </div>
 
+<div id="note-box-frame" class="box-frame" hidden>
+    <div class="box-frame-header" data-x="1220"data-y="200">
+        <legend>Notes</legend>
+        <div id="close-note-box">
+            <div class="mdiv">
+              <div class="md"></div>
+            </div>
+          </div>
+    </div>
+    <textarea cols="30" rows="10"></textarea>
+</div>
 </body>
 
 </html>

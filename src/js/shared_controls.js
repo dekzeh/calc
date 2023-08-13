@@ -1856,6 +1856,10 @@ function openCloseItemBox(){
 	document.getElementById("item-box-frame").toggleAttribute("hidden");
 }
 
+function openCloseNoteBox(){
+	document.getElementById("note-box-frame").toggleAttribute("hidden");
+}
+
 function selectItem(ev){
 	var newItem = ev.target.getAttribute("data-id");
 	document.getElementById("itemL1").value=newItem;
@@ -1926,6 +1930,7 @@ $(document).ready(function () {
 	$('#doubles-format').click(switchIconSingle);
 	$('#side-arrow-toggle').click(sideArrowToggle);
 	$('#close-item-box, #ball-item').click(openCloseItemBox);
+	$('#close-note-box, #open-note').click(openCloseNoteBox);
 	$('.ic').click(selectItem);
 	$('#save-change').click(saveTrainerPokemon)
 	for (let dropzone of document.getElementsByClassName("dropzone")){

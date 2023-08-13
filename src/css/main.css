@@ -231,7 +231,7 @@ th {
 .poke-info {
     width: 30em;
 }
-.field-info, .poke-import {
+.field-info, .poke-import , .note-button{
     text-align: center;
     width: 27.5em;
 }
@@ -670,16 +670,24 @@ table.field {
 
 .box-frame{
     position: absolute;
-    z-index: 1;
-    width: 650px;
-    height: 400px;
-    margin: 0 auto;
     background: var(--fieldset-color);
     border: 1px solid #AAA;
+    padding: 3px;
+}
+#item-box-frame{
+    z-index: 2;
+    width: 650px;
+    height: 400px;
     top: 500px;
     left: 500px;
-    overflow: scroll;
-    padding: 3px;
+}
+#note-box-frame{
+    z-index: 1;
+    width: fit-content;
+    height: fit-content;
+    top: 200px;
+    left: 1220px;
+    overflow: visible;
 }
 .box-frame-header{
     position: relative;
@@ -690,7 +698,7 @@ table.field {
     text-align: unset;
 }
 
-#close-item-box{
+#close-item-box, #close-note-box{
     width: 25px;
     height: 25px;
     background-color: red;
@@ -713,7 +721,7 @@ table.field {
   margin-left: 12px;
   background-color: black;
   transform: rotate(45deg);
-  Z-index: 2;
+  Z-index: 3;
 }
 
 .md {
@@ -721,7 +729,7 @@ table.field {
   width: 2px;
   background-color: black;
   transform: rotate(90deg);
-  Z-index: 3;
+  Z-index: 4;
 }
 
 .box-item-list>img:hover{

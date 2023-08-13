@@ -1082,6 +1082,12 @@
             </fieldset>
         </div>
         <div aria-label="Import team" role="region">
+            <fieldset class="note-button">
+                <legend align="center">Note</legend>
+                <button id="open-note">Open Notes</button>
+            </fieldset>
+        </div>
+        <div aria-label="Import team" role="region">
             <fieldset class="poke-import">
                 <legend align="center">Import / Export</legend>
                 <div id="import-1_wrapper" class="dataTables_wrapper no-footer">
@@ -1849,6 +1855,17 @@
     </div>
 </div>
 
+<div id="note-box-frame" class="box-frame" hidden>
+    <div class="box-frame-header" data-x="1220"data-y="200">
+        <legend>Notes</legend>
+        <div id="close-note-box">
+            <div class="mdiv">
+              <div class="md"></div>
+            </div>
+          </div>
+    </div>
+    <textarea cols="30" rows="10"></textarea>
+</div>
 </body>
 
 </html>
