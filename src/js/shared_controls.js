@@ -1891,6 +1891,7 @@ function sideArrowToggle(){
 	}
 }
 
+
 window.AUTO_REFRESH = false;
 $(document).ready(function () {
 	var params = new URLSearchParams(window.location.search);
