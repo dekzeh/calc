@@ -450,26 +450,44 @@ function sortmons(a, b) {
 	return parseInt(a.split("[")[1].split("]")[0]) - parseInt(b.split("[")[1].split("]")[0])
 }
 
+function isMonFromCurrentTrainer(current, neew) {
+	if (current){
+		current = current.dataset.id.split("(")[1].split("\n")[0].trim();
+		neew = neew.split("(")[1].split("\n")[0].trim();
+		if ( current.substring(0,current.length -1 )== neew.substring(0,current.length -1 )) {
+			return true
+		} else{
+			return false
+		}
+	}else{
+		return false
+	}
+}
+
 // auto-update set details on select top bar pokemon
 $(".set-selector").change(function () {
 	window.NO_CALC = true;
 	var fullSetName = $(this).val();
 	if ($(this).hasClass('opposing')) {
 		topPokemonIcon(fullSetName, $("#p2mon")[0])
-		CURRENT_TRAINER_POKS = get_trainer_poks(fullSetName)
-		var next_poks = CURRENT_TRAINER_POKS.sort(sortmons)
+		var currentTrainerMon = document.getElementsByClassName('opposite-pok')[0]
+		if (isMonFromCurrentTrainer(currentTrainerMon, fullSetName)){
 
-		var trpok_html = ""
-		for (i in next_poks) {
-			if (next_poks[i][0].includes($('input.opposing').val())) {
-				continue
+		}else{
+			CURRENT_TRAINER_POKS = get_trainer_poks(fullSetName)
+			var next_poks = CURRENT_TRAINER_POKS.sort(sortmons)
+			var trpok_html = ""
+			for (i in next_poks) {
+				if (next_poks[i][0].includes($('input.opposing').val())) {
+					continue
+				}
+				var pok_name = next_poks[i].split("]")[1].split(" (")[0]
+				if (pok_name == "Zygarde-10%") {
+					pok_name = "Zygarde-10%25"
+				}//this ruined my day
+				var pok = `<img class="opposite-pok right-side" src="https://raw.githubusercontent.com/May8th1995/sprites/master/${pok_name}.png" data-id="${CURRENT_TRAINER_POKS[i].split("]")[1]}" title="${next_poks[i]}, ${next_poks[i]} BP">`
+				trpok_html += pok
 			}
-			var pok_name = next_poks[i].split("]")[1].split(" (")[0]
-			if (pok_name == "Zygarde-10%") {
-				pok_name = "Zygarde-10%25"
-			}//this ruined my day
-			var pok = `<img class="trainer-pok right-side" src="https://raw.githubusercontent.com/May8th1995/sprites/master/${pok_name}.png" data-id="${CURRENT_TRAINER_POKS[i].split("]")[1]}" title="${next_poks[i]}, ${next_poks[i]} BP">`
-			trpok_html += pok
 		}
 	} else {
 		topPokemonIcon(fullSetName, $("#p1mon")[0])
@@ -1511,7 +1529,7 @@ function selectFirstMon() {
 }
 
 function selectTrainer(value) {
-	document.getElementById("trainer-pok-container2").textContent="";
+	document.getElementById("trainer-pok-list-opposing2").textContent="";
 	if(value >= 1620){
 		value = 1620;
 	}else if(value<=0){
@@ -1851,15 +1869,23 @@ function collapseArrow(arrow){
 	}
 }
 
-
+window.isInDoubles = false;
 function switchIconSingle(){
 	document.getElementById("monDouble").removeAttribute("hidden");
 	document.getElementById("trainer-pok-list-opposing2").removeAttribute("hidden");
+	for (toShow of document.getElementsByClassName("for-doubles")){
+		toShow.removeAttribute("hidden");
+	}
+	window.isInDoubles = true;
 }
 
 function switchIconDouble(){
 	document.getElementById("monDouble").setAttribute("hidden" ,true);
 	document.getElementById("trainer-pok-list-opposing2").setAttribute("hidden" ,true);
+	for (toHide of document.getElementsByClassName("for-doubles")){
+		toHide.setAttribute("hidden" ,true);
+	}
+	window.isInDoubles = false;
 }
 
 function openCloseItemBox(){

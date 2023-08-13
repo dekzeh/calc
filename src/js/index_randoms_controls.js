@@ -10,7 +10,7 @@ $("#p2 .item").bind("keyup change", function () {
 lastManualStatus["#p2"] = "Healthy";
 lastAutoStatus["#p1"] = "Healthy";
 
-var resultLocations = [[], []];
+var resultLocations = [[], [], [], []];
 for (var i = 0; i < 4; i++) {
 	resultLocations[0].push({
 		"move": "#resultMoveL" + (i + 1),
@@ -20,12 +20,24 @@ for (var i = 0; i < 4; i++) {
 		"move": "#resultMoveR" + (i + 1),
 		"damage": "#resultDamageR" + (i + 1)
 	});
+	resultLocations[2].push({
+		"move": "#resultMove2L" + (i + 1),
+		"damage": "#resultDamage2L" + (i + 1)
+	});
+	resultLocations[3].push({
+		"move": "#resultMove2R" + (i + 1),
+		"damage": "#resultDamage2R" + (i + 1)
+	});
 }
 
 var damageResults;
-function performCalculations() {
+/*
+	@pP2 potential player 2
+	@double, if set the the result will be shown in the second div
+*/
+function performCalculations(pP2, double) {
 	var p1info = $("#p1");
-	var p2info = $("#p2");
+	var p2info = pP2 ? pP2 : $("#p2");
 	var p1 = createPokemon(p1info);
 	var p2 = createPokemon(p2info);
 	var p1field = createField();
@@ -37,8 +49,12 @@ function performCalculations() {
 	var battling = [p1, p2];
 	p1.maxDamages = [];
 	p2.maxDamages = [];
-	p1info.find(".sp .totalMod").text(p1.stats.spe);
-	p2info.find(".sp .totalMod").text(p2.stats.spe);
+	try {
+		p1info.find(".sp .totalMod").text(p1.stats.spe);
+		p2info.find(".sp .totalMod").text(p2.stats.spe);
+	} catch (e) {
+
+	}
 	var fastestSide = p1.stats.spe > p2.stats.spe ? 0 : p1.stats.spe === p2.stats.spe ? "tie" : 1;
 
 	var result, maxDamage;
@@ -56,8 +72,13 @@ function performCalculations() {
 		p1.maxDamages.sort(function (firstMove, secondMove) {
 			return secondMove.maxDamage - firstMove.maxDamage;
 		});
-		$(resultLocations[0][i].move + " + label").text(p1.moves[i].name.replace("Hidden Power", "HP"));
-		$(resultLocations[0][i].damage).text(result.moveDesc(notation));
+		if (!double) {
+			$(resultLocations[0][i].move + " + label").text(p1.moves[i].name.replace("Hidden Power", "HP"));
+			$(resultLocations[0][i].damage).text(result.moveDesc(notation));
+		} else {
+			$(resultLocations[0 + 2][i].move + " + label").text(p1.moves[i].name.replace("Hidden Power", "HP"));
+			$(resultLocations[0 + 2][i].damage).text(result.moveDesc(notation));
+		}
 
 		// P2
 		result = damageResults[1][i];
@@ -70,8 +91,13 @@ function performCalculations() {
 		p2.maxDamages.sort(function (firstMove, secondMove) {
 			return secondMove.maxDamage - firstMove.maxDamage;
 		});
-		$(resultLocations[1][i].move + " + label").text(p2.moves[i].name.replace("Hidden Power", "HP"));
-		$(resultLocations[1][i].damage).text(result.moveDesc(notation));
+		if (!double) {
+			$(resultLocations[1][i].move + " + label").text(p2.moves[i].name.replace("Hidden Power", "HP"));
+			$(resultLocations[1][i].damage).text(result.moveDesc(notation));
+		} else {
+			$(resultLocations[1 + 2][i].move + " + label").text(p2.moves[i].name.replace("Hidden Power", "HP"));
+			$(resultLocations[1 + 2][i].damage).text(result.moveDesc(notation));
+		}
 
 		// BOTH
 		var bestMove;
@@ -81,10 +107,18 @@ function performCalculations() {
 			// Following some demands, the speed tie will be affect to the adversary
 			bestMove = battling[0].maxDamages[0].moveOrder;
 			var chosenPokemon = battling[0] === p2 ? "0" : "1";
-			bestResult = $(resultLocations[chosenPokemon][bestMove].move);
+			if (!double) {
+				bestResult = $(resultLocations[chosenPokemon][bestMove].move);
+			} else {
+				//bestResult = $(resultLocations[chosenPokemon + 2][bestMove].move);
+			}
 		} else {
 			bestMove = battling[fastestSide].maxDamages[0].moveOrder;
-			bestResult = $(resultLocations[fastestSide][bestMove].move);
+			if (!double) {
+				bestResult = $(resultLocations[fastestSide][bestMove].move);
+			} else {
+				//bestResult = $(resultLocations[fastestSide + 2][bestMove].move);
+			}
 		}
 	}
 	if ($('.locked-move').length) {
@@ -94,10 +128,14 @@ function performCalculations() {
 	}
 	bestResult.prop("checked", true);
 	bestResult.change();
-	$("#resultHeaderL").text(p1.name + "'s Moves (select one to show detailed results)");
-	$("#resultHeaderR").text(p2.name + "'s Moves (select one to show detailed results)");
+	if (!double) {
+		$("#resultHeaderL").text(p1.name + "'s Moves (select one to show detailed results)");
+		$("#resultHeaderR").text(p2.name + "'s Moves (select one to show detailed results)");
+	} else {
+		$("#resultHeader2L").text(p1.name + "'s Moves (select one to show detailed results)");
+		$("#resultHeader2R").text(p2.name + "'s Moves (select one to show detailed results)");
+	}
 }
-
 
 function calculationsColors(p1info, p2) {
 	if (!p2) {
@@ -281,7 +319,27 @@ function calcTrigger() {
 	if (window.AUTO_REFRESH) {
 		window.refreshColorCode();
 	}
-	performCalculations();
+	if (window.isInDoubles) {
+		var monRow1 = document.getElementById("trainer-pok-list-opposing").children[0];
+		monRow1 = monRow1 ? monRow1.getAttribute("data-id") : null;
+		var monRow2 = document.getElementById("trainer-pok-list-opposing2").children[0];
+		monRow2 = monRow2 ? monRow2.getAttribute("data-id") : null;
+		var activeMon = $('#p2').find("input.set-selector").val();
+		if (!monRow1 || !monRow2) {
+			performCalculations();
+		} else if (monRow1 != activeMon && monRow2 != activeMon) {
+			performCalculations(monRow1);
+			performCalculations(monRow2, true);
+		} else if (monRow1 == activeMon) {
+			performCalculations();
+			performCalculations(monRow2, true);
+		} else {
+			performCalculations();
+			performCalculations(monRow1, true);
+		}
+	} else {
+		performCalculations();
+	}
 }
 
 $(document).ready(function () {
@@ -302,11 +360,11 @@ $(document).ready(function () {
 			}
 		}
 	}
-	$(".calc-trigger").bind("change keyup", calcTrigger);
+	$(".calc-trigger").bind("change keyup drop", calcTrigger);
 	$(".save-trigger").bind("change keyup", saveTrigger);
 	$(".ic").click(calcTrigger);
 	$(".ic").click(saveTrigger);
-	performCalculations();
+	//performCalculations(); i think it's no longer usefull
 });
 
 /* Click-to-copy function */

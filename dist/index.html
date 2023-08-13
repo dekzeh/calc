@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <title>Pok&eacute;mon Damage Calculator</title>
     <link type="text/css" rel="stylesheet" href="./js/vendor/select2/select2.css" />
-    <link type="text/css" rel="stylesheet" href="./css/main.css?8925fd60" />
+    <link type="text/css" rel="stylesheet" href="./css/main.css?36c8bf04" />
     <link type="text/css" rel="stylesheet" href="./css/vendor/bootstrap.css" />
     <link type="text/css" rel="stylesheet" href="./css/dark-theme.css" id="dark-theme-styles">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -109,13 +109,62 @@
                 <span id="resultDamageR4">??? - ???%</span>
             </div>
         </div>
+        <div  aria-labelledby="resultHeader2L" class="move-result-subgroup for-doubles" role="radiogroup" hidden>
+            <div class="result-move-header"><span id="resultHeader2L">Pok&eacute;mon 1's Moves (select one to show detailed results)</span>
+            </div><!--ADDED FOR DOUBLES-->
+            <div>
+                <input class="result-move visually-hidden" type="radio" name="resultMove" id="resultMove2L1" checked="checked" aria-describedby="resultDamage2L1" />
+                <label class="btn btn-xxxwide btn-top" for="resultMove2L1">Loading...</label>
+                <span id="resultDamage2L1">??? - ???%</span>
+            </div>
+            <div>
+                <input class="result-move visually-hidden" type="radio" name="resultMove" id="resultMove2L2" aria-describedby="resultDamage2L2" />
+                <label class="btn btn-xxxwide btn-mid" for="resultMove2L2">Loading...</label>
+                <span id="resultDamage2L2">??? - ???%</span>
+            </div>
+            <div>
+                <input class="result-move visually-hidden" type="radio" name="resultMove" id="resultMove2L3" aria-describedby="resultDamage2L3" />
+                <label class="btn btn-xxxwide btn-mid" for="resultMove2L3">Loading...</label>
+                <span id="resultDamage2L3">??? - ???%</span>
+            </div>
+            <div>
+                <input class="result-move visually-hidden" type="radio" name="resultMove" id="resultMove2L4" aria-describedby="resultDamage2L4" />
+                <label class="btn btn-xxxwide btn-bottom" for="resultMove2L4">Loading...</label>
+                <span id="resultDamage2L4">??? - ???%</span>
+            </div>
+        </div>
+        <div aria-labelledby="resultHeader2R" class="move-result-subgroup for-doubles" role="radiogroup" hidden>
+            <div class="result-move-header"><span id="resultHeader2R">Pok&eacute;mon 2's Moves (select one to show detailed results)</span>
+            </div>
+            <div>
+                <input class="result-move visually-hidden" type="radio" name="resultMove" id="resultMove2R1" aria-describedby="resultDamage2R1" />
+                <label class="btn btn-xxxwide btn-top" for="resultMove2R1">Loading...</label>
+                <span id="resultDamage2R1">??? - ???%</span>
+            </div>
+            <div>
+                <input class="result-move visually-hidden" type="radio" name="resultMove" id="resultMove2R2" aria-describedby="resultDamage2R2" />
+                <label class="btn btn-xxxwide btn-mid" for="resultMove2R2">Loading...</label>
+                <span id="resultDamage2R2">??? - ???%</span>
+            </div>
+            <div>
+                <input class="result-move visually-hidden" type="radio" name="resultMove" id="resultMove2R3" aria-describedby="resultDamage2R3" />
+                <label class="btn btn-xxxwide btn-mid" for="resultMove2R3">Loading...</label>
+                <span id="resultDamage2R3">??? - ???%</span>
+            </div>
+            <div>
+                <input class="result-move visually-hidden" type="radio" name="resultMove" id="resultMove2R4" aria-describedby="resultDamage2R4" />
+                <label class="btn btn-xxxwide btn-bottom" for="resultMove2R4">Loading...</label>
+                <span id="resultDamage2R4">??? - ???%</span>
+            </div>
+        </div>
     </div>
     <div aria-label="Calculation results" class="main-result-group" role="region">
         <div class="big-text" title="Click to copy.">
             <span id="mainResult">Loading...</span>
             <span id="tooltipText">Copied</span>
         </div>
-        <div class="small-text"><span id="damageValues">(If you see this message for more than a few seconds, try enabling JavaScript.)</span>
+        <div class="small-text">
+            <span id="damageValues">(If you see this message for more than a few seconds, try enabling JavaScript.)</span>
         </div>
     </div>
     <div class="left-side-pannel side-pannel">
@@ -1624,12 +1673,9 @@
             <fieldset class="poke-info" id="trainer-mons">
                 <legend align="center"> OPPOSING TEAM</legend>
                 <div class="trainer-poks">
-                    <div class="trainer-pok-list-opposing dropzone">
+                    <div id="trainer-pok-list-opposing" class="trainer-pok-list-opposing dropzone calc-trigger">
                     </div>
-                    <div id="trainer-pok-list-opposing2" hidden>
-                        <div id="trainer-pok-container2" class="dropzone">
-                            
-                        </div>
+                    <div id="trainer-pok-list-opposing2" class="dropzone calc-trigger" hidden>
                     </div>
                 </div>
                 <!--hr>
@@ -1832,8 +1878,8 @@
     <script type="text/javascript" src="./calc/result.js?9f8881b5"></script>
     <script type="text/javascript" src="./calc/adaptable.js?92e49194"></script>
     <script type="text/javascript" src="./calc/index.js?0b1745b9"></script>
-    <script type="text/javascript" src="./js/shared_controls.js?d52166a9"></script>
-    <script type="text/javascript" src="./js/index_randoms_controls.js?b12818c8"></script>
+    <script type="text/javascript" src="./js/shared_controls.js?f1b09a5b"></script>
+    <script type="text/javascript" src="./js/index_randoms_controls.js?19a3b8e9"></script>
     <script type="text/javascript" src="./js/moveset_import.js?1ea94d3d"></script>
 </div>
 

@@ -159,7 +159,7 @@ html, body {
     box-sizing: border-box;
 }
 
-.trainer-pok:hover {
+.trainer-pok:hover,  .opposite-pok:hover{
     outline: 2px solid;
     outline-color: #1abc9c;
 }
@@ -605,7 +605,7 @@ table.field {
     background: linear-gradient(to right, #daff08 50%, #dd0b0b 0%);
 }
 
-.box-poke, #trainer-pok-container2{
+.box-poke, #trainer-pok-list-opposing2{
     min-height: 30px;
 }
 .dropzone::before{
