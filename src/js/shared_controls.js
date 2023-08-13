@@ -463,7 +463,7 @@ function isMonFromCurrentTrainer(current, neew) {
 		return false
 	}
 }
-
+window.nextTrainerId = 1;
 // auto-update set details on select top bar pokemon
 $(".set-selector").change(function () {
 	window.NO_CALC = true;
@@ -490,10 +490,12 @@ $(".set-selector").change(function () {
 				newPoke.className = "opposite-pok right-side";
 				newPoke.src = `https://raw.githubusercontent.com/May8th1995/sprites/master/${pok_name}.png`;
 				newPoke.title = `${next_poks[i]}, ${next_poks[i]} BP`;
+				window.nextTrainerId=next_poks[i]
 				newPoke.dataset.id = `${CURRENT_TRAINER_POKS[i].split("]")[1]}`;
 				frag.append(newPoke);
 			}
 		}
+		console.log(window.nextTrainerId);
 	} else {
 		topPokemonIcon(fullSetName, $("#p1mon")[0])
 	}
@@ -1559,10 +1561,10 @@ function selectTrainer(value) {
 }
 
 function nextTrainer() {
-	string = ($(".trainer-pok-list-opposing")).html()
-	initialSplit = string.split("[")
-	value = parseInt(initialSplit[initialSplit.length - 2].split("]")[0]) + 1
-	selectTrainer(value)
+	//string = ($(".trainer-pok-list-opposing")).html()
+	//initialSplit = string.split("[")
+	//value = parseInt(initialSplit[initialSplit.length - 2].split("]")[0]) + 1
+	selectTrainer(window.nextTrainerId)
 }
 
 function previousTrainer() {
