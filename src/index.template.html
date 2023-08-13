@@ -109,54 +109,6 @@
                 <span id="resultDamageR4">??? - ???%</span>
             </div>
         </div>
-        <div  aria-labelledby="resultHeader2L" class="move-result-subgroup for-doubles" role="radiogroup" hidden>
-            <div class="result-move-header"><span id="resultHeader2L">Pok&eacute;mon 1's Moves (select one to show detailed results)</span>
-            </div><!--ADDED FOR DOUBLES-->
-            <div>
-                <input class="result-move visually-hidden" type="radio" name="resultMove" id="resultMove2L1" checked="checked" aria-describedby="resultDamage2L1" />
-                <label class="btn btn-xxxwide btn-top" for="resultMove2L1">Loading...</label>
-                <span id="resultDamage2L1">??? - ???%</span>
-            </div>
-            <div>
-                <input class="result-move visually-hidden" type="radio" name="resultMove" id="resultMove2L2" aria-describedby="resultDamage2L2" />
-                <label class="btn btn-xxxwide btn-mid" for="resultMove2L2">Loading...</label>
-                <span id="resultDamage2L2">??? - ???%</span>
-            </div>
-            <div>
-                <input class="result-move visually-hidden" type="radio" name="resultMove" id="resultMove2L3" aria-describedby="resultDamage2L3" />
-                <label class="btn btn-xxxwide btn-mid" for="resultMove2L3">Loading...</label>
-                <span id="resultDamage2L3">??? - ???%</span>
-            </div>
-            <div>
-                <input class="result-move visually-hidden" type="radio" name="resultMove" id="resultMove2L4" aria-describedby="resultDamage2L4" />
-                <label class="btn btn-xxxwide btn-bottom" for="resultMove2L4">Loading...</label>
-                <span id="resultDamage2L4">??? - ???%</span>
-            </div>
-        </div>
-        <div aria-labelledby="resultHeader2R" class="move-result-subgroup for-doubles" role="radiogroup" hidden>
-            <div class="result-move-header"><span id="resultHeader2R">Pok&eacute;mon 2's Moves (select one to show detailed results)</span>
-            </div>
-            <div>
-                <input class="result-move visually-hidden" type="radio" name="resultMove" id="resultMove2R1" aria-describedby="resultDamage2R1" />
-                <label class="btn btn-xxxwide btn-top" for="resultMove2R1">Loading...</label>
-                <span id="resultDamage2R1">??? - ???%</span>
-            </div>
-            <div>
-                <input class="result-move visually-hidden" type="radio" name="resultMove" id="resultMove2R2" aria-describedby="resultDamage2R2" />
-                <label class="btn btn-xxxwide btn-mid" for="resultMove2R2">Loading...</label>
-                <span id="resultDamage2R2">??? - ???%</span>
-            </div>
-            <div>
-                <input class="result-move visually-hidden" type="radio" name="resultMove" id="resultMove2R3" aria-describedby="resultDamage2R3" />
-                <label class="btn btn-xxxwide btn-mid" for="resultMove2R3">Loading...</label>
-                <span id="resultDamage2R3">??? - ???%</span>
-            </div>
-            <div>
-                <input class="result-move visually-hidden" type="radio" name="resultMove" id="resultMove2R4" aria-describedby="resultDamage2R4" />
-                <label class="btn btn-xxxwide btn-bottom" for="resultMove2R4">Loading...</label>
-                <span id="resultDamage2R4">??? - ???%</span>
-            </div>
-        </div>
     </div>
     <div aria-label="Calculation results" class="main-result-group" role="region">
         <div class="big-text" title="Click to copy.">
@@ -164,7 +116,66 @@
             <span id="tooltipText">Copied</span>
         </div>
         <div class="small-text">
-            <span id="damageValues">(If you see this message for more than a few seconds, try enabling JavaScript.)</span>
+            <span id="damageValues"></span>
+        </div>
+    </div>
+    <div aria-label="Move selection" class="move-result-group for-doubles" role="region" title="Select a move to show detailed results." hidden>
+        <div aria-labelledby="resultHeader2L" class="move-result-subgroup " role="radiogroup">
+            <div class="result-move-header"><span id="resultHeader2L">Pok&eacute;mon 1's Moves (select one to show detailed results)</span>
+            </div><!--ADDED FOR DOUBLES-->
+            <div>
+                <input class="result-move2 visually-hidden" type="radio" name="resultMove2" id="resultMove2L1" checked="checked" aria-describedby="resultDamage2L1" />
+                <label class="btn btn-xxxwide btn-top" for="resultMove2L1">Loading...</label>
+                <span id="resultDamage2L1">??? - ???%</span>
+            </div>
+            <div>
+                <input class="result-move2 visually-hidden" type="radio" name="resultMove2" id="resultMove2L2" aria-describedby="resultDamage2L2" />
+                <label class="btn btn-xxxwide btn-mid" for="resultMove2L2">Loading...</label>
+                <span id="resultDamage2L2">??? - ???%</span>
+            </div>
+            <div>
+                <input class="result-move2 visually-hidden" type="radio" name="resultMove2" id="resultMove2L3" aria-describedby="resultDamage2L3" />
+                <label class="btn btn-xxxwide btn-mid" for="resultMove2L3">Loading...</label>
+                <span id="resultDamage2L3">??? - ???%</span>
+            </div>
+            <div>
+                <input class="result-move2 visually-hidden" type="radio" name="resultMove2" id="resultMove2L4" aria-describedby="resultDamage2L4" />
+                <label class="btn btn-xxxwide btn-bottom" for="resultMove2L4">Loading...</label>
+                <span id="resultDamage2L4">??? - ???%</span>
+            </div>
+        </div>
+        <div aria-labelledby="resultHeader2R" class="move-result-subgroup" role="radiogroup">
+            <div class="result-move-header"><span id="resultHeader2R">Pok&eacute;mon 2's Moves (select one to show detailed results)</span>
+            </div>
+            <div>
+                <input class="result-move2 visually-hidden" type="radio" name="resultMove2" id="resultMove2R1" aria-describedby="resultDamage2R1" />
+                <label class="btn btn-xxxwide btn-top" for="resultMove2R1">Loading...</label>
+                <span id="resultDamage2R1">??? - ???%</span>
+            </div>
+            <div>
+                <input class="result-move2 visually-hidden" type="radio" name="resultMove2" id="resultMove2R2" aria-describedby="resultDamage2R2" />
+                <label class="btn btn-xxxwide btn-mid" for="resultMove2R2">Loading...</label>
+                <span id="resultDamage2R2">??? - ???%</span>
+            </div>
+            <div>
+                <input class="result-move2 visually-hidden" type="radio" name="resultMove2" id="resultMove2R3" aria-describedby="resultDamage2R3" />
+                <label class="btn btn-xxxwide btn-mid" for="resultMove2R3">Loading...</label>
+                <span id="resultDamage2R3">??? - ???%</span>
+            </div>
+            <div>
+                <input class="result-move2 visually-hidden" type="radio" name="resultMove2" id="resultMove2R4" aria-describedby="resultDamage2R4" />
+                <label class="btn btn-xxxwide btn-bottom" for="resultMove2R4">Loading...</label>
+                <span id="resultDamage2R4">??? - ???%</span>
+            </div>
+        </div>
+    </div>
+    <div aria-label="Calculation results2" class="main-result-group for-doubles" role="region" hidden>
+        <div class="big-text" title="Click to copy."><!--ADDED FOR DOUBLES-->
+            <span id="mainResult2">Loading...</span>
+            <span id="tooltipText">Copied</span>
+        </div>
+        <div class="small-text">
+            <span id="damageValues2"></span>
         </div>
     </div>
     <div class="left-side-pannel side-pannel">

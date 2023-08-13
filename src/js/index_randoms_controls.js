@@ -36,6 +36,7 @@ var damageResults;
 	@double, if set the the result will be shown in the second div
 */
 function performCalculations(pP2, double) {
+	double = double ? 2 : 0;
 	var p1info = $("#p1");
 	var p2info = pP2 ? pP2 : $("#p2");
 	var p1 = createPokemon(p1info);
@@ -43,9 +44,9 @@ function performCalculations(pP2, double) {
 	var p1field = createField();
 	var p2field = p1field.clone().swap();
 
-	damageResults = calculateAllMoves(gen, p1, p1field, p2, p2field);
-	p1 = damageResults[0][0].attacker;
-	p2 = damageResults[1][0].attacker;
+	damageResults = calculateAllMoves(gen, p1, p1field, p2, p2field, double);
+	p1 = damageResults[0 + double][0].attacker;
+	p2 = damageResults[1 + double][0].attacker;
 	var battling = [p1, p2];
 	p1.maxDamages = [];
 	p2.maxDamages = [];
@@ -62,7 +63,7 @@ function performCalculations(pP2, double) {
 	var zProtectAlerted = false;
 	for (var i = 0; i < 4; i++) {
 		// P1
-		result = damageResults[0][i];
+		result = damageResults[0 + double][i];
 		maxDamage = result.range()[1] * p1.moves[i].hits;
 		if (!zProtectAlerted && maxDamage > 0 && p1.item.indexOf(" Z") === -1 && p1field.defenderSide.isProtected && p1.moves[i].isZ) {
 			alert('Although only possible while hacking, Z-Moves fully damage through protect without a Z-Crystal');
@@ -72,16 +73,11 @@ function performCalculations(pP2, double) {
 		p1.maxDamages.sort(function (firstMove, secondMove) {
 			return secondMove.maxDamage - firstMove.maxDamage;
 		});
-		if (!double) {
-			$(resultLocations[0][i].move + " + label").text(p1.moves[i].name.replace("Hidden Power", "HP"));
-			$(resultLocations[0][i].damage).text(result.moveDesc(notation));
-		} else {
-			$(resultLocations[0 + 2][i].move + " + label").text(p1.moves[i].name.replace("Hidden Power", "HP"));
-			$(resultLocations[0 + 2][i].damage).text(result.moveDesc(notation));
-		}
+		$(resultLocations[0 + double][i].move + " + label").text(p1.moves[i].name.replace("Hidden Power", "HP"));
+		$(resultLocations[0 + double][i].damage).text(result.moveDesc(notation));
 
 		// P2
-		result = damageResults[1][i];
+		result = damageResults[1 + double][i];
 		maxDamage = result.range()[1] * p2.moves[i].hits;
 		if (!zProtectAlerted && maxDamage > 0 && p2.item.indexOf(" Z") === -1 && p2field.defenderSide.isProtected && p2.moves[i].isZ) {
 			alert('Although only possible while hacking, Z-Moves fully damage through protect without a Z-Crystal');
@@ -91,52 +87,37 @@ function performCalculations(pP2, double) {
 		p2.maxDamages.sort(function (firstMove, secondMove) {
 			return secondMove.maxDamage - firstMove.maxDamage;
 		});
-		if (!double) {
-			$(resultLocations[1][i].move + " + label").text(p2.moves[i].name.replace("Hidden Power", "HP"));
-			$(resultLocations[1][i].damage).text(result.moveDesc(notation));
-		} else {
-			$(resultLocations[1 + 2][i].move + " + label").text(p2.moves[i].name.replace("Hidden Power", "HP"));
-			$(resultLocations[1 + 2][i].damage).text(result.moveDesc(notation));
-		}
+		$(resultLocations[1 + double][i].move + " + label").text(p2.moves[i].name.replace("Hidden Power", "HP"));
+		$(resultLocations[1 + double][i].damage).text(result.moveDesc(notation));
 
 		// BOTH
 		var bestMove;
 		if (fastestSide === "tie") {
 			// Technically the order should be random in a speed tie, but this non-determinism makes manual testing more difficult.
 			// battling.sort(function () { return 0.5 - Math.random(); });
-			// Following some demands, the speed tie will be affect to the adversary
+			// Following some demands, the speed tie will be shown in favor of the adversary
 			bestMove = battling[0].maxDamages[0].moveOrder;
-			var chosenPokemon = battling[0] === p2 ? "0" : "1";
-			if (!double) {
-				bestResult = $(resultLocations[chosenPokemon][bestMove].move);
-			} else {
-				//bestResult = $(resultLocations[chosenPokemon + 2][bestMove].move);
-			}
+			var chosenPokemon = battling[0] === p2 ? 0 : 1;
+			bestResult = $(resultLocations[chosenPokemon + double][bestMove].move);
 		} else {
 			bestMove = battling[fastestSide].maxDamages[0].moveOrder;
-			if (!double) {
-				bestResult = $(resultLocations[fastestSide][bestMove].move);
-			} else {
-				//bestResult = $(resultLocations[fastestSide + 2][bestMove].move);
-			}
+			bestResult = $(resultLocations[fastestSide + double][bestMove].move);
 		}
 	}
 	if ($('.locked-move').length) {
 		bestResult = $('.locked-move');
 	} else {
-		if (!double) {
-			stickyMoves.setSelectedMove(bestResult.prop("id"));
-		}
+		stickyMoves.setSelectedMove(bestResult.prop("id"));
 	}
-	if (!double) {
-		bestResult.prop("checked", true);
-		bestResult.change();
-		$("#resultHeaderL").text(p1.name + "'s Moves");
-		$("#resultHeaderR").text(p2.name + "'s Moves");
-	} else {
+	if (double) {
 		$("#resultHeader2L").text(p1.name + "'s Moves");
 		$("#resultHeader2R").text(p2.name + "'s Moves");
+	} else {
+		$("#resultHeaderL").text(p1.name + "'s Moves");
+		$("#resultHeaderR").text(p2.name + "'s Moves");
 	}
+	bestResult.prop("checked", true);
+	bestResult.change();
 }
 
 function calculationsColors(p1info, p2) {
@@ -224,9 +205,10 @@ function calculationsColors(p1info, p2) {
 	return {speed: fastest, code: p1KO + p2KO};
 }
 
-$(".result-move").change(function () {
+
+$(".result-move").change(function (ev) {
 	if (damageResults) {
-		var result = findDamageResult($(this));
+		var result = findDamageResult(ev.target);
 		if (result) {
 			var desc = result.fullDesc(notation, false);
 			if (desc.indexOf('--') === -1) desc += ' -- possibly the worst move ever';
@@ -236,6 +218,17 @@ $(".result-move").change(function () {
 	}
 });
 
+$(".result-move2").change(function (ev) {
+	if (damageResults) {
+		var result = findDamageResult(ev.target);
+		if (result) {
+			var desc = result.fullDesc(notation, false);
+			if (desc.indexOf('--') === -1) desc += ' -- possibly the worst move ever';
+			$("#mainResult2").text(desc);
+			$("#damageValues2").text("Possible damage amounts: (" + displayDamageHits(result.damage) + ")");
+		}
+	}
+});
 function displayDamageHits(damage) {
 	// Fixed Damage
 	if (typeof damage === 'number') return damage;
@@ -250,7 +243,7 @@ function displayDamageHits(damage) {
 }
 
 function findDamageResult(resultMoveObj) {
-	var selector = "#" + resultMoveObj.attr("id");
+	var selector = "#" + resultMoveObj.getAttribute("id");
 	for (var i = 0; i < resultLocations.length; i++) {
 		for (var j = 0; j < resultLocations[i].length; j++) {
 			if (resultLocations[i][j].move === selector) {
@@ -275,12 +268,13 @@ function checkStatBoost(p1, p2) {
 	}
 }
 
-function calculateAllMoves(gen, p1, p1field, p2, p2field) {
+function calculateAllMoves(gen, p1, p1field, p2, p2field, double) {
+	double = double ? 2 : 0;
 	checkStatBoost(p1, p2);
-	var results = [[], []];
+	var results = [[], [], [], []];
 	for (var i = 0; i < 4; i++) {
-		results[0][i] = calc.calculate(gen, p1, p2, p1.moves[i], p1field);
-		results[1][i] = calc.calculate(gen, p2, p1, p2.moves[i], p2field);
+		results[0 + double][i] = calc.calculate(gen, p1, p2, p1.moves[i], p1field);
+		results[1 + double][i] = calc.calculate(gen, p2, p1, p2.moves[i], p2field);
 	}
 	return results;
 }
