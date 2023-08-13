@@ -1,5 +1,3 @@
-const { json } = require("express");
-
 if (!Array.prototype.indexOf) {
 	Array.prototype.indexOf = function (searchElement, fromIndex) { // eslint-disable-line no-extend-native
 		var k;
@@ -1639,6 +1637,8 @@ function TrashPokemon() {
 function RemoveAllPokemon() {
 	document.getEle
 }
+
+/* dragging for pokemons in boxes*/
 function allowDrop(ev) {
 	ev.preventDefault();
 }
@@ -1686,6 +1686,36 @@ function handleDragEnter(ev) {
 function handleDragLeave(ev) {
 	ev.target.classList.remove('over');
 }
+/* dragging for the item box*/
+// target elements with the "draggable" class
+interact('.box-frame-header').draggable({
+    inertia: true,
+    modifiers: [
+      interact.modifiers.restrictRect({
+        restriction: document.body,
+        endOnly: true
+      })
+    ],
+    autoScroll: true,
+
+    listeners: {
+      // call this function on every dragmove event
+      move: dragMoveListener,
+    }
+  })
+
+function dragMoveListener (event) {
+	var target = event.target
+
+    var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx
+    var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy 
+	target.parentNode.style.left=x+"px"
+	target.parentNode.style.top=y+"px"
+    target.setAttribute('data-x', x)
+    target.setAttribute('data-y', y)
+}
+
+window.dragMoveListener = dragMoveListener
 
 function SpeedBorderSetsChange(ev){
 	var monImgs = document.getElementsByClassName("left-side");
@@ -1823,7 +1853,7 @@ function switchIconDouble(){
 }
 
 function openCloseItemBox(){
-	document.getElementById("mid-pop-win").toggleAttribute("hidden");
+	document.getElementById("item-box-frame").toggleAttribute("hidden");
 }
 
 function selectItem(ev){
@@ -1895,7 +1925,7 @@ $(document).ready(function () {
 	$('#singles-format').click(switchIconDouble);
 	$('#doubles-format').click(switchIconSingle);
 	$('#side-arrow-toggle').click(sideArrowToggle);
-	$('#close-pop-win, #ball-item').click(openCloseItemBox);
+	$('#close-item-box, #ball-item').click(openCloseItemBox);
 	$('.ic').click(selectItem);
 	$('#save-change').click(saveTrainerPokemon)
 	for (let dropzone of document.getElementsByClassName("dropzone")){
@@ -1904,6 +1934,7 @@ $(document).ready(function () {
 		dropzone.ondrop=drop;
 		dropzone.ondragover=allowDrop;
 	}
+	$("box-frame-header")
 	//select last trainer
 	var last = parseInt(localStorage.getItem("lasttimetrainer"),10);
 	if (isNaN(last)) {

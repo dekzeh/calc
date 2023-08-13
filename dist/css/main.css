@@ -668,28 +668,29 @@ table.field {
     color: unset;
 }
 
-.mid-pop-win{
-    position: fixed;
+.box-frame{
+    position: absolute;
     z-index: 1;
     width: 650px;
-    height: 600px;
+    height: 400px;
     margin: 0 auto;
     background: var(--fieldset-color);
     border: 1px solid #AAA;
-    top: 50%;
-    left: 50%;
+    top: 500px;
+    left: 500px;
     overflow: scroll;
     padding: 3px;
 }
-.pop-win-header{
+.box-frame-header{
     position: relative;
+    min-height: 30px;
 }
-.pop-win-header>legend{
+.box-frame-header>legend{
     font-size: larger;
     text-align: unset;
 }
 
-#close-pop-win{
+#close-item-box{
     width: 25px;
     height: 25px;
     background-color: red;
@@ -700,7 +701,7 @@ table.field {
     right: 0%;
 }
 
-#close-pop-win:hover{
+#close-item-box:hover{
     background-color: white;
     overflow: auto;
     
