@@ -476,7 +476,8 @@ $(".set-selector").change(function () {
 		}else{
 			CURRENT_TRAINER_POKS = get_trainer_poks(fullSetName)
 			var next_poks = CURRENT_TRAINER_POKS.sort(sortmons)
-			var trpok_html = ""
+			var frag = new DocumentFragment();
+			$('.trainer-pok-list-opposing').html('');
 			for (i in next_poks) {
 				if (next_poks[i][0].includes($('input.opposing').val())) {
 					continue
@@ -485,15 +486,19 @@ $(".set-selector").change(function () {
 				if (pok_name == "Zygarde-10%") {
 					pok_name = "Zygarde-10%25"
 				}//this ruined my day
-				var pok = `<img class="opposite-pok right-side" src="https://raw.githubusercontent.com/May8th1995/sprites/master/${pok_name}.png" data-id="${CURRENT_TRAINER_POKS[i].split("]")[1]}" title="${next_poks[i]}, ${next_poks[i]} BP">`
-				trpok_html += pok
+				var newPoke = document.createElement("img");
+				newPoke.className = "opposite-pok right-side";
+				newPoke.src = `https://raw.githubusercontent.com/May8th1995/sprites/master/${pok_name}.png`;
+				newPoke.title = `${next_poks[i]}, ${next_poks[i]} BP`;
+				newPoke.dataset.id = `${CURRENT_TRAINER_POKS[i].split("]")[1]}`;
+				frag.append(newPoke);
 			}
 		}
 	} else {
 		topPokemonIcon(fullSetName, $("#p1mon")[0])
 	}
 
-	$('.trainer-pok-list-opposing').html(trpok_html)
+	$('.trainer-pok-list-opposing').append(frag);
 	for (mon of document.getElementsByClassName('trainer-pok-list-opposing')[0].children){
 		mon.addEventListener("dragstart", dragstart_handler);
 	}
@@ -1664,6 +1669,20 @@ function RemoveAllPokemon() {
 	document.getEle
 }
 
+
+// Check whether control button is pressed
+$(document).keydown(function(event) {
+    if (event.which == "17")
+        cntrlIsPressed = true;
+    else if (event.which == 65 && cntrlIsPressed) {
+        // Cntrl+  A
+        selectAllRows();
+    }
+});
+$(document).keyup(function() {
+    cntrlIsPressed = false;
+});
+var cntrlIsPressed = false;
 /* dragging for pokemons in boxes*/
 function allowDrop(ev) {
 	ev.preventDefault();
@@ -1686,19 +1705,15 @@ function drop(ev) {
 			
 	}
 	// if it's a pokemon
-	else if(ev.target.classList.contains("left-side")) {
-		//And if a sibling switch them
-		if(ev.target.parentNode == pokeDragged.parentNode){
-			let prev1 = ev.target.previousSibling || ev.target;
-			let prev2 = pokeDragged.previousSibling || pokeDragged;
-
-			prev1.after(pokeDragged);
-			prev2.after(ev.target);
-		}
-		//if not just append to the box it belongs
-		else{
-			let prev1 = ev.target.previousSibling || ev.target;
-			prev1.after(pokeDragged);
+	else if(ev.target.classList.contains("left-side") || ev.target.classList.contains("right-side")) {
+		if (!cntrlIsPressed){
+			let prev1 = pokeDragged.previousElementSibling ||  pokeDragged.nextElementSibling
+			ev.target.before(pokeDragged)
+			prev1.after(ev.target)
+			//swaps
+		} else {
+			//appends before
+			ev.target.before(pokeDragged)
 		}
 	}
 	ev.target.classList.remove('over');
