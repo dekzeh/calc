@@ -605,7 +605,7 @@ table.field {
     background: linear-gradient(to right, #daff08 50%, #dd0b0b 0%);
 }
 
-.box-poke{
+.box-poke, #trainer-pok-container2{
     min-height: 30px;
 }
 .dropzone::before{
@@ -656,7 +656,7 @@ table.field {
     float: none;
 }
 
-#p2mon, #p1mon, #monSingle, #monDouble {
+#p2mon, #p1mon, #monSingle, #monDouble{
     min-height: 30px;
 }
 

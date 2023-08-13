@@ -476,6 +476,9 @@ $(".set-selector").change(function () {
 	}
 
 	$('.trainer-pok-list-opposing').html(trpok_html)
+	for (mon of document.getElementsByClassName('trainer-pok-list-opposing')[0].children){
+		mon.addEventListener("dragstart", dragstart_handler);
+	}
 	var pokemonName = fullSetName.substring(0, fullSetName.indexOf(" ("));
 	var setName = fullSetName.substring(fullSetName.indexOf("(") + 1, fullSetName.lastIndexOf(")"));
 	var pokemon = pokedex[pokemonName];
@@ -1415,7 +1418,7 @@ function get_trainer_names() {
 	}
 	return trainer_names
 }
-function addBoxed(poke) {
+function addBoxed(poke, box) {
 	if (document.getElementById(`${poke.name}${poke.nameProp}`)) {
 		//nothing to do it already exist
 		return
@@ -1426,7 +1429,11 @@ function addBoxed(poke) {
 	newPoke.src = getSrcImgPokemon(poke);
 	newPoke.dataset.id = `${poke.name} (${poke.nameProp})`
 	newPoke.addEventListener("dragstart", dragstart_handler);
-	$('#box-poke-list')[0].appendChild(newPoke)
+	if (!box){
+		$('#box-poke-list')[0].appendChild(newPoke)
+	}else{
+		box.append(newPoke)
+	}
 }
 
 function getSrcImgPokemon(poke) {
@@ -1504,6 +1511,7 @@ function selectFirstMon() {
 }
 
 function selectTrainer(value) {
+	document.getElementById("trainer-pok-container2").textContent="";
 	if(value >= 1620){
 		value = 1620;
 	}else if(value<=0){
@@ -1846,10 +1854,12 @@ function collapseArrow(arrow){
 
 function switchIconSingle(){
 	document.getElementById("monDouble").removeAttribute("hidden");
+	document.getElementById("trainer-pok-list-opposing2").removeAttribute("hidden");
 }
 
 function switchIconDouble(){
 	document.getElementById("monDouble").setAttribute("hidden" ,true);
+	document.getElementById("trainer-pok-list-opposing2").setAttribute("hidden" ,true);
 }
 
 function openCloseItemBox(){
