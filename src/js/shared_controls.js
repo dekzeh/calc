@@ -1902,6 +1902,10 @@ function collapseArrow(arrow){
 window.isInDoubles = false;
 function switchIconSingle(){
 	document.getElementById("monDouble").removeAttribute("hidden");
+
+	if (+localStorage.getItem("doubleLegacy")){
+		return;
+	}
 	document.getElementById("trainer-pok-list-opposing2").removeAttribute("hidden");
 	for (toShow of document.getElementsByClassName("for-doubles")){
 		toShow.removeAttribute("hidden");
@@ -1911,6 +1915,10 @@ function switchIconSingle(){
 
 function switchIconDouble(){
 	document.getElementById("monDouble").setAttribute("hidden" ,true);
+
+	if (+localStorage.getItem("doubleLegacy")){
+		return;
+	}
 	document.getElementById("trainer-pok-list-opposing2").setAttribute("hidden" ,true);
 	for (toHide of document.getElementsByClassName("for-doubles")){
 		toHide.setAttribute("hidden" ,true);
@@ -1947,7 +1955,7 @@ function sideArrowToggle(){
 	}else{
 		btn.setAttribute("data-id", "true");
 		btn.innerText="Show Side Arrows";
-		localStorage.removeItem("hsidearrow");
+		localStorage.setItem("hsidearrow", "0");
 	}
 	for(pannel of document.getElementsByClassName("side-pannel")){
 		pannel.toggleAttribute("hidden")
@@ -1955,6 +1963,15 @@ function sideArrowToggle(){
 	setupSideCollapsers()
 }
 
+function toggleDoubleLegacyMode(){
+	if (+localStorage.getItem("doubleLegacy")){
+		localStorage.setItem("doubleLegacy", 0)
+		document.getElementById("double-legacy-mode").innerText="Doubles Modern"
+	}else{
+		localStorage.setItem("doubleLegacy", 1)
+		document.getElementById("double-legacy-mode").innerText="Doubles Legacy"
+	}
+}
 
 window.AUTO_REFRESH = false;
 $(document).ready(function () {
@@ -1997,7 +2014,9 @@ $(document).ready(function () {
 	$('#close-item-box, #ball-item').click(openCloseItemBox);
 	$('#close-note-box, #open-note').click(openCloseNoteBox);
 	$('.ic').click(selectItem);
-	$('#save-change').click(saveTrainerPokemon)
+	$('#save-change').click(saveTrainerPokemon);
+	$('#double-legacy-mode').click(toggleDoubleLegacyMode);
+
 	for (let dropzone of document.getElementsByClassName("dropzone")){
 		dropzone.ondragenter=handleDragEnter;
 		dropzone.ondragleave=handleDragLeave;
@@ -2018,10 +2037,15 @@ $(document).ready(function () {
 		onFirstTime()
 		localStorage.setItem("isNotNew", true)
 	}
-	if (localStorage.getItem("hsidearrow")){
+	if (+localStorage.getItem("hsidearrow")){
 		setupSideCollapsers()
 		sideArrowToggle()
 	}
+	if (+localStorage.getItem("doubleslegmode")){
+		setupSideCollapsers()
+		sideArrowToggle()
+	}
+
 	//some CSS variable;
 	document.documentElement.style.setProperty("--spe-bor-width", "3px");
 });
