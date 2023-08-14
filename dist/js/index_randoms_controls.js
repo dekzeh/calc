@@ -305,23 +305,47 @@ function saveTrigger(ev) {
 }
 
 function saveCurrentMon() {
-	var data = document.getElementsByClassName("info-group i-f-o-stats")[0].children[0].children[1].children;
+	var data = document.getElementsByClassName("info-group i-f-o-stats")[0];
+	var type = data.previousElementSibling.children;
+	var stats = data.children[0].children[1].children;
+	var props = data.nextElementSibling.children;
 	return {
-		att: data[1].children[6].children[0].value,
-		def: data[2].children[6].children[0].value,
-		spa: data[3].children[6].children[0].value,
-		spd: data[4].children[6].children[0].value,
-		spe: data[6].children[6].children[0].value,
+		tp1: type[0].children[1].value,
+		tp2: type[0].children[2].value,
+		frm: type[2].children[1].value,
+		gdr: type[3].children[1].value,
+		lvl: type[4].children[1].value,
+		att: stats[1].children[6].children[0].value,
+		def: stats[2].children[6].children[0].value,
+		spa: stats[3].children[6].children[0].value,
+		spd: stats[4].children[6].children[0].value,
+		spe: stats[6].children[6].children[0].value,
+		ntr: props[0].children[1].value,
+		abi: props[1].children[1].value,
+		itm: props[2].children[1].value,
+		sts: props[3].children[1].value,
 	};
 }
 
 function loadSavedMon(data) {
-	var dataField = document.getElementsByClassName("info-group i-f-o-stats")[0].children[0].children[1].children;
-	dataField[1].children[6].children[0].value = data.att;
-	dataField[2].children[6].children[0].value = data.def;
-	dataField[3].children[6].children[0].value = data.spa;
-	dataField[4].children[6].children[0].value = data.spd;
-	dataField[6].children[6].children[0].value = data.spe;
+	var dataField = document.getElementsByClassName("info-group i-f-o-stats")[0];
+	var typeField = dataField.previousElementSibling.children;
+	var statsField = dataField.children[0].children[1].children;
+	var propsField = dataField.nextElementSibling.children;
+	typeField[0].children[1].value = data.tp1;
+	typeField[0].children[2].value = data.tp2;
+	typeField[2].children[1].value = data.frm;
+	typeField[3].children[1].value = data.gdr;
+	typeField[4].children[1].value = data.lvl;
+	statsField[1].children[6].children[0].value = data.att;
+	statsField[2].children[6].children[0].value = data.def;
+	statsField[3].children[6].children[0].value = data.spa;
+	statsField[4].children[6].children[0].value = data.spd;
+	statsField[6].children[6].children[0].value = data.spe;
+	propsField[0].children[1].value = data.ntr;
+	propsField[1].children[1].value = data.abi;
+	propsField[2].children[1].value = data.itm;
+	propsField[3].children[1].value = data.sts;
 }
 
 function calcTrigger() {

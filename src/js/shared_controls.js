@@ -1902,7 +1902,7 @@ function collapseArrow(arrow){
 window.isInDoubles = false;
 function switchIconSingle(){
 	document.getElementById("monDouble").removeAttribute("hidden");
-
+	window.isInDoubles = true;
 	if (+localStorage.getItem("doubleLegacy")){
 		return;
 	}
@@ -1910,12 +1910,12 @@ function switchIconSingle(){
 	for (toShow of document.getElementsByClassName("for-doubles")){
 		toShow.removeAttribute("hidden");
 	}
-	window.isInDoubles = true;
+	
 }
 
 function switchIconDouble(){
 	document.getElementById("monDouble").setAttribute("hidden" ,true);
-
+	window.isInDoubles = false;
 	if (+localStorage.getItem("doubleLegacy")){
 		return;
 	}
@@ -1923,7 +1923,7 @@ function switchIconDouble(){
 	for (toHide of document.getElementsByClassName("for-doubles")){
 		toHide.setAttribute("hidden" ,true);
 	}
-	window.isInDoubles = false;
+	
 }
 
 function openCloseItemBox(){
@@ -1967,9 +1967,21 @@ function toggleDoubleLegacyMode(){
 	if (+localStorage.getItem("doubleLegacy")){
 		localStorage.setItem("doubleLegacy", 0)
 		document.getElementById("double-legacy-mode").innerText="Doubles Modern"
+		if(window.isInDoubles){
+			document.getElementById("trainer-pok-list-opposing2").removeAttribute("hidden");
+			for (toShow of document.getElementsByClassName("for-doubles")){
+				toShow.removeAttribute("hidden");
+			}
+		}
 	}else{
 		localStorage.setItem("doubleLegacy", 1)
 		document.getElementById("double-legacy-mode").innerText="Doubles Legacy"
+		if (window.isInDoubles){
+			document.getElementById("trainer-pok-list-opposing2").setAttribute("hidden" ,true);
+			for (toHide of document.getElementsByClassName("for-doubles")){
+				toHide.setAttribute("hidden" ,true);
+			}
+		}
 	}
 }
 
@@ -2041,9 +2053,8 @@ $(document).ready(function () {
 		setupSideCollapsers()
 		sideArrowToggle()
 	}
-	if (+localStorage.getItem("doubleslegmode")){
-		setupSideCollapsers()
-		sideArrowToggle()
+	if (+localStorage.getItem("doubleLegacy")){
+		toggleDoubleLegacyMode()
 	}
 
 	//some CSS variable;
