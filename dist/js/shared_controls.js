@@ -1808,12 +1808,6 @@ function ColorCodeSetsChange(ev){
 	}
 }
 function setupSideCollapsers(){
-	var status = localStorage.getItem("hsidearrow");
-	if (!status){
-
-	}else{
-		sideArrowToggle()
-	}
 	var applyF = (btns) => {
 		for (var i = 0; i < btns.length; i++) {
 			let btn = btns[i];
@@ -1945,22 +1939,20 @@ function onFirstTime(){
 
 function sideArrowToggle(){
 	var btn = document.getElementById("side-arrow-toggle");
-	var onHide= btn.getAttribute("data-id")
-	if (onHide=="true"){
+	var onShow= btn.getAttribute("data-id")
+	if (onShow=="true"){
 		btn.setAttribute("data-id", "false");
-		btn.innerText="Show Side Arrows";
+		btn.innerText="Hide Side Arrows";
 		localStorage.setItem("hsidearrow", "1");
 	}else{
 		btn.setAttribute("data-id", "true");
-		btn.innerText="Hide Side Arrows";
+		btn.innerText="Show Side Arrows";
 		localStorage.removeItem("hsidearrow");
 	}
 	for(pannel of document.getElementsByClassName("side-pannel")){
 		pannel.toggleAttribute("hidden")
 	}
-	if (onHide=="false"){
-		setupSideCollapsers()
-	}
+	setupSideCollapsers()
 }
 
 
@@ -2025,6 +2017,10 @@ $(document).ready(function () {
 	if (!isNotNew){//first time loading the page
 		onFirstTime()
 		localStorage.setItem("isNotNew", true)
+	}
+	if (localStorage.getItem("hsidearrow")){
+		setupSideCollapsers()
+		sideArrowToggle()
 	}
 	//some CSS variable;
 	document.documentElement.style.setProperty("--spe-bor-width", "3px");
