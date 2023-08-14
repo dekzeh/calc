@@ -1724,9 +1724,13 @@ function drop(ev) {
 	// if it's a pokemon
 	else if(ev.target.classList.contains("left-side") || ev.target.classList.contains("right-side")) {
 		if (!cntrlIsPressed){
-			let prev1 = pokeDragged.previousElementSibling ||  pokeDragged.nextElementSibling
-			ev.target.before(pokeDragged)
-			prev1.after(ev.target)
+			let prev1 = pokeDragged.previousElementSibling
+			if (!prev1){
+				ev.target.after(pokeDragged)
+			} else {
+				ev.target.before(pokeDragged)
+				prev1.after(ev.target)
+			}
 			//swaps
 		} else {
 			//appends before
