@@ -792,4 +792,9 @@ table.field {
 }   
 .berry-ya{
     background:#98D8D8; 
-}  
+}
+
+#sets > a {
+    margin-left: 5px;
+    margin-right: 5px;
+}
