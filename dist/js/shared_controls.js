@@ -476,10 +476,8 @@ $(".set-selector").change(function () {
 		var currentTrainerMon = document.getElementsByClassName('opposite-pok')[0]
 		
 		if (isMonFromCurrentTrainer(currentTrainerMon, fullSetName)){
-			console.log("no reload")
 			// don't reload
 		}else{
-			console.log(nextTrainer)
 			CURRENT_TRAINER_POKS = get_trainer_poks(fullSetName)
 			var next_poks = CURRENT_TRAINER_POKS.sort(sortmons)
 			monNumbers = next_poks.length;
@@ -501,7 +499,6 @@ $(".set-selector").change(function () {
 				newPoke.dataset.id = `${CURRENT_TRAINER_POKS[i].split("]")[1]}`;
 				frag.append(newPoke);
 			}
-			console.log(nextTrainer)
 		}
 		if (nextTrainer){
 			let trainerId = nextTrainer.match(/^\[\d+/)[0].substring(1);
@@ -1551,6 +1548,7 @@ function selectFirstMon() {
 
 function selectTrainer(value) {
 	document.getElementById("trainer-pok-list-opposing2").textContent="";
+	document.getElementById("trainer-pok-list-opposing").textContent="";
 	if(value >= 1620){
 		value = 1620;
 	}else if(value<=0){
@@ -1563,6 +1561,9 @@ function selectTrainer(value) {
 		for (i in pok_tr_names) {
 			var index = (poks[pok_tr_names[i]]["index"])
 			if (index == value) {
+				if (window.CURRENT_TRAINER == pok_tr_names[0]){
+					return false
+				}
 				window.CURRENT_TRAINER = pok_tr_names[0]
 				var set = `${pok_name} (${pok_tr_names[i]})`;
 				$('.opposing').val(set);
@@ -1575,13 +1576,18 @@ function selectTrainer(value) {
 }
 
 function nextTrainer() {
-	selectTrainer(nextTrainerId)
+	if (selectTrainer(nextTrainerId) == false) {
+		nextTrainerId++
+		previousTrainer()
+	}
 }
 
 function previousTrainer() {
-	selectTrainer(previousTrainerId)
+	if (selectTrainer(previousTrainerId) == false) {
+		previousTrainerId--
+		previousTrainer()
+	}
 }
-
 function resetTrainer() {
 	if (confirm(truckMessage())){
 		selectTrainer(1);

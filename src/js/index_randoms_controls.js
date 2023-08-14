@@ -304,12 +304,32 @@ function saveTrigger(ev) {
 	}
 }
 
+function saveCurrentMon() {
+	var data = document.getElementsByClassName("info-group i-f-o-stats")[0].children[0].children[1].children;
+	return {
+		att: data[1].children[6].children[0].value,
+		def: data[2].children[6].children[0].value,
+		spa: data[3].children[6].children[0].value,
+		spd: data[4].children[6].children[0].value,
+		spe: data[6].children[6].children[0].value,
+	};
+}
+
+function loadSavedMon(data) {
+	var dataField = document.getElementsByClassName("info-group i-f-o-stats")[0].children[0].children[1].children;
+	dataField[1].children[6].children[0].value = data.att;
+	dataField[2].children[6].children[0].value = data.def;
+	dataField[3].children[6].children[0].value = data.spa;
+	dataField[4].children[6].children[0].value = data.spd;
+	dataField[6].children[6].children[0].value = data.spe;
+}
+
 function calcTrigger() {
 	/*
 		This prevents like 8 performCalculations out of 8 that were useless
 		without causing bugs (so far)
 	*/
-	if (window.NO_CALC) {
+	if (window.NO_CALC || window.NO_CALC_RECURSION) {
 		return;
 	}
 	if (window.AUTO_REFRESH) {
@@ -321,18 +341,41 @@ function calcTrigger() {
 		var monRow2 = document.getElementById("trainer-pok-list-opposing2").children[0];
 		monRow2 = monRow2 ? monRow2.getAttribute("data-id") : null;
 		var activeMon = $('#p2').find("input.set-selector").val();
+		window.NO_CALC = true;
+		window.NO_CALC_RECURSION = true;
+		var dataSave = saveCurrentMon();
 		if (!monRow1 || !monRow2) {
 			performCalculations();
-		} else if (monRow1 != activeMon && monRow2 != activeMon) {
-			performCalculations(monRow1);
-			performCalculations(monRow2, true);
-		} else if (monRow1 == activeMon) {
-			performCalculations();
-			performCalculations(monRow2, true);
 		} else {
-			performCalculations(monRow1, false);
-			performCalculations(false, true);
+			if (monRow1 != activeMon && monRow2 != activeMon) {
+				$('.opposing').val(monRow1);
+				$('.opposing').change();
+				$('.opposing .select2-chosen').text(monRow1);
+				performCalculations();
+				$('.opposing').val(monRow2);
+				$('.opposing').change();
+				$('.opposing .select2-chosen').text(monRow2);
+				performCalculations(false, true);
+			} else if (monRow1 == activeMon) {
+				performCalculations();
+				$('.opposing').val(monRow2);
+				$('.opposing').change();
+				$('.opposing .select2-chosen').text(monRow2);
+				performCalculations(false, true);
+			} else if (monRow2 == activeMon) {
+				performCalculations(false, true);
+				$('.opposing').val(monRow1);
+				$('.opposing').change();
+				$('.opposing .select2-chosen').text(monRow1);
+				performCalculations();
+			}
 		}
+		$('.opposing').val(activeMon);
+		$('.opposing').change();
+		$('.opposing .select2-chosen').text(activeMon);
+		loadSavedMon(dataSave);
+		window.NO_CALC_RECURSION = false;
+		window.NO_CALC = false;
 	} else {
 		performCalculations();
 	}
