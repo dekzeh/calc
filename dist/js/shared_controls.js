@@ -1548,10 +1548,9 @@ function selectFirstMon() {
 	$('.player').change();
 	$('.player .select2-chosen').text(set);
 }
-/* return false if for some reason it don't change trainer (probably because of double battles)*/
+
 function selectTrainer(value) {
 	document.getElementById("trainer-pok-list-opposing2").textContent="";
-	document.getElementById("trainer-pok-list-opposing").textContent="";
 	if(value >= 1620){
 		value = 1620;
 	}else if(value<=0){
@@ -1564,9 +1563,6 @@ function selectTrainer(value) {
 		for (i in pok_tr_names) {
 			var index = (poks[pok_tr_names[i]]["index"])
 			if (index == value) {
-				if (window.CURRENT_TRAINER == pok_tr_names[0]){
-					return false
-				}
 				window.CURRENT_TRAINER = pok_tr_names[0]
 				var set = `${pok_name} (${pok_tr_names[i]})`;
 				$('.opposing').val(set);
@@ -1579,17 +1575,11 @@ function selectTrainer(value) {
 }
 
 function nextTrainer() {
-	if (selectTrainer(nextTrainerId) == false) {
-		nextTrainerId++
-		previousTrainer()
-	}
+	selectTrainer(nextTrainerId)
 }
 
 function previousTrainer() {
-	if (selectTrainer(previousTrainerId) == false) {
-		previousTrainerId--
-		previousTrainer()
-	}
+	selectTrainer(previousTrainerId)
 }
 
 function resetTrainer() {
@@ -1728,8 +1718,7 @@ function drop(ev) {
 	// if it's a pokemon
 	else if(ev.target.classList.contains("left-side") || ev.target.classList.contains("right-side")) {
 		if (!cntrlIsPressed){
-			let prev1 = pokeDragged.previousElementSibling ||  pokeDragged.nextElementSibling || ev.target
-			console.log(prev1)
+			let prev1 = pokeDragged.previousElementSibling ||  pokeDragged.nextElementSibling
 			ev.target.before(pokeDragged)
 			prev1.after(ev.target)
 			//swaps
