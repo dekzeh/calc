@@ -1923,11 +1923,16 @@ function switchIconDouble(){
 	if (+localStorage.getItem("doubleLegacy")){
 		return;
 	}
-	document.getElementById("trainer-pok-list-opposing2").setAttribute("hidden" ,true);
+	var topOppositeBox = document.getElementById("trainer-pok-list-opposing");
+	var bottomOppositeBox = document.getElementById("trainer-pok-list-opposing2");
+	bottomOppositeBox.setAttribute("hidden" ,true);
 	for (toHide of document.getElementsByClassName("for-doubles")){
 		toHide.setAttribute("hidden" ,true);
 	}
-	
+	// set all pokemons that were left in the bottom, replace them onto the top
+	for ( let potentialLeft of bottomOppositeBox.children) {
+		topOppositeBox.append(potentialLeft);
+	}
 }
 
 function openCloseItemBox(){
