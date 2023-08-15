@@ -372,14 +372,19 @@ function calcTrigger() {
 			performCalculations();
 		} else {
 			if (monRow1 != activeMon && monRow2 != activeMon) {
-				$('.opposing').val(monRow1);
-				$('.opposing').change();
-				$('.opposing .select2-chosen').text(monRow1);
-				performCalculations();
-				$('.opposing').val(monRow2);
-				$('.opposing').change();
-				$('.opposing .select2-chosen').text(monRow2);
-				performCalculations(false, true);
+				if (document.querySelectorAll(`[data-id="${activeMon}"]`)[0].parentNode.id=="trainer-pok-list-opposing"){
+					performCalculations();
+					$('.opposing').val(monRow2);
+					$('.opposing').change();
+					$('.opposing .select2-chosen').text(monRow2);
+					performCalculations(false, true);
+				} else {
+					performCalculations(false, true);
+					$('.opposing').val(monRow1);
+					$('.opposing').change();
+					$('.opposing .select2-chosen').text(monRow1);
+					performCalculations();
+				}
 			} else if (monRow1 == activeMon) {
 				performCalculations();
 				$('.opposing').val(monRow2);
