@@ -690,11 +690,16 @@ table.field {
     overflow: visible;
 }
 .screen-box-frame{
+    position: absolute !important;
     z-index: 1;
     width: fit-content;
     height: fit-content;
     top: 250px;
     left: 500px;
+}
+.screen-box-frame-header{
+    position: relative;
+    min-height: 30px;
 }
 .box-frame-header{
     position: relative;

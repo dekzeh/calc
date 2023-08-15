@@ -1748,7 +1748,7 @@ function handleDragEnter(ev) {
 function handleDragLeave(ev) {
 	ev.target.classList.remove('over');
 }
-/* dragging for the item box, note box, screen calc box*/
+/* dragging for the item box, note box*/
 // target elements with the "box-frame-header" class
 interact('.box-frame-header').draggable({
     inertia: true,
@@ -1767,14 +1767,18 @@ interact('.box-frame-header').draggable({
   })
 
 function dragMoveListener (event) {
-	var target = event.target
-
-    var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx
-    var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy 
-	target.parentNode.style.left=x+"px"
-	target.parentNode.style.top=y+"px"
-    target.setAttribute('data-x', x)
-    target.setAttribute('data-y', y)
+	var target = event.target;
+	var parent = target.parentNode;
+	// special case for the screen box frame
+	if (target.classList.contains("screen-box-frame")) {
+		parent = target;
+	}
+    var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
+    var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy ;
+	parent.style.left=x+"px";
+	parent.style.top=y+"px";
+    target.setAttribute('data-x', x);
+    target.setAttribute('data-y', y);
 }
 
 window.dragMoveListener = dragMoveListener
@@ -1993,13 +1997,13 @@ function closeScreenCalc(id){
 }
 function onClickScreenCalc(){
 	var screenDiv = document.createElement("div");
-	screenDiv.className = "box-frame screen-box-frame";
+	// box frame header here so it's less code in the end;
+	screenDiv.className = "box-frame screen-box-frame box-frame-header";
 	screenDiv.id = "calc-screen-id"+screenDivCount;
-	screenDiv.innerHTML=` <div class="box-frame-header" data-x="500"data-y="250"><legend>Calculation ${screenDivCount+1}</legend>
+	screenDiv.dataset.x="500";
+	screenDiv.dataset.y="250";
+	screenDiv.innerHTML=` <div class="screen-box-frame-header"><legend>Calculation ${screenDivCount+1}</legend>
 	<div class="close-frame" id="close-calc-box-${screenDivCount}" onclick="closeScreenCalc(${screenDivCount})"><div class="mdiv"><div class="md"></div></div></div></div>`;
-	var screenDivBody = document.createElement("div");
-	screenDivBody.className = "screen-box-body";
-	
 	var moveResults = document.getElementsByClassName("move-result-group");
 	var mainResults = document.getElementsByClassName("main-result-group");
 	for (let i = 0; i<moveResults.length; i++) {
@@ -2009,10 +2013,9 @@ function onClickScreenCalc(){
 		if(mainResults[i].parentNode.classList.contains("box-frame")){
 			continue
 		}
-		screenDivBody.appendChild(moveResults[i].cloneNode(true))
-		screenDivBody.appendChild(mainResults[i].cloneNode(true))
+		screenDiv.appendChild(moveResults[i].cloneNode(true));
+		screenDiv.appendChild(mainResults[i].cloneNode(true));
 	}
-	screenDiv.append(screenDivBody)
 	document.body.append(screenDiv);
 	for ( let label of document.querySelectorAll('.box-frame label')){
 		label.removeAttribute("for");
@@ -2024,10 +2027,10 @@ function onClickScreenCalc(){
 		input.removeAttribute("id");
 	}
 	for (let group of document.querySelectorAll('.box-frame .move-result-group')){
-		group.classList.remove("move-result-group")
+		group.classList.remove("move-result-group");
 	}
 	for (let group of document.querySelectorAll('.box-frame .main-result-group')){
-		group.classList.remove("main-result-group")
+		group.classList.remove("main-result-group");
 	}
 	screenDivCount++
 }
