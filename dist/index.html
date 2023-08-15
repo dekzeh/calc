@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <title>Pok&eacute;mon Damage Calculator</title>
     <link type="text/css" rel="stylesheet" href="./js/vendor/select2/select2.css" />
-    <link type="text/css" rel="stylesheet" href="./css/main.css?d3a3a3d9" />
+    <link type="text/css" rel="stylesheet" href="./css/main.css?0e98b4ef" />
     <link type="text/css" rel="stylesheet" href="./css/vendor/bootstrap.css" />
     <link type="text/css" rel="stylesheet" href="./css/dark-theme.css" id="dark-theme-styles">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -58,6 +58,9 @@
             <input class="mode visually-hidden" type="radio" name="mode" id="all-vs-one" />
             <input class="mode visually-hidden" type="radio" name="mode" id="randoms" />
         </span>
+        <button id="screen-calc">
+            put this calculation in a grabbable window
+        </button>
     </div>
     <hr />
     <div aria-label="Move selection" class="move-result-group" role="region" title="Select a move to show detailed results.">
@@ -1719,7 +1722,7 @@
     <div id="item-box-frame" class="box-frame" hidden>
         <div class="box-frame-header" data-x="500"data-y="500">
             <legend>Items</legend>
-            <div id="close-item-box">
+            <div class="close-frame" id="close-item-box">
                 <div class="mdiv">
                   <div class="md"></div>
                 </div>
@@ -1889,7 +1892,7 @@
     <script type="text/javascript" src="./calc/result.js?9f8881b5"></script>
     <script type="text/javascript" src="./calc/adaptable.js?92e49194"></script>
     <script type="text/javascript" src="./calc/index.js?0b1745b9"></script>
-    <script type="text/javascript" src="./js/shared_controls.js?efcd6699"></script>
+    <script type="text/javascript" src="./js/shared_controls.js?ce9da31a"></script>
     <script type="text/javascript" src="./js/index_randoms_controls.js?e7f66825"></script>
     <script type="text/javascript" src="./js/moveset_import.js?1ea94d3d"></script>
 </div>
@@ -1915,7 +1918,7 @@
 <div id="note-box-frame" class="box-frame" hidden>
     <div class="box-frame-header" data-x="1220"data-y="200">
         <legend>Notes</legend>
-        <div id="close-note-box">
+        <div class="close-frame" id="close-note-box">
             <div class="mdiv">
               <div class="md"></div>
             </div>
@@ -1923,6 +1926,7 @@
     </div>
     <textarea cols="30" rows="10"></textarea>
 </div>
+
 </body>
 
 </html>

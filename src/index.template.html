@@ -58,6 +58,9 @@
             <input class="mode visually-hidden" type="radio" name="mode" id="all-vs-one" />
             <input class="mode visually-hidden" type="radio" name="mode" id="randoms" />
         </span>
+        <button id="screen-calc">
+            put this calculation in a grabbable window
+        </button>
     </div>
     <hr />
     <div aria-label="Move selection" class="move-result-group" role="region" title="Select a move to show detailed results.">
@@ -1719,7 +1722,7 @@
     <div id="item-box-frame" class="box-frame" hidden>
         <div class="box-frame-header" data-x="500"data-y="500">
             <legend>Items</legend>
-            <div id="close-item-box">
+            <div class="close-frame" id="close-item-box">
                 <div class="mdiv">
                   <div class="md"></div>
                 </div>
@@ -1915,7 +1918,7 @@
 <div id="note-box-frame" class="box-frame" hidden>
     <div class="box-frame-header" data-x="1220"data-y="200">
         <legend>Notes</legend>
-        <div id="close-note-box">
+        <div class="close-frame" id="close-note-box">
             <div class="mdiv">
               <div class="md"></div>
             </div>
@@ -1923,6 +1926,7 @@
     </div>
     <textarea cols="30" rows="10"></textarea>
 </div>
+
 </body>
 
 </html>

@@ -675,19 +675,26 @@ table.field {
     padding: 3px;
 }
 #item-box-frame{
-    z-index: 2;
+    z-index: 3;
     width: 650px;
     height: 400px;
     top: 500px;
     left: 500px;
 }
 #note-box-frame{
-    z-index: 1;
+    z-index: 2;
     width: fit-content;
     height: fit-content;
     top: 200px;
     left: 1220px;
     overflow: visible;
+}
+.screen-box-frame{
+    z-index: 1;
+    width: fit-content;
+    height: fit-content;
+    top: 250px;
+    left: 500px;
 }
 .box-frame-header{
     position: relative;
@@ -698,7 +705,7 @@ table.field {
     text-align: unset;
 }
 
-#close-item-box, #close-note-box{
+.close-frame{
     width: 25px;
     height: 25px;
     background-color: red;
@@ -707,6 +714,7 @@ table.field {
     position: absolute;
     top: 0%;
     right: 0%;
+    cursor: pointer;
 }
 
 #close-item-box:hover{
@@ -721,7 +729,7 @@ table.field {
   margin-left: 12px;
   background-color: black;
   transform: rotate(45deg);
-  Z-index: 3;
+  Z-index: 4;
 }
 
 .md {
@@ -729,7 +737,7 @@ table.field {
   width: 2px;
   background-color: black;
   transform: rotate(90deg);
-  Z-index: 4;
+  Z-index: 5;
 }
 
 .box-item-list>img:hover{
@@ -797,4 +805,10 @@ table.field {
 #sets > a {
     margin-left: 5px;
     margin-right: 5px;
+}
+
+#screen-calc{
+    float: right;
+    margin-top: 22px;
+    margin-right: 41px;
 }

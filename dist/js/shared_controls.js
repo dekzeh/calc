@@ -541,7 +541,7 @@ $(".set-selector").change(function () {
 		var itemObj = pokeObj.find(".item");
 		var randset = $("#randoms").prop("checked") ? randdex[pokemonName] : undefined;
 		var regSets = pokemonName in setdex && setName in setdex[pokemonName];
-
+q
 		if (randset) {
 			var listItems = randdex[pokemonName].items ? randdex[pokemonName].items : [];
 			var listAbilities = randdex[pokemonName].abilities ? randdex[pokemonName].abilities : [];
@@ -1985,6 +1985,34 @@ function toggleDoubleLegacyMode(){
 	}
 }
 
+var screenDivCount = 0;
+function closeScreenCalc(id){
+	var screenDiv = document.getElementById("calc-screen-id"+id);
+	console.log(screenDiv)
+	screenDiv.parentNode.removeChild(screenDiv);
+}
+function onClickScreenCalc(){
+	var screenDiv = document.createElement("div");
+	screenDiv.className = "box-frame screen-box-frame";
+	screenDiv.id = "calc-screen-id"+screenDivCount;
+	screenDiv.innerHTML=` <div class="box-frame-header" data-x="500"data-y="500"><legend>Calc ${screenDivCount+1}</legend>
+	<div class="close-frame" id="close-calc-box-${screenDivCount}" onclick="closeScreenCalc(${screenDivCount})"><div class="mdiv"><div class="md"></div></div></div></div>`;
+	var moveResults = document.getElementsByClassName("move-result-group");
+	var mainResults = document.getElementsByClassName("main-result-group");
+	for (let i = 0; i<moveResults.length; i++) {
+		if(moveResults[i].parentNode.classList.contains("box-frame")){
+			continue
+		}
+		if(mainResults[i].parentNode.classList.contains("box-frame")){
+			continue
+		}
+		screenDiv.appendChild(moveResults[i].cloneNode(true))
+		screenDiv.appendChild(mainResults[i].cloneNode(true))
+	}
+	document.body.append(screenDiv);
+	screenDivCount++
+}
+
 window.AUTO_REFRESH = false;
 $(document).ready(function () {
 	var params = new URLSearchParams(window.location.search);
@@ -2028,7 +2056,7 @@ $(document).ready(function () {
 	$('.ic').click(selectItem);
 	$('#save-change').click(saveTrainerPokemon);
 	$('#double-legacy-mode').click(toggleDoubleLegacyMode);
-
+	$('#screen-calc').click(onClickScreenCalc)
 	for (let dropzone of document.getElementsByClassName("dropzone")){
 		dropzone.ondragenter=handleDragEnter;
 		dropzone.ondragleave=handleDragLeave;
