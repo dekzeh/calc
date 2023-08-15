@@ -1995,7 +1995,7 @@ function onClickScreenCalc(){
 	var screenDiv = document.createElement("div");
 	screenDiv.className = "box-frame screen-box-frame";
 	screenDiv.id = "calc-screen-id"+screenDivCount;
-	screenDiv.innerHTML=` <div class="box-frame-header" data-x="500"data-y="500"><legend>Calc ${screenDivCount+1}</legend>
+	screenDiv.innerHTML=` <div class="box-frame-header" data-x="500"data-y="250"><legend>Calc ${screenDivCount+1}</legend>
 	<div class="close-frame" id="close-calc-box-${screenDivCount}" onclick="closeScreenCalc(${screenDivCount})"><div class="mdiv"><div class="md"></div></div></div></div>`;
 	var moveResults = document.getElementsByClassName("move-result-group");
 	var mainResults = document.getElementsByClassName("main-result-group");
