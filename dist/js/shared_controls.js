@@ -1988,7 +1988,6 @@ function toggleDoubleLegacyMode(){
 var screenDivCount = 0;
 function closeScreenCalc(id){
 	var screenDiv = document.getElementById("calc-screen-id"+id);
-	console.log(screenDiv)
 	screenDiv.parentNode.removeChild(screenDiv);
 }
 function onClickScreenCalc(){
@@ -2010,6 +2009,9 @@ function onClickScreenCalc(){
 		screenDiv.appendChild(mainResults[i].cloneNode(true))
 	}
 	document.body.append(screenDiv);
+	for ( let label of document.querySelectorAll('.box-frame label')){
+		label.removeAttribute("for");
+	}
 	screenDivCount++
 }
 
