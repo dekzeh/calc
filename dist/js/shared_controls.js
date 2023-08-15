@@ -1748,8 +1748,8 @@ function handleDragEnter(ev) {
 function handleDragLeave(ev) {
 	ev.target.classList.remove('over');
 }
-/* dragging for the item box*/
-// target elements with the "draggable" class
+/* dragging for the item box, note box, screen calc box*/
+// target elements with the "box-frame-header" class
 interact('.box-frame-header').draggable({
     inertia: true,
     modifiers: [
@@ -1989,13 +1989,17 @@ var screenDivCount = 0;
 function closeScreenCalc(id){
 	var screenDiv = document.getElementById("calc-screen-id"+id);
 	screenDiv.parentNode.removeChild(screenDiv);
+	screenDivCount--
 }
 function onClickScreenCalc(){
 	var screenDiv = document.createElement("div");
 	screenDiv.className = "box-frame screen-box-frame";
 	screenDiv.id = "calc-screen-id"+screenDivCount;
-	screenDiv.innerHTML=` <div class="box-frame-header" data-x="500"data-y="250"><legend>Calc ${screenDivCount+1}</legend>
+	screenDiv.innerHTML=` <div class="box-frame-header" data-x="500"data-y="250"><legend>Calculation ${screenDivCount+1}</legend>
 	<div class="close-frame" id="close-calc-box-${screenDivCount}" onclick="closeScreenCalc(${screenDivCount})"><div class="mdiv"><div class="md"></div></div></div></div>`;
+	var screenDivBody = document.createElement("div");
+	screenDivBody.className = "screen-box-body";
+	
 	var moveResults = document.getElementsByClassName("move-result-group");
 	var mainResults = document.getElementsByClassName("main-result-group");
 	for (let i = 0; i<moveResults.length; i++) {
@@ -2005,12 +2009,25 @@ function onClickScreenCalc(){
 		if(mainResults[i].parentNode.classList.contains("box-frame")){
 			continue
 		}
-		screenDiv.appendChild(moveResults[i].cloneNode(true))
-		screenDiv.appendChild(mainResults[i].cloneNode(true))
+		screenDivBody.appendChild(moveResults[i].cloneNode(true))
+		screenDivBody.appendChild(mainResults[i].cloneNode(true))
 	}
+	screenDiv.append(screenDivBody)
 	document.body.append(screenDiv);
 	for ( let label of document.querySelectorAll('.box-frame label')){
 		label.removeAttribute("for");
+	}
+	for ( let span of document.querySelectorAll('.box-frame span')){
+		span.removeAttribute("id");
+	}
+	for ( let input of document.querySelectorAll('.box-frame input')){
+		input.removeAttribute("id");
+	}
+	for (let group of document.querySelectorAll('.box-frame .move-result-group')){
+		group.classList.remove("move-result-group")
+	}
+	for (let group of document.querySelectorAll('.box-frame .main-result-group')){
+		group.classList.remove("main-result-group")
 	}
 	screenDivCount++
 }
@@ -2065,7 +2082,6 @@ $(document).ready(function () {
 		dropzone.ondrop=drop;
 		dropzone.ondragover=allowDrop;
 	}
-	$("box-frame-header")
 	//select last trainer
 	var last = parseInt(localStorage.getItem("lasttimetrainer"),10);
 	if (isNaN(last)) {
