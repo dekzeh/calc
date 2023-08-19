@@ -68,14 +68,21 @@ function ExportPokemon(pokeInfo) {
 	}
 	finalText = finalText.trim();
 	$("textarea.import-team-text").val(finalText);
+	return finalText;
 }
 
 $("#exportL").click(function () {
-	ExportPokemon($("#p1"));
+	var exportData = ExportPokemon($("#p1"));
+	$("textarea.import-team-text").val(exportData);
+	navigator.clipboard.writeText(exportData).then(function () {
+	});
 });
 
 $("#exportR").click(function () {
-	ExportPokemon($("#p2"));
+	var exportData = ExportPokemon($("#p2"));
+	$("textarea.import-team-text").val(exportData);
+	navigator.clipboard.writeText(exportData).then(function () {
+	});
 });
 
 function serialize(array, separator) {

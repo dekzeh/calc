@@ -1577,6 +1577,9 @@ function selectTrainer(value) {
 
 function nextTrainer() {
 	if (selectTrainer(nextTrainerId) == false) {
+		if(value >= 1620){
+			return
+		}
 		nextTrainerId++
 		previousTrainer()
 	}
@@ -1584,6 +1587,9 @@ function nextTrainer() {
 
 function previousTrainer() {
 	if (selectTrainer(previousTrainerId) == false) {
+		if(value<=0){
+			return
+		}
 		previousTrainerId--
 		previousTrainer()
 	}
