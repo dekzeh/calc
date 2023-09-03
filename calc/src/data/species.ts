@@ -8955,7 +8955,7 @@ const PLA_PATCH: {[name: string]: DeepPartial<SpeciesData>} = {
   },
   'Zoroark-Hisui': {
     types: ['Normal', 'Ghost'],
-    bs: {hp: 60, at: 105, df: 60, sa: 120, sd: 60, sp: 105},
+    bs: {hp: 55, at: 100, df: 60, sa: 125, sd: 60, sp: 110},
     weightkg: 73,
     abilities: {0: 'Illusion'},
     baseSpecies: 'Zoroark',
