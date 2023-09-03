@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <title>Pok&eacute;mon Damage Calculator</title>
     <link type="text/css" rel="stylesheet" href="./js/vendor/select2/select2.css" />
-    <link type="text/css" rel="stylesheet" href="./css/main.css?569ec498" />
+    <link type="text/css" rel="stylesheet" href="./css/main.css?aa567b21" />
     <link type="text/css" rel="stylesheet" href="./css/vendor/bootstrap.css" />
     <link type="text/css" rel="stylesheet" href="./css/dark-theme.css" id="dark-theme-styles">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -663,73 +663,72 @@
         </div>
         <div aria-label="trainer-poks" role="region">
             <fieldset class="poke-info" id="trainer-mons">
-                <legend align="center">TEAM/BOX</legend>
+                <legend align="center">Team/Box</legend>
                 <div>
-                    <legend align="center">TEAM</legend>
+                    <legend align="center">Team</legend>
                     <div id="team-poke-list" class="box-poke dropzone">
                     </div>
                 </div>
                 <hr>
                 <div>
-                    <legend align="center">BOX</legend>
+                    <legend align="center">Box</legend>
                     <div id="box-poke-list" class="box-poke dropzone">
                     </div>
                 </div>
                 <div>
-                    <legend align="center">BOX 2</legend>
+                    <legend align="center">Box 2</legend>
                     <div id="box-poke-list2" class="box-poke dropzone">
                     </div>
                 </div>
                 <hr>
                 <div>
-                    <legend align="center">Color Codes</legend>
+                    <legend align="center">Trash</legend>
+                    <div id="trash-box" class="box-poke dropzone">
+                    </div>
+                    <button class="deadzone" id="trash-pok">Remove Pokémon from the trash</button>
+                    <button class="deadzone" id="clearSets">Remove Pokémon from all boxes</button>
+                </div>
+                <hr>
+                <div>
+                    <legend align="center">Color Coding</legend>
                     <button id="show-cc">Show</button>
                     <button id="hide-cc" hidden>Hide</button>
                     <button id="refr-cc" hidden>Refresh</button>
-                    <button id="info-cc" hidden>Colors Explanation</button>
+                    <button id="info-cc" hidden>Color Code Explanation</button>
                     <div id="info-cc-field" class="info-paragraph" hidden>
                         <h5>Speed Borders</h5>
                         <b class="mon-speed-F">Blue</b> Outspeeds
                         <b class="mon-speed-T">Purple</b> Speed Tie
                         <b class="mon-speed-S">Black</b> Slower
                         <h5>OHKO Colors</h5>
-                        <b class="mon-dmg-W">Walls</b>(get 4 HKO at worse and does more damage)
+                        <b class="mon-dmg-WMO">Hard Counter</b> (Gets 4HKO'd at worse and may OHKO)
                         <br>
-                        <b class="mon-dmg-WMO">Walls may OHKO</b>(gets 4 HKO at worse and may OHKO)
+                        <b class="mon-dmg-W">Walls</b> (Gets 4HKO'd at worse and does more damage)
                         <br>
-                        <b class="mon-dmg-1">100% OHKO</b>
+                        <b class="mon-dmg-1">Always OHKOs</b>
                         <br>
-                        <b class="mon-dmg-2">May 0HKO</b>
+                        <b class="mon-dmg-2">Might OHKO</b>
                         <br>
-                        <b class="mon-dmg-3">May Get 0HKO</b>
+                        <b class="mon-dmg-3">Might get OHKO'd</b>
                         <br>
-                        <b class="mon-dmg-4">100% Get 0HKO</b>
+                        <b class="mon-dmg-4">Always gets OHKO'd</b>
                         <br>
-                        <b class="mon-dmg-14">Both side 100% OHKO</b>
+                        <b class="mon-dmg-14">Both sides OHKO each other</b>
                         <br>
-                        <b class="mon-dmg-23">Both side may OHKO</b>
+                        <b class="mon-dmg-23">Both sides might OHKO each other</b>
                         <br>
-                        <b class="mon-dmg-13">100% OHKO but may gets OHKO</b>
+                        <b class="mon-dmg-13">Always OHKOs but may get OHKO'd</b>
                         <br>
-                        <b class="mon-dmg-24">May 0HKO but 100% Get 0HKO</b>
+                        <b class="mon-dmg-24">Might OHKO but always gets OHKO'd</b>
                         <p>
-                            Note: Color codes are intended to be a helper, some caveats and quirks are missed by the calculation
+                            Note: Color coding is intended to help, though some caveats and quirks are missed
                         </p>
                     </div>
                     <div id ="cc-sets" hidden>
-                        <input type="checkbox" name="cc-spe-border" id="cc-spe-border" checked>speed border
-                        <input type="checkbox" name="cc-ohko-color" id="cc-ohko-color" checked>OHKO color
-                        <input type="checkbox" name="cc-auto-refr" id="cc-auto-refr" autocomplete="off">auto-refresh
+                        <input type="checkbox" name="cc-spe-border" id="cc-spe-border" checked>Speed Border
+                        <input type="checkbox" name="cc-ohko-color" id="cc-ohko-color" checked>OHKO Color
+                        <input type="checkbox" name="cc-auto-refr" id="cc-auto-refr" autocomplete="off">Auto-Refresh
                     </div>
-                </div>
-                <hr>
-                <div>
-                    <legend align="center">TRASH ZONE</legend>
-                    <div id="trash-box" class="box-poke dropzone">
-                        
-                    </div>
-                    <button class="deadzone" id="trash-pok">Remove pokemon in the Trash</button>
-                    <button class="deadzone" id="clearSets">Remove all pokemons from all boxes</button>
                 </div>
             </fieldset>
         </div>
@@ -1635,7 +1634,7 @@
                 <hr>
                 <button type="button" id="previous-trainer"> Previous Trainer</button>
                 <button type="button" id="next-trainer"> Next Trainer</button>
-                <button type="button" id="reset-trainer">Truck</button>
+                <button type="button" id="reset-trainer">Reset</button>
             </fieldset>
         </div>
     </div>
@@ -1670,42 +1669,42 @@
         var calc = exports = {};
         function require() { return exports };
     </script>
-    <script type="text/javascript" src="./calc/util.js?51463f0d"></script>
-    <script type="text/javascript" src="./calc/stats.js?a9e37d1a"></script>
-    <script type="text/javascript" src="./calc/data/species.js?7800cd5a"></script>
-	<script type="text/javascript" src="./js/data/sets/gen9.js?f8c3f5c9"></script>
-    <script type="text/javascript" src="./js/data/sets/gen8.js?a4158c72"></script>
-    <script type="text/javascript" src="./js/data/sets/gen7.js?5f5ba850"></script>
-    <script type="text/javascript" src="./js/data/sets/gen6.js?eaf8dc5f"></script>
-    <script type="text/javascript" src="./js/data/sets/gen5.js?d8d4ab96"></script>
-    <script type="text/javascript" src="./js/data/sets/gen4.js?1cca0e4b"></script>
-    <script type="text/javascript" src="./js/data/sets/gen3.js?1750a100"></script>
-    <script type="text/javascript" src="./js/data/sets/gen2.js?8534fa4a"></script>
-    <script type="text/javascript" src="./js/data/sets/gen1.js?6b6723b2"></script>
-    <script type="text/javascript" src="./calc/data/types.js?3267f790"></script>
-    <script type="text/javascript" src="./calc/data/natures.js?28612810"></script>
-    <script type="text/javascript" src="./calc/data/abilities.js?38448e91"></script>
-    <script type="text/javascript" src="./calc/data/moves.js?2902d42e"></script>
-    <script type="text/javascript" src="./calc/data/items.js?0409f13e"></script>
-    <script type="text/javascript" src="./calc/data/index.js?abecbd82"></script>
-    <script type="text/javascript" src="./calc/move.js?57ab9f0a"></script>
-    <script type="text/javascript" src="./calc/pokemon.js?1cd9f7fb"></script>
-    <script type="text/javascript" src="./calc/field.js?bbf04408"></script>
-    <script type="text/javascript" src="./calc/items.js?10064fda"></script>
-    <script type="text/javascript" src="./calc/mechanics/util.js?a028ab1f"></script>
-    <script type="text/javascript" src="./calc/mechanics/gen789.js?ec01206b"></script>
-    <script type="text/javascript" src="./calc/mechanics/gen56.js?a1115b60"></script>
-    <script type="text/javascript" src="./calc/mechanics/gen4.js?f3f448f1"></script>
-    <script type="text/javascript" src="./calc/mechanics/gen3.js?8c0fb6f4"></script>
-    <script type="text/javascript" src="./calc/mechanics/gen12.js?199f8ca6"></script>
-    <script type="text/javascript" src="./calc/calc.js?40a2d9b1"></script>
-    <script type="text/javascript" src="./calc/desc.js?edafb82b"></script>
-    <script type="text/javascript" src="./calc/result.js?9f8881b5"></script>
-    <script type="text/javascript" src="./calc/adaptable.js?92e49194"></script>
-    <script type="text/javascript" src="./calc/index.js?0b1745b9"></script>
-    <script type="text/javascript" src="./js/shared_controls.js?3399c04e"></script>
-    <script type="text/javascript" src="./js/index_randoms_controls.js?4dacd79c"></script>
-    <script type="text/javascript" src="./js/moveset_import.js?b9df1dd2"></script>
+    <script type="text/javascript" src="./calc/util.js?8fa0c7ff"></script>
+    <script type="text/javascript" src="./calc/stats.js?9220179f"></script>
+    <script type="text/javascript" src="./calc/data/species.js?7d33143e"></script>
+	<script type="text/javascript" src="./js/data/sets/gen9.js?6eb5d131"></script>
+    <script type="text/javascript" src="./js/data/sets/gen8.js?aa4d53c7"></script>
+    <script type="text/javascript" src="./js/data/sets/gen7.js?78168bde"></script>
+    <script type="text/javascript" src="./js/data/sets/gen6.js?2219279f"></script>
+    <script type="text/javascript" src="./js/data/sets/gen5.js?c8933737"></script>
+    <script type="text/javascript" src="./js/data/sets/gen4.js?c6ea7dc0"></script>
+    <script type="text/javascript" src="./js/data/sets/gen3.js?a470a1a8"></script>
+    <script type="text/javascript" src="./js/data/sets/gen2.js?7fd2ab00"></script>
+    <script type="text/javascript" src="./js/data/sets/gen1.js?428f44e9"></script>
+    <script type="text/javascript" src="./calc/data/types.js?feda570f"></script>
+    <script type="text/javascript" src="./calc/data/natures.js?04f00dc5"></script>
+    <script type="text/javascript" src="./calc/data/abilities.js?3fed5409"></script>
+    <script type="text/javascript" src="./calc/data/moves.js?a2b44c28"></script>
+    <script type="text/javascript" src="./calc/data/items.js?65549879"></script>
+    <script type="text/javascript" src="./calc/data/index.js?083d2bc9"></script>
+    <script type="text/javascript" src="./calc/move.js?48331ad1"></script>
+    <script type="text/javascript" src="./calc/pokemon.js?ea90f3ad"></script>
+    <script type="text/javascript" src="./calc/field.js?2c7f95da"></script>
+    <script type="text/javascript" src="./calc/items.js?6c1bfef0"></script>
+    <script type="text/javascript" src="./calc/mechanics/util.js?5d154559"></script>
+    <script type="text/javascript" src="./calc/mechanics/gen789.js?a8642544"></script>
+    <script type="text/javascript" src="./calc/mechanics/gen56.js?326e578d"></script>
+    <script type="text/javascript" src="./calc/mechanics/gen4.js?7d2b7674"></script>
+    <script type="text/javascript" src="./calc/mechanics/gen3.js?2fa3d6a1"></script>
+    <script type="text/javascript" src="./calc/mechanics/gen12.js?637dd485"></script>
+    <script type="text/javascript" src="./calc/calc.js?cd072314"></script>
+    <script type="text/javascript" src="./calc/desc.js?f9b3565c"></script>
+    <script type="text/javascript" src="./calc/result.js?d5c7552b"></script>
+    <script type="text/javascript" src="./calc/adaptable.js?afeb3759"></script>
+    <script type="text/javascript" src="./calc/index.js?2377cbc8"></script>
+    <script type="text/javascript" src="./js/shared_controls.js?261260dc"></script>
+    <script type="text/javascript" src="./js/index_randoms_controls.js?34234c00"></script>
+    <script type="text/javascript" src="./js/moveset_import.js?3bf6c8a9"></script>
 </div>
 
 <div class="credits">Modification by ForwardFeed Originaly Created by Honko, maintained by Austin and Kris, Special thanks to Hzla
@@ -1714,7 +1713,7 @@
         <br>
         <li><a href="https://github.com/smogon/damage-calc/contributors" class="links-lighten" target="_blank">Smogon Contributors</a></li>
         <li><a href="https://www.smogon.com/forums/threads/pok%C3%A9mon-showdown-damage-calculator.3593546/" class="links-lighten" target="_blank">Smogon Bug Reports</a></li>
-        <li><a href="https://github.com/smogon/damage-calc" class="links-lighten" target="_blank">Smogong qGitHub repository</a></li></ul>
+        <li><a href="https://github.com/smogon/damage-calc" class="links-lighten" target="_blank">Smogon GitHub repository</a></li></ul>
     
         <button type="button" id="dark-theme-toggle"></button>
         <script type="text/javascript" src="./js/dark-theme-toggle.js?b8bb93fc"></script>

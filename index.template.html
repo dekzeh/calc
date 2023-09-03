@@ -663,73 +663,72 @@
         </div>
         <div aria-label="trainer-poks" role="region">
             <fieldset class="poke-info" id="trainer-mons">
-                <legend align="center">TEAM/BOX</legend>
+                <legend align="center">Team/Box</legend>
                 <div>
-                    <legend align="center">TEAM</legend>
+                    <legend align="center">Team</legend>
                     <div id="team-poke-list" class="box-poke dropzone">
                     </div>
                 </div>
                 <hr>
                 <div>
-                    <legend align="center">BOX</legend>
+                    <legend align="center">Box</legend>
                     <div id="box-poke-list" class="box-poke dropzone">
                     </div>
                 </div>
                 <div>
-                    <legend align="center">BOX 2</legend>
+                    <legend align="center">Box 2</legend>
                     <div id="box-poke-list2" class="box-poke dropzone">
                     </div>
                 </div>
                 <hr>
                 <div>
-                    <legend align="center">Color Codes</legend>
+                    <legend align="center">Trash</legend>
+                    <div id="trash-box" class="box-poke dropzone">
+                    </div>
+                    <button class="deadzone" id="trash-pok">Remove Pokémon from the trash</button>
+                    <button class="deadzone" id="clearSets">Remove Pokémon from all boxes</button>
+                </div>
+                <hr>
+                <div>
+                    <legend align="center">Color Coding</legend>
                     <button id="show-cc">Show</button>
                     <button id="hide-cc" hidden>Hide</button>
                     <button id="refr-cc" hidden>Refresh</button>
-                    <button id="info-cc" hidden>Colors Explanation</button>
+                    <button id="info-cc" hidden>Color Code Explanation</button>
                     <div id="info-cc-field" class="info-paragraph" hidden>
                         <h5>Speed Borders</h5>
                         <b class="mon-speed-F">Blue</b> Outspeeds
                         <b class="mon-speed-T">Purple</b> Speed Tie
                         <b class="mon-speed-S">Black</b> Slower
                         <h5>OHKO Colors</h5>
-                        <b class="mon-dmg-W">Walls</b>(get 4 HKO at worse and does more damage)
+                        <b class="mon-dmg-WMO">Hard Counter</b> (Gets 4HKO'd at worse and may OHKO)
                         <br>
-                        <b class="mon-dmg-WMO">Walls may OHKO</b>(gets 4 HKO at worse and may OHKO)
+                        <b class="mon-dmg-W">Walls</b> (Gets 4HKO'd at worse and does more damage)
                         <br>
-                        <b class="mon-dmg-1">100% OHKO</b>
+                        <b class="mon-dmg-1">Always OHKOs</b>
                         <br>
-                        <b class="mon-dmg-2">May 0HKO</b>
+                        <b class="mon-dmg-2">Might OHKO</b>
                         <br>
-                        <b class="mon-dmg-3">May Get 0HKO</b>
+                        <b class="mon-dmg-3">Might get OHKO'd</b>
                         <br>
-                        <b class="mon-dmg-4">100% Get 0HKO</b>
+                        <b class="mon-dmg-4">Always gets OHKO'd</b>
                         <br>
-                        <b class="mon-dmg-14">Both side 100% OHKO</b>
+                        <b class="mon-dmg-14">Both sides OHKO each other</b>
                         <br>
-                        <b class="mon-dmg-23">Both side may OHKO</b>
+                        <b class="mon-dmg-23">Both sides might OHKO each other</b>
                         <br>
-                        <b class="mon-dmg-13">100% OHKO but may gets OHKO</b>
+                        <b class="mon-dmg-13">Always OHKOs but may get OHKO'd</b>
                         <br>
-                        <b class="mon-dmg-24">May 0HKO but 100% Get 0HKO</b>
+                        <b class="mon-dmg-24">Might OHKO but always gets OHKO'd</b>
                         <p>
-                            Note: Color codes are intended to be a helper, some caveats and quirks are missed by the calculation
+                            Note: Color coding is intended to help, though some caveats and quirks are missed
                         </p>
                     </div>
                     <div id ="cc-sets" hidden>
-                        <input type="checkbox" name="cc-spe-border" id="cc-spe-border" checked>speed border
-                        <input type="checkbox" name="cc-ohko-color" id="cc-ohko-color" checked>OHKO color
-                        <input type="checkbox" name="cc-auto-refr" id="cc-auto-refr" autocomplete="off">auto-refresh
+                        <input type="checkbox" name="cc-spe-border" id="cc-spe-border" checked>Speed Border
+                        <input type="checkbox" name="cc-ohko-color" id="cc-ohko-color" checked>OHKO Color
+                        <input type="checkbox" name="cc-auto-refr" id="cc-auto-refr" autocomplete="off">Auto-Refresh
                     </div>
-                </div>
-                <hr>
-                <div>
-                    <legend align="center">TRASH ZONE</legend>
-                    <div id="trash-box" class="box-poke dropzone">
-                        
-                    </div>
-                    <button class="deadzone" id="trash-pok">Remove pokemon in the Trash</button>
-                    <button class="deadzone" id="clearSets">Remove all pokemons from all boxes</button>
                 </div>
             </fieldset>
         </div>
@@ -1635,7 +1634,7 @@
                 <hr>
                 <button type="button" id="previous-trainer"> Previous Trainer</button>
                 <button type="button" id="next-trainer"> Next Trainer</button>
-                <button type="button" id="reset-trainer">Truck</button>
+                <button type="button" id="reset-trainer">Reset</button>
             </fieldset>
         </div>
     </div>
@@ -1714,7 +1713,7 @@
         <br>
         <li><a href="https://github.com/smogon/damage-calc/contributors" class="links-lighten" target="_blank">Smogon Contributors</a></li>
         <li><a href="https://www.smogon.com/forums/threads/pok%C3%A9mon-showdown-damage-calculator.3593546/" class="links-lighten" target="_blank">Smogon Bug Reports</a></li>
-        <li><a href="https://github.com/smogon/damage-calc" class="links-lighten" target="_blank">Smogong qGitHub repository</a></li></ul>
+        <li><a href="https://github.com/smogon/damage-calc" class="links-lighten" target="_blank">Smogon GitHub repository</a></li></ul>
     
         <button type="button" id="dark-theme-toggle"></button>
         <script type="text/javascript" src="./js/dark-theme-toggle.js?"></script>
