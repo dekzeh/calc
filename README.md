@@ -1,7 +1,8 @@
-# Pokémon Damage Calculator
+# EKalc
 
-![Test Status](https://github.com/smogon/damage-calc/workflows/Tests/badge.svg)
-[![npm version](https://img.shields.io/npm/v/@smogon/calc.svg)](https://www.npmjs.com/package/@smogon/calc)&nbsp;
+This is a fork of the damage calculator that contains all the R&B stat changes, and has every trainer pre imported.
+Additionally some bugs are fixed, weather doesn't auto toggle off, and there are clickable icons for Pokemon to navigate.
+The working version can be seen at ![Calc](https://dekzeh.github.io/calc/)
 
 Damage calculator for all generations of Pokémon battling.
 
