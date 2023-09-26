@@ -3457,7 +3457,7 @@ const SS_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     maxPower: 140,
   },
   'Misty Explosion': {
-    bp: 100,
+    bp: 200,
     type: 'Fairy',
     category: 'Special',
     target: 'allAdjacent',
